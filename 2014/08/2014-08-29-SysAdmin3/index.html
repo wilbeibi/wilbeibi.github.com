@@ -1,0 +1,487 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>A Primer to System Administration - About SSH | Wilbeibi&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wilbeibi">
+    
+    <meta name="description" itemprop="description" content="Basic usages of ssh. Tested on Mac OSX 10.9.4, OpenSSH_6.2p2">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="wilbeibi" />
+    <meta name="twitter:title" content="A Primer to System Administration - About SSH | Wilbeibi&#39;s Blog" />
+      
+        <meta name="twitter:description" content="Basic usages of ssh. Tested on Mac OSX 10.9.4, OpenSSH_6.2p2" />
+      
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Wilbeibi&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wilbeibi&#39;s Blog" title="Wilbeibi&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wilbeibi&#39;s Blog">Wilbeibi&#39;s Blog</a></h1>
+				<h2 class="blog-motto">The trick, William Potter, is not minding that it hurts.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wilbeibi.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/2014-08-29-SysAdmin3/" title="A Primer to System Administration - About SSH" itemprop="url">A Primer to System Administration - About SSH</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://wilbeibi.com/about" title="Wilbeibi" target="_blank" itemprop="author">Wilbeibi</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-29T04:00:00.000Z" itemprop="datePublished">Published Aug 29 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_generate_key_pair?"><span class="toc-number">1.</span> <span class="toc-text">How to generate key pair?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_SSH_login_without_authentication?"><span class="toc-number">2.</span> <span class="toc-text">How to SSH login without authentication?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make_an_alias_of_the_connection"><span class="toc-number">3.</span> <span class="toc-text">Make an alias of the connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About_security"><span class="toc-number">4.</span> <span class="toc-text">About security</span></a></li></ol>
+		
+		</div>
+		
+		<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
+<blockquote>
+<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
+</blockquote>
+<p><img src="http://www.openssh.com/images/openssh.gif" alt=""></p>
+<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
+<h2 id="How_to_generate_key_pair?">How to generate key pair?</h2>
+<p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography" target="_blank" rel="external">more secure</a>. We can generate a key pair through:</p>
+<pre><code>$ ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span>
+<span class="comment"># Creates a new ssh key, using the provided email as a label</span>
+Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key pair.
+<span class="comment"># Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]</span>
+</code></pre><p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
+<pre><code><span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span>
+ssh-add ~/.ssh/id_rsa
+</code></pre><h2 id="How_to_SSH_login_without_authentication?">How to SSH login without authentication?</h2>
+<p>Now it’s time use our public key. For Linux user:</p>
+<pre><code> ssh-<span class="keyword">copy</span>-<span class="keyword">id</span> user@machine
+</code></pre><p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys" target="_blank" rel="external">typing</a>:</p>
+<pre><code> cat ~<span class="regexp">/.ssh/id</span>_rsa.pub | ssh user<span class="variable">@machine</span> <span class="string">"mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
+</code></pre><p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
+<h2 id="Make_an_alias_of_the_connection">Make an alias of the connection</h2>
+<p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
+<pre><code> Host matrix
+      HostName &lt;domain <span class="property">name</span> <span class="keyword">or</span> public IP&gt;
+      User &lt;user <span class="property">name</span>&gt;
+      IdentityFile &lt;/path/<span class="keyword">to</span>/private_key&gt;
+</code></pre><p>One more thing, ssh config support wildcard, so you can use </p>
+<pre><code> Host *compute-<span class="number">1</span>.amazonaws.<span class="keyword">com</span>
+</code></pre><p>for all your ec2 instances. I also added</p>
+<pre><code><span class="setting">TCPKeepAlive=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">ServerAliveInterval=<span class="value"><span class="number">15</span>    </span></span>
+<span class="setting">ServerAliveCountMax=<span class="value"><span class="number">6</span></span></span>
+<span class="setting">StrictHostKeyChecking=<span class="value"><span class="keyword">no</span></span></span>
+<span class="setting">Compression=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">ForwardAgent=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">RSAAuthentication=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">PasswordAuthentication=<span class="value"><span class="keyword">yes</span></span></span>
+</code></pre><p>in my config file to add more feature.</p>
+<h2 id="About_security">About security</h2>
+<ol>
+<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory" target="_blank" rel="external">stolen from memory</a>.</li>
+<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/" target="_blank" rel="external">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Sysadmin/">Sysadmin</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://wilbeibi.com/2014/08/2014-08-29-SysAdmin3/" data-title="A Primer to System Administration - About SSH | Wilbeibi&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/2015-01-27-plan/" title="2015 年部分计划">
+  <strong>上一篇：</strong><br/>
+  <span>
+  2015 年部分计划</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/2014-08-10-SysAdmin2/"  title="A Primer to System Administration - Know Thy System">
+ <strong>下一篇：</strong><br/> 
+ <span>A Primer to System Administration - Know Thy System
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_generate_key_pair?"><span class="toc-number">1.</span> <span class="toc-text">How to generate key pair?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_SSH_login_without_authentication?"><span class="toc-number">2.</span> <span class="toc-text">How to SSH login without authentication?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make_an_alias_of_the_connection"><span class="toc-number">3.</span> <span class="toc-text">Make an alias of the connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About_security"><span class="toc-number">4.</span> <span class="toc-text">About security</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Collection/" title="Collection">Collection<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Sysadmin/" title="Sysadmin">Sysadmin<sup>3</sup></a></li>
+		
+			<li><a href="/tags/notes/" title="notes">notes<sup>3</sup></a></li>
+		
+			<li><a href="/tags/miscellaneous/" title="miscellaneous">miscellaneous<sup>2</sup></a></li>
+		
+			<li><a href="/tags/writing/" title="writing">writing<sup>2</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+		
+			<li><a href="/tags/algorihms/" title="algorihms">algorihms<sup>1</sup></a></li>
+		
+			<li><a href="/tags/subscribe/" title="subscribe">subscribe<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://stackbox.org" target="_blank" title="Stackbox">Stackbox's Blog</a></li>
+      <li><a href="http://hugofeng.info" target="_blank" title="hugo">Flight log</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello,I&#39;m Wilbeibi, a backend developer <br/>
+			May the force be with you.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/wilbeibi" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/wilbeibi" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.douban.com/people/wilbeibi" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		<a href="mailto:wilbeibi@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2015 
+		
+		<a href="http://wilbeibi.com/about" target="_blank" title="Wilbeibi">Wilbeibi</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wilbeibi"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wilmatrix';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37214024-1', 'wilbeibi.com');  
+ga('send', 'pageview');
+</script>
+
+
+<div id="totop">
+<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

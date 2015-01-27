@@ -1,0 +1,521 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>How to deal with Git A-Z? | Wilbeibi&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wilbeibi">
+    
+    <meta name="description" itemprop="description" content="A personal Git FAQ">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="wilbeibi" />
+    <meta name="twitter:title" content="How to deal with Git A-Z? | Wilbeibi&#39;s Blog" />
+      
+        <meta name="twitter:description" content="A personal Git FAQ" />
+      
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Wilbeibi&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wilbeibi&#39;s Blog" title="Wilbeibi&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wilbeibi&#39;s Blog">Wilbeibi&#39;s Blog</a></h1>
+				<h2 class="blog-motto">The trick, William Potter, is not minding that it hurts.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wilbeibi.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/07/2014-7-21-gitAtoZ/" title="How to deal with Git A-Z?" itemprop="url">How to deal with Git A-Z?</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://wilbeibi.com/about" title="Wilbeibi" target="_blank" itemprop="author">Wilbeibi</a>
+		
+  <p class="article-time">
+    <time datetime="2014-07-22T04:00:00.000Z" itemprop="datePublished">Published Jul 22 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_modify_file_and_update_to_remote_repository?"><span class="toc-number">1.</span> <span class="toc-text">How to modify file and update to remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_change_last_commit?"><span class="toc-number">2.</span> <span class="toc-text">How to change last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_delete_files_in_remote_repository?"><span class="toc-number">3.</span> <span class="toc-text">How to delete files in remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull_or_Fetch?"><span class="toc-number">4.</span> <span class="toc-text">Pull or Fetch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So,_what_if_files_conflict_after_git_pull_(auto_merge_failed)"><span class="toc-number">5.</span> <span class="toc-text">So, what if files conflict after git pull (auto merge failed)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_overwrite,_rather_than_merge,_one_branch_from_another"><span class="toc-number">6.</span> <span class="toc-text">How to overwrite, rather than merge, one branch from another</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_delete_a_branch?"><span class="toc-number">7.</span> <span class="toc-text">How to delete a branch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_roll_back_to_a_specific_commit?"><span class="toc-number">8.</span> <span class="toc-text">How to roll back to a specific commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What_is_commit_-a?"><span class="toc-number">9.</span> <span class="toc-text">What is commit -a?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_git_ignore_something_except_a_certain_file?"><span class="toc-number">10.</span> <span class="toc-text">How to git ignore something except a certain file?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_give_up_all_the_changes_since_last_commit?"><span class="toc-number">11.</span> <span class="toc-text">How to give up all the changes since last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_clone_a_specific_branch"><span class="toc-number">12.</span> <span class="toc-text">How to clone a specific branch</span></a></li></ol>
+		
+		</div>
+		
+		<p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git" target="_blank" rel="external">here</a>.</p>
+<h2 id="How_to_modify_file_and_update_to_remote_repository?">How to modify file and update to remote repository?</h2>
+<pre><code>git <span class="built_in">add</span> <span class="keyword">file</span>
+git commit -<span class="keyword">m</span> <span class="string">"Aha, file modified"</span>
+</code></pre><p>Or, just type</p>
+<pre><code>git commit -<span class="keyword">am</span> <span class="string">"Aha, file modified"</span>
+</code></pre><p>After that, push to remote repository:</p>
+<pre><code>git <span class="keyword">push</span> origin branch_name
+</code></pre><p>So, what’s difference between these two? I will reach to that later.</p>
+<h2 id="How_to_change_last_commit?">How to change last commit?</h2>
+<p>It’s a good practice to fix a wrong commit rather than make a new commit.<br>So, first, edit the file with the problem, make the corrections, then:</p>
+<pre><code>git add now_right_file
+git <span class="operator"><span class="keyword">commit</span> <span class="comment">--amend</span>
+git push <span class="comment">--force branch_name   # Warning!</span></span>
+</code></pre><p>Be careful, The <code>--force</code> is dangerous, it works fine to me for 99% cases, but it dose have potential harmness, and that’s <a href="http://stackoverflow.com/a/432518/1035859" target="_blank" rel="external">why Linus doesn’t recommend it</a>.  </p>
+<h2 id="How_to_delete_files_in_remote_repository?">How to delete files in remote repository?</h2>
+<p>There are two ways of delete files, delete locally and commit to remote repository, or just directly delete files in remote repository, like:</p>
+<pre><code><span class="comment">git</span> <span class="comment">rm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">cached</span> <span class="comment">file_to_delete</span>
+</code></pre><p>Even better, you can delete all the files match a certain <a href="http://linux.about.com/library/cmd/blcmdl7_glob.htm" target="_blank" rel="external">glob</a>:</p>
+<pre><code>git rm --cached <span class="string">'merge-*'</span> # <span class="built_in">delete</span> <span class="keyword">all</span> the <span class="keyword">files</span> start with <span class="string">"merge-"</span>
+</code></pre><h2 id="Pull_or_Fetch?">Pull or Fetch?</h2>
+<p>There already has an excellent and well accepted answer on StackOverflow, it’s way much better than my explanation —&gt; <a href="http://stackoverflow.com/questions/292357/difference-between-git-pull-and-git-fetch" target="_blank" rel="external">link</a>:</p>
+<blockquote>
+<p>In the simplest terms, <code>git pull</code> does a <code>git fetch</code> followed by a <code>git merge</code>.<br>You can do a <code>git fetch</code> at any time to update your remote-tracking branches under <code>refs/remotes/&lt;remote&gt;/</code>. This operation never changes any of your own local branches under <code>refs/heads</code>, and is safe to do without changing your working copy. I have even heard of people running git fetch periodically in a cron job in the background (although I wouldn’t recommend doing this).</p>
+<p>A <code>git pull</code> is what you would do to bring a local branch up-to-date with its remote version, while also updating your other remote-tracking branches.</p>
+</blockquote>
+<h2 id="So,_what_if_files_conflict_after_git_pull_(auto_merge_failed)">So, what if files conflict after git pull (auto merge failed)</h2>
+<pre><code>git pull # will auto <span class="operator"><span class="keyword">merge</span> unconflicted part
+git <span class="keyword">status</span> # <span class="keyword">check</span> the information <span class="keyword">of</span> conflicted files</span>
+</code></pre><p>Use your favorite editor to edit the conflicted file with “&lt;&lt;&lt;&lt;&lt;&lt;” and “&gt;&gt;&gt;&gt;&gt;&gt;”, save it, commit it, that’s all.</p>
+<p><a href="https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line" target="_blank" rel="external">Read more</a>…</p>
+<h2 id="How_to_overwrite,_rather_than_merge,_one_branch_from_another">How to overwrite, rather than merge, one branch from another</h2>
+<pre><code>git checkout latest_branch
+git merge <span class="operator">-s</span> ours to_overwrite_branch
+</code></pre><p>What’s the <code>ours</code> means here? It’s a merge strategy, you can find it in <a href="http://git-scm.com/docs/git-checkout" target="_blank" rel="external">git checkout doc</a>:</p>
+<blockquote>
+<pre><code> <span class="comment">git</span> <span class="comment">checkout</span> <span class="title">[</span><span class="literal">-</span><span class="literal">-</span><span class="comment">ours|</span> <span class="comment">theirs</span><span class="title">]</span> <span class="comment">branch</span>  
+  <span class="literal">-</span><span class="literal">-</span><span class="comment">ours</span>
+   <span class="literal">-</span><span class="literal">-</span><span class="comment">theirs</span>
+</code></pre><p>When checking out paths from the index, check out stage #2 (ours) or #3 (theirs) for unmerged paths.  </p>
+<p>The index may contain unmerged entries because of a previous failed merge. By default, if you try to check out such an entry from the index, the checkout operation will fail and nothing will be checked out. Using -f will ignore these unmerged entries. The contents from a specific side of the merge can be checked out of the index by using —ours or —theirs. With -m, changes made to the working tree file can be discarded to re-create the original conflicted merge result.</p>
+</blockquote>
+<h2 id="How_to_delete_a_branch?">How to delete a branch?</h2>
+<pre><code>git branch -d died_branch
+git <span class="keyword">push</span> origin --delete die_branch # <span class="keyword">or</span> git <span class="keyword">push</span> origin :died_branch
+</code></pre><p><a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely" target="_blank" rel="external">Read more</a>…</p>
+<h2 id="How_to_roll_back_to_a_specific_commit?">How to roll back to a specific commit?</h2>
+<pre><code>git reflog show <span class="comment"># find revision hash</span>
+git checkout revision_<span class="built_in">hash</span> .
+</code></pre><p>I will explain this a little bit. <code>git reflog show</code> gives us a list of all the commits and their hashes. Then, checkout that specific hash.</p>
+<p>Read more:</p>
+<ul>
+<li><a href="http://alblue.bandlem.com/2011/05/git-tip-of-week-reflogs.html" target="_blank" rel="external">A deep look at <code>reflog</code></a> </li>
+<li><a href="http://stackoverflow.com/questions/17857723/whats-the-difference-between-git-reflog-and-log" target="_blank" rel="external">Difference between <code>reflog</code> and <code>log</code></a></li>
+</ul>
+<h2 id="What_is_commit_-a?">What is commit -a?</h2>
+<p>Many people always ask how to combine <code>git add</code> and <code>git commit</code> in one command, and the most answered solution is <code>git commit -a -m &quot;blah blah&quot;</code>.</p>
+<p>Yes and no. For the files which have been <code>git add</code> before, <code>git commit -a</code> will do the <code>git add</code> for you. But for rest files(aka untracked files), we have to the <code>git add</code>. If you really want to save the time for these tedious work, alias is what you are looking for.</p>
+<h2 id="How_to_git_ignore_something_except_a_certain_file?">How to git ignore something except a certain file?</h2>
+<p>In .gitignore:</p>
+<pre><code><span class="header"># Ignore everything</span>
+<span class="bullet">*
+</span>!except_script.sh
+</code></pre><p>This will ignore everything but except_scrpit.sh.</p>
+<h2 id="How_to_give_up_all_the_changes_since_last_commit?">How to give up all the changes since last commit?</h2>
+<p>Once my silly cat was dancing on my keyboard after a commit mess up all the files!<br>Luckily, we can use</p>
+<pre><code>git <span class="operator"><span class="keyword">reset</span> hard <span class="comment">--HEAD^</span></span>
+</code></pre><p>to revert to the previous commit.</p>
+<p>Or, I wrongly <code>git add should_not_add_file</code> , we can also use</p>
+<pre><code>git <span class="operator"><span class="keyword">reset</span> HEAD should_not_add_file</span>
+</code></pre><p>to upstage that file. </p>
+<h2 id="How_to_clone_a_specific_branch">How to clone a specific branch</h2>
+<p><a href="http://stackoverflow.com/questions/1911109/git-clone-a-specific-branch" target="_blank" rel="external">Stolen from Stackoverflow again</a></p>
+<pre><code><span class="input"><span class="prompt">git clone -b &lt;branch&gt;</span> &lt;remote_repo&gt;</span>
+</code></pre><p>Example:</p>
+<pre><code> git clone -b <span class="keyword">my</span>-branch git<span class="variable">@github</span>.com:user/myproject.git
+</code></pre><p>Alternative (no public key setup needed):</p>
+<pre><code>git clone -<span class="keyword">b</span> my-branch http<span class="variable">s:</span>//git@github.<span class="keyword">com</span>/username/myproject.git
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://wilbeibi.com/2014/07/2014-7-21-gitAtoZ/" data-title="How to deal with Git A-Z? | Wilbeibi&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/2014-08-08-SysAdmin/" title="A Primer to System Administration - Users and groups">
+  <strong>上一篇：</strong><br/>
+  <span>
+  A Primer to System Administration - Users and groups</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/07/2014-07-17-dropbox-coding/"  title="Collaborative programming with Dropbox">
+ <strong>下一篇：</strong><br/> 
+ <span>Collaborative programming with Dropbox
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_modify_file_and_update_to_remote_repository?"><span class="toc-number">1.</span> <span class="toc-text">How to modify file and update to remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_change_last_commit?"><span class="toc-number">2.</span> <span class="toc-text">How to change last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_delete_files_in_remote_repository?"><span class="toc-number">3.</span> <span class="toc-text">How to delete files in remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull_or_Fetch?"><span class="toc-number">4.</span> <span class="toc-text">Pull or Fetch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So,_what_if_files_conflict_after_git_pull_(auto_merge_failed)"><span class="toc-number">5.</span> <span class="toc-text">So, what if files conflict after git pull (auto merge failed)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_overwrite,_rather_than_merge,_one_branch_from_another"><span class="toc-number">6.</span> <span class="toc-text">How to overwrite, rather than merge, one branch from another</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_delete_a_branch?"><span class="toc-number">7.</span> <span class="toc-text">How to delete a branch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_roll_back_to_a_specific_commit?"><span class="toc-number">8.</span> <span class="toc-text">How to roll back to a specific commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What_is_commit_-a?"><span class="toc-number">9.</span> <span class="toc-text">What is commit -a?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_git_ignore_something_except_a_certain_file?"><span class="toc-number">10.</span> <span class="toc-text">How to git ignore something except a certain file?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_give_up_all_the_changes_since_last_commit?"><span class="toc-number">11.</span> <span class="toc-text">How to give up all the changes since last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How_to_clone_a_specific_branch"><span class="toc-number">12.</span> <span class="toc-text">How to clone a specific branch</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Collection/" title="Collection">Collection<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Sysadmin/" title="Sysadmin">Sysadmin<sup>3</sup></a></li>
+		
+			<li><a href="/tags/notes/" title="notes">notes<sup>3</sup></a></li>
+		
+			<li><a href="/tags/miscellaneous/" title="miscellaneous">miscellaneous<sup>2</sup></a></li>
+		
+			<li><a href="/tags/writing/" title="writing">writing<sup>2</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+		
+			<li><a href="/tags/algorihms/" title="algorihms">algorihms<sup>1</sup></a></li>
+		
+			<li><a href="/tags/subscribe/" title="subscribe">subscribe<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://stackbox.org" target="_blank" title="Stackbox">Stackbox's Blog</a></li>
+      <li><a href="http://hugofeng.info" target="_blank" title="hugo">Flight log</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello,I&#39;m Wilbeibi, a backend developer <br/>
+			May the force be with you.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/wilbeibi" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/wilbeibi" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.douban.com/people/wilbeibi" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		<a href="mailto:wilbeibi@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2015 
+		
+		<a href="http://wilbeibi.com/about" target="_blank" title="Wilbeibi">Wilbeibi</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wilbeibi"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wilmatrix';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37214024-1', 'wilbeibi.com');  
+ga('send', 'pageview');
+</script>
+
+
+<div id="totop">
+<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

@@ -1,0 +1,488 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Scrape data the right way Part:1 | Wilbeibi&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wilbeibi">
+    
+    <meta name="description" itemprop="description" content="My experience on how to scrape data from web.">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="wilbeibi" />
+    <meta name="twitter:title" content="Scrape data the right way Part:1 | Wilbeibi&#39;s Blog" />
+      
+        <meta name="twitter:description" content="My experience on how to scrape data from web." />
+      
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Wilbeibi&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wilbeibi&#39;s Blog" title="Wilbeibi&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wilbeibi&#39;s Blog">Wilbeibi&#39;s Blog</a></h1>
+				<h2 class="blog-motto">The trick, William Potter, is not minding that it hurts.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wilbeibi.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/05/2014-05-06-scrape_way/" title="Scrape data the right way Part:1" itemprop="url">Scrape data the right way Part:1</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://wilbeibi.com/about" title="Wilbeibi" target="_blank" itemprop="author">Wilbeibi</a>
+		
+  <p class="article-time">
+    <time datetime="2014-05-06T04:00:00.000Z" itemprop="datePublished">Published May 6 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why_lxml"><span class="toc-number">1.</span> <span class="toc-text">Why lxml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example:_Grab_data_from_Craglist"><span class="toc-number">2.</span> <span class="toc-text">Example: Grab data from Craglist</span></a></li></ol>
+		
+		</div>
+		
+		<p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/" target="_blank" rel="external">lxml</a>.</p>
+<h2 id="Why_lxml">Why lxml</h2>
+<p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#" target="_blank" rel="external">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html" target="_blank" rel="external">lxml document</a> said:</p>
+<blockquote>
+<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml/libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong><br>… …<br>The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
+</blockquote>
+<p>In short: lxml is faster when parsing well-formed web page.</p>
+<h2 id="Example:_Grab_data_from_Craglist">Example: Grab data from Craglist</h2>
+<p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
+<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html" target="_blank" rel="external">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:<br><img src="http://i.imgur.com/M5twZ1U.png" alt=""></p>
+<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>. </p>
+<pre><code><span class="built_in">from</span> lxml import html
+import requests
+
+<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'crag_link.txt'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> f:
+    <span class="keyword">for</span> i <span class="operator">in</span> range(<span class="number">0</span>, <span class="number">1000</span>, <span class="number">100</span>):
+        pg = <span class="string">'http://losangeles.craigslist.org/hhh/index'</span> + str(i) + <span class="string">'.html'</span>
+        src = requests.<span class="built_in">get</span>(pg)
+        <span class="keyword">if</span> src.status_code == <span class="number">404</span>:
+            sys.exit(<span class="number">1</span>)
+        tree = html.fromstring(src.<span class="keyword">text</span>)
+        print <span class="string">'Get page'</span>, i
+        <span class="keyword">for</span> j <span class="operator">in</span> range(<span class="number">1</span>, <span class="number">100</span>+<span class="number">1</span>):
+            x_link = <span class="comment">'//*[@id="toc_rows"]/div[2]/p[' + str(j) + ']/span[2]/a/@href'</span>
+            links = tree.xpath(x_link)
+            <span class="keyword">for</span> <span class="built_in">ln</span> <span class="operator">in</span> links:
+                f.<span class="built_in">write</span>( <span class="string">'http://losangeles.craigslist.org'</span> + <span class="built_in">ln</span> + <span class="string">'\n'</span>)
+
+    f.<span class="built_in">close</span>()
+</code></pre><p>Click into one of the page, for instance, we want to get post id, copy xpath<br>like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/" target="_blank" rel="external">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
+<pre><code><span class="keyword">try</span>:
+    post_id = tree.xpath('//*[@id=<span class="string">"pagecontainer"</span>]/section/section[<span class="number">2</span>]/<span class="keyword">div</span>[<span class="number">2</span>]/p[<span class="number">1</span>]/text()')
+<span class="keyword">except</span>:
+    <span class="comment"># Handle Error</span>
+</code></pre><p>The reason we add try/catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try/catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">get_attr</span><span class="params">(tree, xps)</span>:</span>
+    <span class="keyword">return</span> attr_name = tree.xpath(xps)
+
+<span class="string">''' 
+xps_dict look like: 
+{'post_id':'//*&lt;somehing&gt;/p[1]/text()','post_time':'//*&lt;somehing&gt;/p[1]/text()'}
+'''</span>
+<span class="keyword">for</span> a, x <span class="keyword">in</span> xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre><p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/notes/">notes</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://wilbeibi.com/2014/05/2014-05-06-scrape_way/" data-title="Scrape data the right way Part:1 | Wilbeibi&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/07/2014-07-17-dropbox-coding/" title="Collaborative programming with Dropbox">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Collaborative programming with Dropbox</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/03/2014-03-05-macandfriend/"  title="Mac程序员和他的朋友们">
+ <strong>下一篇：</strong><br/> 
+ <span>Mac程序员和他的朋友们
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why_lxml"><span class="toc-number">1.</span> <span class="toc-text">Why lxml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example:_Grab_data_from_Craglist"><span class="toc-number">2.</span> <span class="toc-text">Example: Grab data from Craglist</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Collection/" title="Collection">Collection<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Sysadmin/" title="Sysadmin">Sysadmin<sup>3</sup></a></li>
+		
+			<li><a href="/tags/notes/" title="notes">notes<sup>3</sup></a></li>
+		
+			<li><a href="/tags/miscellaneous/" title="miscellaneous">miscellaneous<sup>2</sup></a></li>
+		
+			<li><a href="/tags/writing/" title="writing">writing<sup>2</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+		
+			<li><a href="/tags/algorihms/" title="algorihms">algorihms<sup>1</sup></a></li>
+		
+			<li><a href="/tags/subscribe/" title="subscribe">subscribe<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://stackbox.org" target="_blank" title="Stackbox">Stackbox's Blog</a></li>
+      <li><a href="http://hugofeng.info" target="_blank" title="hugo">Flight log</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello,I&#39;m Wilbeibi, a backend developer <br/>
+			May the force be with you.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/wilbeibi" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/wilbeibi" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.douban.com/people/wilbeibi" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		<a href="mailto:wilbeibi@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2015 
+		
+		<a href="http://wilbeibi.com/about" target="_blank" title="Wilbeibi">Wilbeibi</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wilbeibi"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wilmatrix';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37214024-1', 'wilbeibi.com');  
+ga('send', 'pageview');
+</script>
+
+
+<div id="totop">
+<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

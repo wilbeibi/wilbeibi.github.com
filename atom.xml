@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Wilbeibi's Blog]]></title>
+  <subtitle><![CDATA[The trick, William Potter, is not minding that it hurts.]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://wilbeibi.com/"/>
+  <updated>2015-01-27T23:04:07.188Z</updated>
+  <id>http://wilbeibi.com/</id>
+  
+  <author>
+    <name><![CDATA[Wilbeibi]]></name>
+    <email><![CDATA[wilbeibi@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2015 年部分计划]]></title>
+    <link href="http://wilbeibi.com/2015/01/2015-01-27-plan/"/>
+    <id>http://wilbeibi.com/2015/01/2015-01-27-plan/</id>
+    <published>2015-01-27T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="2015_小部分计划">2015 小部分计划</h2>
+<p>说来真惭愧，2015年都过了一个月了，才写新年计划，拖延到这种境界，也很难得。<br>规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline<br>（deadline driven development 是最有生产力的）。</p>
+<ul>
+<li>二月底至三月，拿到offer，希望大厂收留，这是今年，甚至是这几年最大的事儿。</li>
+<li>读书，<zero to="" one="">， <resource revoution="">, 朴灵大大的&lt;深入浅出Nodejs&gt;，<br>还有王力的&lt;中国古代文化常识&gt;。</resource></zero></li>
+<li>写博客，博客至少一周两更。不管是写技术还是什么乱七八糟的。</li>
+<li>最后一条，希望。。。唉，看缘分吧，现在时间是有了，再也没什么欺骗自己的借口了。<br>（说的好像有妹子看我博客一样，噗~）</li>
+</ul>
+<p>暂时就想到这么多，wilbeibi，加油！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[新年计划及其他]]>
+    
+    </summary>
+    
+      <category term="writing" scheme="http://wilbeibi.com/tags/writing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A Primer to System Administration - About SSH]]></title>
+    <link href="http://wilbeibi.com/2014/08/2014-08-29-SysAdmin3/"/>
+    <id>http://wilbeibi.com/2014/08/2014-08-29-SysAdmin3/</id>
+    <published>2014-08-29T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
+<blockquote>
+<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
+</blockquote>
+<p><img src="http://www.openssh.com/images/openssh.gif" alt=""></p>
+<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
+<h2 id="How_to_generate_key_pair?">How to generate key pair?</h2>
+<p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography" target="_blank" rel="external">more secure</a>. We can generate a key pair through:</p>
+<pre><code>$ ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span>
+<span class="comment"># Creates a new ssh key, using the provided email as a label</span>
+Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key pair.
+<span class="comment"># Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]</span>
+</code></pre><p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
+<pre><code><span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span>
+ssh-add ~/.ssh/id_rsa
+</code></pre><h2 id="How_to_SSH_login_without_authentication?">How to SSH login without authentication?</h2>
+<p>Now it’s time use our public key. For Linux user:</p>
+<pre><code> ssh-<span class="keyword">copy</span>-<span class="keyword">id</span> user@machine
+</code></pre><p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys" target="_blank" rel="external">typing</a>:</p>
+<pre><code> cat ~<span class="regexp">/.ssh/id</span>_rsa.pub | ssh user<span class="variable">@machine</span> <span class="string">"mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
+</code></pre><p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
+<h2 id="Make_an_alias_of_the_connection">Make an alias of the connection</h2>
+<p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
+<pre><code> Host matrix
+      HostName &lt;domain <span class="property">name</span> <span class="keyword">or</span> public IP&gt;
+      User &lt;user <span class="property">name</span>&gt;
+      IdentityFile &lt;/path/<span class="keyword">to</span>/private_key&gt;
+</code></pre><p>One more thing, ssh config support wildcard, so you can use </p>
+<pre><code> Host *compute-<span class="number">1</span>.amazonaws.<span class="keyword">com</span>
+</code></pre><p>for all your ec2 instances. I also added</p>
+<pre><code><span class="setting">TCPKeepAlive=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">ServerAliveInterval=<span class="value"><span class="number">15</span>    </span></span>
+<span class="setting">ServerAliveCountMax=<span class="value"><span class="number">6</span></span></span>
+<span class="setting">StrictHostKeyChecking=<span class="value"><span class="keyword">no</span></span></span>
+<span class="setting">Compression=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">ForwardAgent=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">RSAAuthentication=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">PasswordAuthentication=<span class="value"><span class="keyword">yes</span></span></span>
+</code></pre><p>in my config file to add more feature.</p>
+<h2 id="About_security">About security</h2>
+<ol>
+<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory" target="_blank" rel="external">stolen from memory</a>.</li>
+<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/" target="_blank" rel="external">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[Basic usages of ssh. Tested on Mac OSX 10.9.4, OpenSSH_6.2p2]]>
+    
+    </summary>
+    
+      <category term="Sysadmin" scheme="http://wilbeibi.com/tags/Sysadmin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A Primer to System Administration - Know Thy System]]></title>
+    <link href="http://wilbeibi.com/2014/08/2014-08-10-SysAdmin2/"/>
+    <id>http://wilbeibi.com/2014/08/2014-08-10-SysAdmin2/</id>
+    <published>2014-08-10T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="General_information">General information</h2>
+<ol>
+<li><p>Use <code>uname</code> to get system information:</p>
+<p> uname -a</p>
+<p><code>-a</code> for print all the information.</p>
+</li>
+</ol>
+<h2 id="CPU_information">CPU information</h2>
+<ol>
+<li>Use <code>nproc</code> to print the number of processing units available (GNU coreutils):</li>
+</ol>
+<pre><code>   <span class="variable">$ </span>nproc
+   <span class="number">4</span>
+</code></pre><ol>
+<li>Use <code>lscpu</code> to display CPU architecture information (util-linux).</li>
+</ol>
+<h2 id="Disk_information">Disk information</h2>
+<ol>
+<li><code>df</code> is a powerful command for displaying system disk.</li>
+</ol>
+<pre><code>    df -h /path/<span class="built_in">to</span>/<span class="built_in">directory</span>
+</code></pre><ol>
+<li><code>cat /proc/partitions/</code> and <code>cat /proc/mounts</code> are also pretty handly solutions to check the partitions and mount disks.</li>
+</ol>
+<h2 id="Memory_information">Memory information</h2>
+<ol>
+<li><p>Just as same as disk, <code>cat /proc/meminfo</code> could easily check memory information (Thanks to Unix’s <a href="http://en.wikipedia.org/wiki/Everything_is_a_file" target="_blank" rel="external"><strong>Everything is a file</strong></a> design concept).</p>
+</li>
+<li><p>Alternatively, you can type <code>free -m</code>, which essentially is the same as check /meminfo. <code>-m</code> for display in megabytes (as you expected, -g for gigabytes, -k for kilobytes.)</p>
+</li>
+</ol>
+<h2 id="User_activity_information">User activity information</h2>
+<ol>
+<li><code>last</code> command will display user’s info like terminal, time, date and so forth. To check one specific user’s activity, <code>last username</code> is what you are looking for.</li>
+</ol>
+<ol>
+<li><p><code>w</code> is a great but rarely know command. It will display who is logged on and what they are doing. It’ll show username, terminal, from IP, login time, idle time, JCPU and the  command line of their current process. If you never heard it before, I strongly suggest you to have a try.</p>
+</li>
+<li><p><code>uptime</code>: Tell how long the system has been running.</p>
+</li>
+<li><p><code>ps</code>: a well known command for checking current processes, for instance, to list all zombie process:</p>
+<pre><code> ps aux | awk '{ <span class="literal">print</span> <span class="variable">$8</span> <span class="string">" "</span> <span class="variable">$2</span> }' | grep -w Z
+</code></pre><p> where <code>ps aux</code> to show processes for <strong>a</strong>ll users, the process’s <strong>u</strong>ser, and also show the processes not attached to a terminal (check man page for more details), then awk to filter the <code>STAT</code> and PID field, use grep to select the line contains <code>Z</code>(Zombie), now we get zombie processes pids. It’s easy to kill them by <code>kill -9 {PID}</code>.</p>
+</li>
+</ol>
+<ol>
+<li><code>top/htop</code>: Better not to use non-builtin command(for security reasons), but if you do want to, <code>htop</code> is a superior alternative to <code>top</code> — dynamically display current tasks.</li>
+</ol>
+<h2 id="Network_information">Network information</h2>
+<ol>
+<li><p>To get your own public IP, both <code>curl icanhazip.com</code> or <code>curl ifconfig.me</code> are easy ways to do that(previous one is much faster).</p>
+</li>
+<li><p><code>ping</code>: Even my mother knows to use <code>ping</code> to check network connectivity.</p>
+</li>
+<li><p><code>ifconfig</code>: A frequently used tool to view network interface information. BTW, I wrote a <a href="https://github.com/Wilbeibi/Ifconfig-extractor" target="_blank" rel="external">script</a> to filter IP, MAC addresses and networks from <code>ifconfig</code> (tested on Ubuntu, Fedora, OmniOS and FreeBSD).</p>
+</li>
+<li><p><code>lsof</code>, aka list open files, is definitely a swiss army knife for analyzing network. <code>lsof -i</code> for list all open Internet and X.25 network files. (The examples below are from Daniel Miessler’s blog, see reference)</p>
+<pre><code> lsof -iTCP # <span class="operator"><span class="keyword">Show</span> <span class="keyword">only</span> TCP connections
+ lsof -i:<span class="number">80</span> # <span class="keyword">Show</span> networking <span class="keyword">only</span> relate <span class="keyword">to</span> port <span class="number">80</span>
+ lsof -i@<span class="number">107.170</span><span class="number">.181</span><span class="number">.47</span> # <span class="keyword">Show</span> connections <span class="keyword">with</span> particular IP
+ lsof -u username # <span class="keyword">Show</span> given <span class="keyword">user</span><span class="string">'s connections
+ lsof -u ^username # Show connections except given user</span></span>
+</code></pre></li>
+</ol>
+<ol>
+<li><code>ss -s</code>: display Currently Established, Closed, Orphaned and Waiting TCP sockets</li>
+</ol>
+<h2 id="You_may_Also_interested_in">You may Also interested in</h2>
+<ol>
+<li>My previous post <a href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/" target="_blank" rel="external">A Primer to System Administration - Users and groups</a></li>
+<li>If you found any grammar misusage or typos, please help me correct by <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/blob/master/source/_posts/2014-08-10-SysAdmin2.md" target="_blank" rel="external">pull request here</a>.</li>
+</ol>
+<h2 id="Reference">Reference</h2>
+<p><a href="http://www.douban.com/note/265207425/" target="_blank" rel="external">nodejs 部署最佳实践 by 邻家 柠檬叔</a></p>
+<p><a href="http://www.tecmint.com/useful-linux-commands-for-system-administrators/" target="_blank" rel="external">30 Useful Linux Commands for System Administrators</a></p>
+<p><a href="http://unix.stackexchange.com/questions/106847/what-does-aux-mean-in-ps-aux" target="_blank" rel="external">What does aux mean in <code>ps aux</code>?</a></p>
+<p><a href="http://www.cyberciti.biz/tips/killing-zombie-process.html" target="_blank" rel="external">Killing zombie process</a></p>
+<p><a href="http://danielmiessler.com/study/lsof/" target="_blank" rel="external">An lsof Primer</a></p>
+<p><a href="http://www.cyberciti.biz/faq/check-network-connection-linux/" target="_blank" rel="external">Linux: Check Network Connection Command</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of commands for checking system information and performance. Tested on Ubuntu 14.04.]]>
+    
+    </summary>
+    
+      <category term="Sysadmin" scheme="http://wilbeibi.com/tags/Sysadmin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A Primer to System Administration - Users and groups]]></title>
+    <link href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/"/>
+    <id>http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/</id>
+    <published>2014-08-08T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="How_to_create_a_user">How to create a user</h2>
+<p>By useradd:</p>
+<pre><code><span class="input"><span class="prompt">useradd -m -d &lt;HomeDir&gt;</span> -g &lt;<span class="constant">Group</span>&gt; username</span>
+</code></pre><p>It’s optional to specify the new user’s home directory and group, but I strongly suggest to do so. <code>-m</code> stands for create home, <code>-d</code> to allocate a directory. (Warning, don’t mess up <code>useradd</code> and <code>adduser</code>, the later one is a higher level’s implementation. Here is a <a href="http://askubuntu.com/questions/345974/what-is-the-difference-between-adduser-and-useradd" target="_blank" rel="external">detailed explanation of these two’s differences</a>.)</p>
+<h2 id="How_to_create_a_group">How to create a group</h2>
+<p>By groupadd:</p>
+<pre><code><span class="title">groupadd</span> groupname
+</code></pre><h2 id="How_to_add_a_user_to_a_group">How to add a user to a group</h2>
+<p>By usermod:<br>    usermod -a -G <groupname> username</groupname></p>
+<p>where <code>usermod</code> means modify a user account, <code>-a</code> stands for append, append this user to a group.</p>
+<p><a href="http://www.cyberciti.biz/faq/howto-linux-add-user-to-group/" target="_blank" rel="external">Read more</a></p>
+<h2 id="How_to_list_all_users_in_a_group">How to list all users in a group</h2>
+<p>Well, there is not such a built-in command for that, but we can use:</p>
+<pre><code><span class="keyword">grep</span> <span class="string">'^groupname'</span> <span class="regexp">/etc/g</span>roup
+</code></pre><p>or <code>apt-get install members</code>, then</p>
+<pre><code><span class="title">members</span> groupname
+</code></pre><h2 id="What_is_sticky_bit">What is sticky bit</h2>
+<h3 id="What_is_sticky_bit_looks_like">What is sticky bit looks like</h3>
+<p>Sticky bit is used for directories. As wikipedia said:</p>
+<blockquote>
+<p>When the sticky bit is set, only the item’s owner, the directory’s owner, or root can rename or delete files. Without the sticky bit set, any user with write and execute permissions for the directory can rename or delete contained files, regardless of owner.</p>
+</blockquote>
+<p>For example, if the professor create a /homework directory with sticky bit, every student can upload their homework, but they cannot rename or delete other students’ homework.</p>
+<h3 id="How_to_set_it">How to set it</h3>
+<pre><code> chmod +t /path/<span class="built_in">to</span>/<span class="built_in">directory</span>
+</code></pre><p>or</p>
+<pre><code> <span class="keyword">chmod</span> <span class="number">1755</span>
+</code></pre><p>where 1 stands for sticky bit, 7 for owner has all privilege, 5 for read and execute privilege for the group, and for others.</p>
+<p>Now, /path/to/directory should looks like this (replaced last character):</p>
+<pre><code><span class="tag">drwxr-xr-t</span>   1 <span class="tag">root</span>     <span class="tag">other</span>          0 <span class="tag">Nov</span> 10 12<span class="pseudo">:57</span> <span class="tag">test</span>
+</code></pre><p>As wikipedia said, if the sticky-bit is set on the directory without the execution bit set for the others category, it is indicated with a capital T:</p>
+<pre><code><span class="tag">drwxr-xr-T</span>   1 <span class="tag">root</span>     <span class="tag">other</span>          0 <span class="tag">Nov</span> 10 12<span class="pseudo">:57</span> <span class="tag">test</span>
+</code></pre><p><a href="http://www.linuxnix.com/2012/01/sticky-bit-set-linux.html" target="_blank" rel="external">Read more …</a></p>
+<h2 id="What_is_setuid">What is setuid</h2>
+<p>One sentence explanation: Regardless of who runs this program, run it as the user who owns it, not the user that executes it.</p>
+<h3 id="How_to_set_it-1">How to set it</h3>
+<pre><code>chmod <span class="keyword">u</span>+<span class="keyword">s</span> /path/<span class="keyword">to</span>/<span class="keyword">file</span>
+</code></pre><h3 id="And_it_is_dangerous">And it is dangerous</h3>
+<p>For instance, a simple shell script <code>showfile.sh</code> has set setuid as root privilege:</p>
+<pre><code> <span class="comment">#!/bin/sh</span>
+ <span class="comment"># showfile</span>
+ ls <span class="operator">-l</span> | sort
+</code></pre><p>And If I am a bad guy, I could easily write script :</p>
+<pre><code> rm -rf /<span class="keyword">some</span>/<span class="keyword">where</span>/important
+</code></pre><p>and saved as name <code>ls</code>, add my <code>ls</code> to the front of $PATH. Now when I tried to run showfile.sh, Boom ! The files are deleted.</p>
+<h2 id="BTW">BTW</h2>
+<p>If you found grammar errors or typos, please feel free to help me <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/edit/master/source/_posts/2014-08-08-SysAdmin.md" target="_blank" rel="external">correct it</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[Just some examples, no big deal. Tested on Ubuntu 14.04.]]>
+    
+    </summary>
+    
+      <category term="Sysadmin" scheme="http://wilbeibi.com/tags/Sysadmin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to deal with Git A-Z?]]></title>
+    <link href="http://wilbeibi.com/2014/07/2014-7-21-gitAtoZ/"/>
+    <id>http://wilbeibi.com/2014/07/2014-7-21-gitAtoZ/</id>
+    <published>2014-07-22T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git" target="_blank" rel="external">here</a>.</p>
+<h2 id="How_to_modify_file_and_update_to_remote_repository?">How to modify file and update to remote repository?</h2>
+<pre><code>git <span class="built_in">add</span> <span class="keyword">file</span>
+git commit -<span class="keyword">m</span> <span class="string">"Aha, file modified"</span>
+</code></pre><p>Or, just type</p>
+<pre><code>git commit -<span class="keyword">am</span> <span class="string">"Aha, file modified"</span>
+</code></pre><p>After that, push to remote repository:</p>
+<pre><code>git <span class="keyword">push</span> origin branch_name
+</code></pre><p>So, what’s difference between these two? I will reach to that later.</p>
+<h2 id="How_to_change_last_commit?">How to change last commit?</h2>
+<p>It’s a good practice to fix a wrong commit rather than make a new commit.<br>So, first, edit the file with the problem, make the corrections, then:</p>
+<pre><code>git add now_right_file
+git <span class="operator"><span class="keyword">commit</span> <span class="comment">--amend</span>
+git push <span class="comment">--force branch_name   # Warning!</span></span>
+</code></pre><p>Be careful, The <code>--force</code> is dangerous, it works fine to me for 99% cases, but it dose have potential harmness, and that’s <a href="http://stackoverflow.com/a/432518/1035859" target="_blank" rel="external">why Linus doesn’t recommend it</a>.  </p>
+<h2 id="How_to_delete_files_in_remote_repository?">How to delete files in remote repository?</h2>
+<p>There are two ways of delete files, delete locally and commit to remote repository, or just directly delete files in remote repository, like:</p>
+<pre><code><span class="comment">git</span> <span class="comment">rm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">cached</span> <span class="comment">file_to_delete</span>
+</code></pre><p>Even better, you can delete all the files match a certain <a href="http://linux.about.com/library/cmd/blcmdl7_glob.htm" target="_blank" rel="external">glob</a>:</p>
+<pre><code>git rm --cached <span class="string">'merge-*'</span> # <span class="built_in">delete</span> <span class="keyword">all</span> the <span class="keyword">files</span> start with <span class="string">"merge-"</span>
+</code></pre><h2 id="Pull_or_Fetch?">Pull or Fetch?</h2>
+<p>There already has an excellent and well accepted answer on StackOverflow, it’s way much better than my explanation —&gt; <a href="http://stackoverflow.com/questions/292357/difference-between-git-pull-and-git-fetch" target="_blank" rel="external">link</a>:</p>
+<blockquote>
+<p>In the simplest terms, <code>git pull</code> does a <code>git fetch</code> followed by a <code>git merge</code>.<br>You can do a <code>git fetch</code> at any time to update your remote-tracking branches under <code>refs/remotes/&lt;remote&gt;/</code>. This operation never changes any of your own local branches under <code>refs/heads</code>, and is safe to do without changing your working copy. I have even heard of people running git fetch periodically in a cron job in the background (although I wouldn’t recommend doing this).</p>
+<p>A <code>git pull</code> is what you would do to bring a local branch up-to-date with its remote version, while also updating your other remote-tracking branches.</p>
+</blockquote>
+<h2 id="So,_what_if_files_conflict_after_git_pull_(auto_merge_failed)">So, what if files conflict after git pull (auto merge failed)</h2>
+<pre><code>git pull # will auto <span class="operator"><span class="keyword">merge</span> unconflicted part
+git <span class="keyword">status</span> # <span class="keyword">check</span> the information <span class="keyword">of</span> conflicted files</span>
+</code></pre><p>Use your favorite editor to edit the conflicted file with “&lt;&lt;&lt;&lt;&lt;&lt;” and “&gt;&gt;&gt;&gt;&gt;&gt;”, save it, commit it, that’s all.</p>
+<p><a href="https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line" target="_blank" rel="external">Read more</a>…</p>
+<h2 id="How_to_overwrite,_rather_than_merge,_one_branch_from_another">How to overwrite, rather than merge, one branch from another</h2>
+<pre><code>git checkout latest_branch
+git merge <span class="operator">-s</span> ours to_overwrite_branch
+</code></pre><p>What’s the <code>ours</code> means here? It’s a merge strategy, you can find it in <a href="http://git-scm.com/docs/git-checkout" target="_blank" rel="external">git checkout doc</a>:</p>
+<blockquote>
+<pre><code> <span class="comment">git</span> <span class="comment">checkout</span> <span class="title">[</span><span class="literal">-</span><span class="literal">-</span><span class="comment">ours|</span> <span class="comment">theirs</span><span class="title">]</span> <span class="comment">branch</span>  
+  <span class="literal">-</span><span class="literal">-</span><span class="comment">ours</span>
+   <span class="literal">-</span><span class="literal">-</span><span class="comment">theirs</span>
+</code></pre><p>When checking out paths from the index, check out stage #2 (ours) or #3 (theirs) for unmerged paths.  </p>
+<p>The index may contain unmerged entries because of a previous failed merge. By default, if you try to check out such an entry from the index, the checkout operation will fail and nothing will be checked out. Using -f will ignore these unmerged entries. The contents from a specific side of the merge can be checked out of the index by using —ours or —theirs. With -m, changes made to the working tree file can be discarded to re-create the original conflicted merge result.</p>
+</blockquote>
+<h2 id="How_to_delete_a_branch?">How to delete a branch?</h2>
+<pre><code>git branch -d died_branch
+git <span class="keyword">push</span> origin --delete die_branch # <span class="keyword">or</span> git <span class="keyword">push</span> origin :died_branch
+</code></pre><p><a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely" target="_blank" rel="external">Read more</a>…</p>
+<h2 id="How_to_roll_back_to_a_specific_commit?">How to roll back to a specific commit?</h2>
+<pre><code>git reflog show <span class="comment"># find revision hash</span>
+git checkout revision_<span class="built_in">hash</span> .
+</code></pre><p>I will explain this a little bit. <code>git reflog show</code> gives us a list of all the commits and their hashes. Then, checkout that specific hash.</p>
+<p>Read more:</p>
+<ul>
+<li><a href="http://alblue.bandlem.com/2011/05/git-tip-of-week-reflogs.html" target="_blank" rel="external">A deep look at <code>reflog</code></a> </li>
+<li><a href="http://stackoverflow.com/questions/17857723/whats-the-difference-between-git-reflog-and-log" target="_blank" rel="external">Difference between <code>reflog</code> and <code>log</code></a></li>
+</ul>
+<h2 id="What_is_commit_-a?">What is commit -a?</h2>
+<p>Many people always ask how to combine <code>git add</code> and <code>git commit</code> in one command, and the most answered solution is <code>git commit -a -m &quot;blah blah&quot;</code>.</p>
+<p>Yes and no. For the files which have been <code>git add</code> before, <code>git commit -a</code> will do the <code>git add</code> for you. But for rest files(aka untracked files), we have to the <code>git add</code>. If you really want to save the time for these tedious work, alias is what you are looking for.</p>
+<h2 id="How_to_git_ignore_something_except_a_certain_file?">How to git ignore something except a certain file?</h2>
+<p>In .gitignore:</p>
+<pre><code><span class="header"># Ignore everything</span>
+<span class="bullet">*
+</span>!except_script.sh
+</code></pre><p>This will ignore everything but except_scrpit.sh.</p>
+<h2 id="How_to_give_up_all_the_changes_since_last_commit?">How to give up all the changes since last commit?</h2>
+<p>Once my silly cat was dancing on my keyboard after a commit mess up all the files!<br>Luckily, we can use</p>
+<pre><code>git <span class="operator"><span class="keyword">reset</span> hard <span class="comment">--HEAD^</span></span>
+</code></pre><p>to revert to the previous commit.</p>
+<p>Or, I wrongly <code>git add should_not_add_file</code> , we can also use</p>
+<pre><code>git <span class="operator"><span class="keyword">reset</span> HEAD should_not_add_file</span>
+</code></pre><p>to upstage that file. </p>
+<h2 id="How_to_clone_a_specific_branch">How to clone a specific branch</h2>
+<p><a href="http://stackoverflow.com/questions/1911109/git-clone-a-specific-branch" target="_blank" rel="external">Stolen from Stackoverflow again</a></p>
+<pre><code><span class="input"><span class="prompt">git clone -b &lt;branch&gt;</span> &lt;remote_repo&gt;</span>
+</code></pre><p>Example:</p>
+<pre><code> git clone -b <span class="keyword">my</span>-branch git<span class="variable">@github</span>.com:user/myproject.git
+</code></pre><p>Alternative (no public key setup needed):</p>
+<pre><code>git clone -<span class="keyword">b</span> my-branch http<span class="variable">s:</span>//git@github.<span class="keyword">com</span>/username/myproject.git
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[A personal Git FAQ]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://wilbeibi.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Collaborative programming with Dropbox]]></title>
+    <link href="http://wilbeibi.com/2014/07/2014-07-17-dropbox-coding/"/>
+    <id>http://wilbeibi.com/2014/07/2014-07-17-dropbox-coding/</id>
+    <published>2014-07-17T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a problem: How can we programming together smoothly? Which means, at any moment of time, I can check his code while he is programming.</p>
+<h2 id="Why_not_Github?">Why not Github?</h2>
+<p>No, that’s little bit heavy for this project. So, what’s alternative choices? Dropbox! Dropbox maybe the easiest way to share folder (wait, you means <code>rsync</code>? Dropbox did a lot of algorithm improvement to ensure it’s higher speed of syncing)<br><img src="http://dl.dropbox.com/u/1656836/web3/invite-to-folder.png" alt="Alt text"></p>
+<p>But, something weird happens. My Webstorm automatically changed layout views. That because he is also using Webstorm, and In each project, Webstorm use a <code>.idea/</code> directory to save specific settings (as the document below said).</p>
+<blockquote>
+<p>Project settings are stored with each specific project as a set of xml files under the .idea folder. If you specify the default project settings, these settings will be automatically used for each newly created project.</p>
+</blockquote>
+<h2 id="Is_there_any_-gitginore_like_file_in_Dropbox?">Is there any <code>.gitginore</code> like file in Dropbox?</h2>
+<p>Sure. Of course it’s not as powerful as <code>.gitginore</code>. In dropbox -&gt; Preference -&gt; Account -&gt; Change Setting, unclick <code>.idea</code> folder, that’s all.</p>
+<p>Also, I strongly suggest unclick <code>node_modules</code> folder. It takes Dropbox too much time to synchronize a bunch of small pieces of files.</p>
+<p>And if you sometimes use Emacs, to avoid annoying temporary files (but some time really save you ass), the only way I know is to add this in <code>.emacs</code> file.</p>
+<pre><code> <span class="list">(<span class="title">setq</span> make-backup-files <span class="literal">nil</span>)</span>
+</code></pre><p>Please feel free to correct my typos or grammar.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[Easy solution of real time collaborative coding]]>
+    
+    </summary>
+    
+      <category term="miscellaneous" scheme="http://wilbeibi.com/tags/miscellaneous/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Scrape data the right way Part:1]]></title>
+    <link href="http://wilbeibi.com/2014/05/2014-05-06-scrape_way/"/>
+    <id>http://wilbeibi.com/2014/05/2014-05-06-scrape_way/</id>
+    <published>2014-05-06T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/" target="_blank" rel="external">lxml</a>.</p>
+<h2 id="Why_lxml">Why lxml</h2>
+<p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#" target="_blank" rel="external">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html" target="_blank" rel="external">lxml document</a> said:</p>
+<blockquote>
+<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml/libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong><br>… …<br>The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
+</blockquote>
+<p>In short: lxml is faster when parsing well-formed web page.</p>
+<h2 id="Example:_Grab_data_from_Craglist">Example: Grab data from Craglist</h2>
+<p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
+<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html" target="_blank" rel="external">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:<br><img src="http://i.imgur.com/M5twZ1U.png" alt=""></p>
+<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>. </p>
+<pre><code><span class="built_in">from</span> lxml import html
+import requests
+
+<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'crag_link.txt'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> f:
+    <span class="keyword">for</span> i <span class="operator">in</span> range(<span class="number">0</span>, <span class="number">1000</span>, <span class="number">100</span>):
+        pg = <span class="string">'http://losangeles.craigslist.org/hhh/index'</span> + str(i) + <span class="string">'.html'</span>
+        src = requests.<span class="built_in">get</span>(pg)
+        <span class="keyword">if</span> src.status_code == <span class="number">404</span>:
+            sys.exit(<span class="number">1</span>)
+        tree = html.fromstring(src.<span class="keyword">text</span>)
+        print <span class="string">'Get page'</span>, i
+        <span class="keyword">for</span> j <span class="operator">in</span> range(<span class="number">1</span>, <span class="number">100</span>+<span class="number">1</span>):
+            x_link = <span class="comment">'//*[@id="toc_rows"]/div[2]/p[' + str(j) + ']/span[2]/a/@href'</span>
+            links = tree.xpath(x_link)
+            <span class="keyword">for</span> <span class="built_in">ln</span> <span class="operator">in</span> links:
+                f.<span class="built_in">write</span>( <span class="string">'http://losangeles.craigslist.org'</span> + <span class="built_in">ln</span> + <span class="string">'\n'</span>)
+
+    f.<span class="built_in">close</span>()
+</code></pre><p>Click into one of the page, for instance, we want to get post id, copy xpath<br>like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/" target="_blank" rel="external">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
+<pre><code><span class="keyword">try</span>:
+    post_id = tree.xpath('//*[@id=<span class="string">"pagecontainer"</span>]/section/section[<span class="number">2</span>]/<span class="keyword">div</span>[<span class="number">2</span>]/p[<span class="number">1</span>]/text()')
+<span class="keyword">except</span>:
+    <span class="comment"># Handle Error</span>
+</code></pre><p>The reason we add try/catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try/catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">get_attr</span><span class="params">(tree, xps)</span>:</span>
+    <span class="keyword">return</span> attr_name = tree.xpath(xps)
+
+<span class="string">''' 
+xps_dict look like: 
+{'post_id':'//*&lt;somehing&gt;/p[1]/text()','post_time':'//*&lt;somehing&gt;/p[1]/text()'}
+'''</span>
+<span class="keyword">for</span> a, x <span class="keyword">in</span> xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre><p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[My experience on how to scrape data from web.]]>
+    
+    </summary>
+    
+      <category term="notes" scheme="http://wilbeibi.com/tags/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Mac程序员和他的朋友们]]></title>
+    <link href="http://wilbeibi.com/2014/03/2014-03-05-macandfriend/"/>
+    <id>http://wilbeibi.com/2014/03/2014-03-05-macandfriend/</id>
+    <published>2014-03-05T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="为什么要用Mac">为什么要用Mac</h2>
+<p>Linux内核作者<a href="http://www.zdnet.com/torvalds-switches-to-apple-1139183867/" target="_blank" rel="external">Linus早就开始使用Mac了</a>（虽然面对记者表现的很扭捏）。Gnome的作者更是理直气壮<a href="http://tirania.org/blog/archive/2013/Mar-05.html" target="_blank" rel="external">叛逃Linux投奔Mac</a>。如你所知，Mac OSX是<a href="http://programmers.stackexchange.com/questions/51670/why-do-programmers-use-or-recommend-mac-os-x" target="_blank" rel="external">开发者们的最爱</a>。因为它一方面有非常棒的用户体验，一方面是基于Unix，尽得shell的益处，又避免了Linux下种种繁琐。什么，太贵了，看看<a href="http://www.cnblogs.com/chijianqiang/p/mmac.html" target="_blank" rel="external">MacTalk是怎么说的</a>。</p>
+<p>工欲善其事，必先利其器。这里分享下我的Mac应用和配置。</p>
+<a id="more"></a>
+<p>基于原则:</p>
+<ul>
+<li>尊重软件版权，能购买正版的，请尽量购买正版</li>
+<li>Don’t Shave Yaks, 不要因为花太多时间配置工具而浪费工作的时间</li>
+<li>奥卡姆剃刀，如果一项功能需求只是偶尔用一下，就别配置了。</li>
+</ul>
+<h2 id="应用&amp;效率">应用&amp;效率</h2>
+<h3 id="Dropbox">Dropbox</h3>
+<p>大名鼎鼎的Dropbox，无需赘述。是居家旅行，出门必备同步神器。Dropbox较之Google Drive更轻量级，更快，适合在多平台同步正在编辑的文档或者代码。记得Google Drive是没有Linux版客户端的，而Dropbox有！而且，Dropbox的文件分享链接是直接指向文件的，对于在remote terminal上工作且尚不熟悉scp和rsync的同学来说是福音（<code>rsync --daemon</code>效果可以媲美Dropbox）。相比之下，Google Drive 更适合来存放资料，因为它能搜索文档内关键词。</p>
+<h3 id="Mou">Mou</h3>
+<p>我见过最好的MarkDown编辑器，简洁，漂亮，可配置，支持MathJax公式编辑。<br><img src="http://mouapp.com/images/Mou_Screenshot_1.png" alt=""></p>
+<h3 id="Evernote">Evernote</h3>
+<p>笔记软件，我主要用它在收藏平时看到的好的RSS文章，Prime版的多人协作，幻灯片功能也很赞。</p>
+<h3 id="Pocket">Pocket</h3>
+<p>众多的ReadItLater软件中的一个，推荐Pocket是因为它的文本抽取出来的格式比较好，在移动端上的App做的也很出色。</p>
+<h3 id="Kaleidoscope">Kaleidoscope</h3>
+<p>比较多文档之间的差异。一个命令行党应该忠诚的效忠用<code>diff</code>来比较文件，但是Kaleidoscope真的太好用了，关键是它不仅能逐行比较，还能一块块匹配着比较，还能两个文件夹比较，还能Merge文件。</p>
+<h3 id="Alfred_2">Alfred 2</h3>
+<p>这是一个神奇的快速启动软件，就为了它，你就值得买个Mac。MacTalk里谦虚的称它为“神兵利器”。你可以用它来：</p>
+<ul>
+<li>打开任何应用</li>
+<li>查找文件</li>
+<li>执行shell命令</li>
+<li>当计算器用</li>
+<li>直接写email</li>
+<li>在Google/Amazon/Wikipedia上搜索条目</li>
+<li>… …<br>嗯，以上只是它的普通功能，只有这些还不足以称之为伟大。Alfred之牛掰，在于其可编程的第三方workflow插件机制，这样可以在Alfred里搜豆瓣图书，搜Github仓库，查看天气或PM2.5，搜索自己的Evernote笔记，查API文档，一切能想到的，<a href="http://www.zhihu.com/question/20656680" target="_blank" rel="external">都可以实现</a>。<br><img src="http://i.imgur.com/XDWlNGv.png" alt=""><br><img src="http://i.imgur.com/3hpPO97.png" alt=""></li>
+</ul>
+<h3 id="TextExpander">TextExpander</h3>
+<p>文本自动补全的插件，自定义好触发的关键词，每次输入这些关键词的时候，biu~，想打的字就全弹出来了。把自己的电话，邮箱，或者写邮件的模板存进去，能避免很多重复的劳动。</p>
+<h3 id="Popclip">Popclip</h3>
+<p>文字选中弹出扩展。每次选中文字后，可以快速的把选中文字进行复制，粘贴，查找，加入笔记本等等。</p>
+<h3 id="RescueTime_(Time_sink)">RescueTime (Time sink)</h3>
+<p>默默的运行在后台，告诉你你的时间都浪费在哪儿了。每周发邮件告诉你你在哪个软件，哪个网站上花了多少时间，这一天/周的效率有多高。你可以定义什么是有效率的行为（比如用Evernote写笔记，用Emacs写代码）加分，哪些是偷懒的行为（看美剧，刷豆瓣）扣分。</p>
+<h3 id="LimeChat">LimeChat</h3>
+<p>IRC应用，选它是因为其他的IRC应用都太！！难！！用！！了！！</p>
+<h3 id="AppCleaner">AppCleaner</h3>
+<p>删软件清理残余。</p>
+<h3 id="Moom">Moom</h3>
+<p>还在像傻帽一样花半天找到窗口边框笨手笨脚地缩放大小么？用Moom吧，能快速排好窗口，自定义想要的窗口大小。</p>
+<h3 id="The_unarchiver">The unarchiver</h3>
+<p>普通解压用<code>tar</code>命令，但如何有非UTF-8的中文编码，还是用unarchiver比较方便（命令行下得用<code>find</code> + <code>iconv</code>写一长串，太虐心）</p>
+<h2 id="编程&amp;配置">编程&amp;配置</h2>
+<h3 id="Dash">Dash</h3>
+<p>查文档利器。作者在新版本对它收费$20，丧心病狂，但从长远考虑，还是值得的。能配合Alfred用，省心。</p>
+<h3 id="Textmate">Textmate</h3>
+<p>bundle功能很好用，方便快速掌握一门语言。写前端代码很方便。其他时候，还是用Vim/Emacs吧。</p>
+<h3 id="TotalCommander">TotalCommander</h3>
+<p>命令行党都有过每天得把Terminal拖来拖去的苦恼。TotalCommander正是这样一款下拉式的终端，类似Gnome下的Guake，也支持多窗口，强烈推荐。</p>
+<h3 id="iTerm2">iTerm2</h3>
+<p>不管你用bash，zsh还是tcsh，有一个好用的Terminal软件是十分必要的，iTerm2就正是一个优秀的终端。好看，配置性极强，有很多方便的功能，戳<a href="http://www.yangzhiping.com/tech/iterm2.html" target="_blank" rel="external">这篇文章</a>。</p>
+<h3 id="Homebrew">Homebrew</h3>
+<p>Mac下的包管理器，和ports平分天下。想装什么东西，尽管<code>brew install</code> 就好。</p>
+<h3 id="Z_shell_(tmux及配置文件)">Z shell (tmux及配置文件)</h3>
+<p>基于bash的shell，被誉为The Last Shell。配置当然很复杂，不过不要紧，拿来主义一下，用<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a>一行代码安装。</p>
+<h3 id="z/autojump">z/autojump</h3>
+<p>每天还在为输各种<code>cd</code>而浪费时间？<a href="https://github.com/rupa/z" target="_blank" rel="external">z</a> 是个极为方便的小配置，它把用户访问过的目录存在记录里，每次输入<code>z &lt;访问过的目录的关键词&gt;</code>，就biu的一声到了。autojump也是类似的工具。</p>
+<p><img src="http://i.imgur.com/XFdMrp9.jpg" alt=""></p>
+<hr>
+<p>PS: 这篇文章只是兴之所至，所以很多东西还没来得及说，我会长期更新<br>Wed Mar  5 01:21:05 EST 2014</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[Mac编程环境的配置和常用软件]]>
+    
+    </summary>
+    
+      <category term="miscellaneous" scheme="http://wilbeibi.com/tags/miscellaneous/"/>
+    
+      <category term="Collection" scheme="http://wilbeibi.com/categories/Collection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[The Better Way to learn programming is to get away from it]]></title>
+    <link href="http://wilbeibi.com/2013/10/2013-10-16-awayfrom/"/>
+    <id>http://wilbeibi.com/2013/10/2013-10-16-awayfrom/</id>
+    <published>2013-10-16T04:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>In the last few weeks I led a life writing C programs 10 hours a day. It was interesting and frustrating, and I learned a lot from that. For one thing, programming is an enjoyable game to me. It drives me thinking problems, force me constructing ideas and making proper solutions. What’s more fascinating is, the machine would tell me whether my solution program is right or wrong in less than a second. The frustrating part is, it always tells me I was wrong. Truth to be told, I am not a good programmer as my friends thought. Hours and hours, I wasting time debugging my programs and finally found out I was wrong at the first thought. So, the problem is, what can I do with that?</p>
+<p>The answer generally came to my mind: <strong>The Better Way to learn programming is to get away from it</strong>. Don’t panic, I don’t mean not programming, I mean not programming that soon. We live in an era that computers and internet are easy to access anytime and anywhere, which is lucky, or maybe unlucky to all of us. One story told by <a href="http://en.wikipedia.org/wiki/Alan_Kay" target="_blank" rel="external">Alan Kay</a> explained my reason:     </p>
+<blockquote>
+<p>When I was at Stanford with the AI project [in the late 1960s] one of the things we used to do every Thanksgiving is have a computer programming contest with people on research projects in the Bay area. The prize I think was a turkey.</p>
+<p>[John] McCarthy used to make up the problems. The one year that Knuth entered this, he won both the fastest time getting the program running and he also won the fastest execution of the algorithm. He did it on the worst system with remote batch called the Wilbur system. And he basically beat the shit out of everyone.</p>
+<p>And they asked him, “How could you possibly do this?” And he answered, “When I learned to program, you were lucky if you got five minutes with the machine a day. If you wanted to get the program going, it just had to be written right. <strong>So people just learned to program like it was carving stone</strong>. You sort of have to sidle up to it. That’s how I learned to program.”</p>
+</blockquote>
+<p>The dean of my undergraduate CS department has similar experience. When the time they learned programming, the computer didn’t even has a BIOS. They had to use punched cards to operate the machine. Each program they ran has been wrote and reviewed many times. That generation students, have all become something in the field of academic now. </p>
+<p>What I learned from these is, <code>gcc -Wall -pendantic-error</code> seems an easy and relatively friendly way to detect where were you wrong in your programs, but scratch paper and pencil would be your more loyally friend when you struggling figuring out the solution of programs. </p>
+<p>Someone might ask, does it still worth in nowadays? As a successful example with plenty failure experience of rush to program first each time, I have to say, probably yes, but not necessary. Some of us with  strong ability of abstraction may find is easy to run programs with no errors and warnings at first time. They usually adopt a top-down approach to organize their code: design structures and interfaces first, then implement the details. The classic example of this philosophy could be found in Robert Sedgewick’s <em>&lt;<a href="http://www.amazon.com/gp/product/B004P8J1NA" target="_blank" rel="external">Algorithms</a>&gt;</em>. </p>
+<p>The sad fact is, most people, me include, cannot. So, close your laptop, make a cup of tea, prepare a pencil and some scratch paper, start to programming with your brain.</p>
+<p>Last but not least, learn to enjoy the life out of the computer science world would also helps you in computer science field. Like Eric S. Raymond’s words in <em>&lt;<a href="http://www.catb.org/esr/faqs/hacker-howto.html" target="_blank" rel="external">How to become a hacker</a>&gt;</em>:</p>
+<blockquote>
+<p>Again, to be a hacker, you have to enter the hacker mindset. There are some things you can do when you’re not at a computer that seem to help. They’re not substitutes for hacking (nothing is) but many hackers do them, and feel that they connect in some basic way with the essence of hacking.</p>
+<ol>
+<li><p><strong>Learn to write your native language well.</strong> Though it’s a common stereotype that programmers can’t write, a surprising number of hackers (including all the most accomplished ones I know of) are very able writers.</p>
+</li>
+<li><p><strong>Read science fiction.</strong> Go to science fiction conventions (a good way to meet hackers and proto-hackers).</p>
+</li>
+<li><p><strong>Train in a martial-arts form.</strong> The kind of mental discipline required for martial arts seems to be similar in important ways to what hackers do. The most popular forms among hackers are definitely Asian empty-hand arts such as Tae Kwon Do, various forms of Karate, Kung Fu, Aikido, or Ju Jitsu. Western fencing and Asian sword arts also have visible followings. In places where it’s legal, pistol shooting has been rising in popularity since the late 1990s. The most hackerly martial arts are those which emphasize mental discipline, relaxed awareness, and control, rather than raw strength, athleticism, or physical toughness.</p>
+</li>
+<li><p><strong>Study an actual meditation discipline.</strong> The perennial favorite among hackers is Zen (importantly, it is possible to benefit from Zen without acquiring a religion or discarding one you already have). Other styles may work as well, but be careful to choose one that doesn’t require you to believe crazy things.</p>
+</li>
+<li><p><strong>Develop an analytical ear for music.</strong> Learn to appreciate peculiar kinds of music. Learn to play some musical instrument well, or how to sing.</p>
+</li>
+<li><p><strong>Develop your appreciation of puns and wordplay.</strong></p>
+</li>
+</ol>
+</blockquote>
+<p>PS: After write this post, I found Jeff Atwood wrote a similar article in 2007, here it is <a href="http://www.codinghorror.com/blog/2007/01/how-to-become-a-better-programmer-by-not-programming.html" target="_blank" rel="external">How To Become a Better Programmer by Not Programming</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[Think to programming in a more effective way.]]>
+    
+    </summary>
+    
+      <category term="writing" scheme="http://wilbeibi.com/tags/writing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[My spare time work of USACO]]></title>
+    <link href="http://wilbeibi.com/2013/02/2013-2-19-usaco/"/>
+    <id>http://wilbeibi.com/2013/02/2013-2-19-usaco/</id>
+    <published>2013-02-19T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>汪洋大神已经重刷了一遍USACO。他也强烈建议我刷一遍。嗯，这次一定不能半途而废，好好写。<br>Here is my code:<br><a href="https://github.com/Wilbeibi/MyUSACO" target="_blank" rel="external">https://github.com/Wilbeibi/MyUSACO</a><br>Please feel free to contact me via github if you have any suggestions.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[重刷USACO，学好算法~]]>
+    
+    </summary>
+    
+      <category term="algorihms" scheme="http://wilbeibi.com/tags/algorihms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Notes of Git]]></title>
+    <link href="http://wilbeibi.com/2012/12/2012-12-30-ProGit/"/>
+    <id>http://wilbeibi.com/2012/12/2012-12-30-ProGit/</id>
+    <published>2012-12-30T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p><strong><em>Pro Git</em></strong> is an excellent book about Git, and these are my reading notes.  </p>
+<p>This is a brief notes about some points of <a href="http://www.amazon.com/gp/product/1430218339" target="_blank" rel="external"><strong><em>Pro Git</em></strong></a>. It only contains first 3 chapters (contains most commonly used commands of Git). I will maintain this article and keep revising it. Hope it might helpful to you.</p>
+<h2 id="Before_Running_Git">Before Running Git</h2>
+<ul>
+<li><p><strong>Snapshots, Not Differences</strong><br>The major difference between Git and any other VCS (Subversion and friends included) is the way Git thinks about its data. Conceptually, most other systems store information as a list of file-based changes.</p>
+</li>
+<li><p><strong>Nearly Every Operation Is Local</strong><br>Most operations in Git only need local files and resources to operate ¡ª generally no information is needed from another computer on your network.</p>
+</li>
+<li><p><strong>Git Has Integrity</strong><br>Git use checksum, namely, SHA-1, as a reference.</p>
+</li>
+<li><p><strong>Three States</strong><br>Git has three main states that your files can<br>reside in: <strong>committed</strong>, <strong>modified</strong>, and <strong>staged</strong>. Committed means that the data is safely stored in your local database. Modified means that you have changed the file but have not committed it to your database yet. Staged means that you have marked a modified file in its current version to go into your next commit snapshot.<br><img src="http://i.imgur.com/yT4Pg.png" alt=""></p>
+<p>  The basic Git workflow goes something like this:  </p>
+<ol>
+<li>You modify files in your working directory.  </li>
+<li>You stage the files, adding snapshots of them to your staging area.  </li>
+<li>You do a commit, which takes the files as they are in the staging area and   stores that snapshot permanently to your Git directory.  </li>
+</ol>
+</li>
+</ul>
+<h2 id="Git_Basics">Git Basics</h2>
+<ul>
+<li><p>Clone<br><code>git clone git://github.com/USERNAME/REPO.git</code></p>
+</li>
+<li><p>Check Status<br> <code>git status</code></p>
+</li>
+<li><p>Trace New File<br><code>git add FILE</code> (The FILE edited after git add need to redo git add to store the changes)</p>
+</li>
+<li><p>Gitignore<br>if you want to ignore some files, add thier patter to <em>.gitignore</em>. Like *.[oa] (generate while compiling)</p>
+<blockquote>
+<p>Glob patterns are like simplified regular expressions that shells use. An asterisk (*) matches zero or more characters; [abc]matches any character inside the brackets (in this case a, b, or c); a question mark (?) matches a single character; and brackets enclosing characters separated by a hyphen([0-9]) matches any character between them (in this case 0 through 9) .</p>
+</blockquote>
+</li>
+<li><p>Diff between staged and last commit file<br><code>git diff --cached</code></p>
+</li>
+<li><p>Committing Changes<br><code>git status</code> before <code>git commit</code>. add <code>-m</code> flag to add commit message, <code>-v</code> to explicit remind every place you modified, <code>-a</code> to automatically stage every file that is already tracked before doing the commit, letting skip the git add part.</p>
+</li>
+<li><p>Remove<br><code>rm FILE</code> and <code>git rm FILE</code> to delete local files. <code>git rm --cached FILE</code> to remove files in repository.(Could use glob)</p>
+</li>
+<li><p>Move<br><code>git mv OLD NEW</code> to change the names.</p>
+</li>
+<li><p>Viewing History<br><code>git log</code>, add <code>-p</code> to show differences in every commits, use <code>-2</code> to see lasted 2 updates, <code>–stat</code> abbreviated stats, <code>–pretty</code> customized formats.</p>
+</li>
+<li><p>Undo<br>use <code>git commit --amend</code> to add forgetted files or reedit commit messages. (See Book 2.4.1)</p>
+</li>
+<li><p>Unstaging Staged File<br><code>git reset HEAD FILE</code></p>
+</li>
+<li><p>Unmodifying a Modified File<br>use <code>git status</code> (See Book 2.4.3)</p>
+</li>
+<li><p>Fetching and Pulling<br><code>git fetch REMOTE-NAME</code> pull down all the data from that remote project that you don’t have yet.</p>
+<blockquote>
+<p><code>git fetch origin</code> fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. It’s important to note that the fetch command pulls the data to your local repository and it doesn’t automatically merge it with any of your work or modify what you’re currently working on. You have to merge it manually into your work when you’re ready.</p>
+</blockquote>
+</li>
+<li><p>Push<br><code>git push origin master</code> will push local master branch to origin server.</p>
+</li>
+<li><p>Tagging<br><code>git tag</code> to add tags.<code>-a</code> to annotated, <code>-m</code> add comments, <code>git show</code> to check version info.</p>
+</li>
+<li><p>Git Aliases<br>You can set up an alias for each command with git config. For example, using <code>git config --global alias.ci commit</code> to instead <code>git commit</code> with <code>git ci</code>. Useful Tips: <code>git config --global alias.last &#39;log -1 HEAD&#39;</code> to check last commit by <code>git last</code>.</p>
+</li>
+</ul>
+<h2 id="Git_Branches">Git Branches</h2>
+<ul>
+<li><p>HEAD<br>In Git, this is apointer to the local branch you’re currently on.</p>
+</li>
+<li><p>New Branch<br>Because a branch in Git is in actuality a simple file that contains the 40 character <a href="http://en.wikipedia.org/wiki/SHA-1" target="_blank" rel="external"><strong>SHA-1</strong></a> checksum of the commit it points to, branches are cheap to create and destroy. Creating a new branch is as quick and simple as writing 41 bytes to a file (40 characters and a newline).</p>
+</li>
+<li><p>Basic Branching and Merging<br>switch to a certain branch <code>git Check -b BRANCH-B</code>, <code>git merge</code> to merge to master.</p>
+</li>
+<li><p>Delete Branch<br><code>git branch -d</code> to delete branches. It could be failed if it was unmerged. Thus, you could use <code>git branch -D BRANCH-B</code> to force deleting it, and <code>git branch --no-merged</code> to check unmerged work.</p>
+</li>
+<li><p>Remote Branch<br>You’d better read the related part of this book! It is a little comfusing but important.</p>
+</li>
+<li><p>Rebasing<br>With the rebase command, you can take all the changes that were committed on one branch and replay them on another one. For example, <code>git rebase master server</code> checks out the topic branch (in this case,server) for you and replays it onto the base branch (master).It quite cool, read Book 3.5.1 to know more. Summed up in one line <strong>Do not rebase commits that you have pushed to a public repository.</strong></p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[Reading notes of Pro Git.]]>
+    
+    </summary>
+    
+      <category term="notes" scheme="http://wilbeibi.com/tags/notes/"/>
+    
+      <category term="git" scheme="http://wilbeibi.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[一个RSS订阅者的自我修养]]></title>
+    <link href="http://wilbeibi.com/2012/12/2012-12-11-rss/"/>
+    <id>http://wilbeibi.com/2012/12/2012-12-11-rss/</id>
+    <published>2012-12-11T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="这篇文章想说什么">这篇文章想说什么</h2>
+<p>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？  </p>
+<p><img src="http://i.imgur.com/hZ2eX.jpg" alt="">  </p>
+<p>RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。</p>
+<h2 id="RSS阅读器">RSS阅读器</h2>
+<p>国内比较流行的RSS阅读器有鲜果，抓虾，看天下…个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。</p>
+<h2 id="做笔记">做笔记</h2>
+<p>Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后<br>者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进<a href="http://getpocket.com/" target="_blank" rel="external">Pocket</a>——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用<a href="http://FiveFilters.org" target="_blank" rel="external">FiveFilters.org</a>提供的全文feed生成器,把网址往里一扔，OK了。  </p>
+<p><img src="http://i.imgur.com/4uIeN.png" alt=""></p>
+<p>那如果在平板上呢？这时候，就要靠<a href="http://ifttt.com" target="_blank" rel="external">ifttt</a>这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。<br><img src="http://i.imgur.com/exc5Y.png" alt=""></p>
+<h2 id="纸和笔">纸和笔</h2>
+<p>如果只是这样做笔记，只不过是一种更有效的copy&amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。<br>要把笔记变成自己的东西，一定要有自己的<strong>主动</strong>参与，还是需要保持看纸质书和手写笔记的习惯。</p>
+<h2 id="写出来">写出来</h2>
+<p>写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），<a href="http://www.yangzhiping.com/tech/writing-space.html" target="_blank" rel="external">Github+Jekyll</a>，或者Octopress都能满足你的要求。</p>
+<h2 id="博客的排版">博客的排版</h2>
+<p>博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html" target="_blank" rel="external">Markdown</a>就是为此应运而生的。此外，Emacs下强大的<a href="http://orgmode.org/" target="_blank" rel="external">Org-mode</a>也是个相当不错的选择。</p>
+<h2 id="最后，分享一些我觉得不错的博客">最后，分享一些我觉得不错的博客</h2>
+<p><strong>Matrix67</strong> <a href="http://www.matrix67.com" target="_blank" rel="external">www.matrix67.com</a></p>
+<p><strong>酷壳</strong><br><a href="http://CoolShell.com" target="_blank" rel="external">CoolShell.com</a></p>
+<p><strong>浏忙大爆炸</strong><br><a href="http://blog.waterlin.org" target="_blank" rel="external">blog.waterlin.org</a></p>
+<p><strong>刘未鹏 Mind Hacks</strong><br><a href="http://mindhacks.cn/" target="_blank" rel="external">mindhacks.cn/</a></p>
+<p><strong>阮一峰的网络日志</strong><br><a href="http://www.ruanyifeng.com" target="_blank" rel="external">www.ruanyifeng.com</a></p>
+<p><strong>good coders code,great reuse</strong><br><a href="http://www.catonmat.net/" target="_blank" rel="external">www.catonmat.net/</a></p>
+<p><strong>外刊IT评论</strong><br><a href="http://www.aqee.net/" target="_blank" rel="external">www.aqee.net/</a></p>
+<p><strong>Planet Emacsen</strong><br><a href="http://planet.emacsen.org/" target="_blank" rel="external">planet.emacsen.org/</a></p>
+<p><strong>talich闲侃</strong><br><a href="http://talich.cinepedia.cn" target="_blank" rel="external">talich.cinepedia.cn</a></p>
+<p><strong>李笑来</strong><br><a href="http://lixiaolai.com/" target="_blank" rel="external">lixiaolai.com/</a></p>
+<p><strong>学而时嘻之</strong><br><a href="http://www.geekonomics10000.com/" target="_blank" rel="external">www.geekonomics10000.com/</a></p>
+<p><strong>不许联想</strong><br><a href="http://www.wangxiaofeng.net/" target="_blank" rel="external">www.wangxiaofeng.net/</a></p>
+<p><strong>张佳玮写东西的地方</strong><br><a href="http://zhangjiawei.blog.tianya.cn/" target="_blank" rel="external">zhangjiawei.blog.tianya.cn/</a></p>
+<p><strong>西西弗斯的健忘症</strong><br><a href="http://lilyshen.wordpress.com/" target="_blank" rel="external">lilyshen.wordpress.com/</a></p>
+<p><strong>柴静的博客</strong><br><a href="http://blog.sina.com.cn/chjguancha" target="_blank" rel="external">blog.sina.com.cn/chjguancha</a></p>
+<p><strong>和菜头的槽边往事</strong><br><a href="http://www.hecaitou.net/" target="_blank" rel="external">www.hecaitou.net/</a></p>
+<p><strong>吴万伟的博客</strong><br><a href="http://blog.163.com/wuwanwei@yeah/" target="_blank" rel="external">blog.163.com/wuwanwei@yeah/</a></p>
+<p><strong>马伯庸的异教徒告解室</strong><br><a href="http://blog.sina.com.cn/maboyong" target="_blank" rel="external">blog.sina.com.cn/maboyong</a></p>
+<p><strong>Tear Down This Wall</strong><br><a href="http://www.bullogger.com/blogs/tdtw/" target="_blank" rel="external">http://www.bullogger.com/blogs/tdtw/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[稍微讲些大家都知道的事儿，RSS订阅。刚开始写blog，水平有限，先凑额和着这样。]]>
+    
+    </summary>
+    
+      <category term="RSS" scheme="http://wilbeibi.com/tags/RSS/"/>
+    
+      <category term="subscribe" scheme="http://wilbeibi.com/tags/subscribe/"/>
+    
+      <category term="Collection" scheme="http://wilbeibi.com/categories/Collection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[笔记:把时间当做朋友]]></title>
+    <link href="http://wilbeibi.com/2012/12/2012-12-05-timeasfriend/"/>
+    <id>http://wilbeibi.com/2012/12/2012-12-05-timeasfriend/</id>
+    <published>2012-12-05T05:00:00.000Z</published>
+    <updated>2015-01-27T22:10:33.000Z</updated>
+    <content type="html"><![CDATA[<p>李笑来的书《把时间当作朋友》，讲的还不错。</p>
+<h2 id="Chap_0_困境"><strong>Chap 0 困境</strong></h2>
+<ul>
+<li><p>我们总是因纷繁的外物所打扰，以至于在deadline前惊呼“没时间了！”。人是“既勤奋又懒惰”的，我们应该管理的不是时间，而是自己</p>
+</li>
+<li><p>要经过自己认真思考获得知识。</p>
+<blockquote>
+<p>人们很难接受与已有知识与经验想做的信息或观念，因为既有的知识与观念都是经过持有者反复筛选的。</p>
+</blockquote>
+</li>
+<li>“一切都靠积累”</li>
+</ul>
+<h2 id="Chap_1_醒悟"><strong>Chap 1 醒悟</strong></h2>
+<h2 id="Chap_2_现实"><strong>Chap 2 现实</strong></h2>
+<ul>
+<li><p>忍受一定程度的未知。有问题解决不了的时候，先记下来，而后继续前行。<br>“foo”、”bar” 什么意思</p>
+</li>
+<li><p>心怀“梦想”的时间越长，它的沉没成本越高。最终，很多人都在无意之间被自己的“梦想”所绑架。</p>
+</li>
+<li><p>接受现实，用正确的方法做正确的事情。</p>
+</li>
+<li><p>承认资源稀缺。时常把自己的一些年头记录下来，然后与这几条显示对照，看看它们是否与这些现实相符。</p>
+</li>
+</ul>
+<h2 id="Chap_3_任务管理"><strong>Chap 3 任务管理</strong></h2>
+<ul>
+<li><p>估算时间。在任务中遇到“意外”，从而开始新的征程。所以需要<strong>分辨任务的属性——它是熟悉的还是陌生的</strong></p>
+<ul>
+<li>熟悉的则像WBS(Work Breakdown System)一样，细分为小步骤，注意关键点，考虑如何完美完成任务。</li>
+<li>陌生的，平静看待遇到的“意外”，尝试一次。</li>
+</ul>
+<p>我们必须处理未知，而从陌生到熟悉，需要花费时间去学习，不可逾越。如<a href="http://norvig.com/21-days.html" target="_blank" rel="external">《Teach yourself Programming in Ten Years》</a></p>
+</li>
+<li><p>任何领域的卓越成就都必须用一生的努力才能取得；稍微低一点的代价都是换不到的。“<a href="http://en.wikipedia.org/wiki/Outliers_(book)" target="_blank" rel="external">10000小时</a>”理论  </p>
+</li>
+<li><p>及时行动：<strong>现在就开始！！！</strong>迟迟不开始的最本质原因在于恐惧。</p>
+</li>
+<li><p>直面困难，很多人只是</p>
+</li>
+</ul>
+<blockquote>
+<p>做出了努力的样子，或者显得比较努力而已。<br>因为他们回避困难。任何任务都可以被划分为相对简单的部分和相对困难的部分。我自己的看法：Eat the frog first.先做最困难的部分。</p>
+</blockquote>
+<ul>
+<li><p>人做事的动机来自于：<strong>奖励与惩罚</strong>。很多人实际上不知道自己所谓的“喜欢做某件事”实际上更可能只不过因为那件事相对简单、容易获得奖励而已。</p>
+</li>
+<li><p>关注步骤：把任务拆分成一个个细小的捕捉，越细越好，每个小任务都能独立完成。核心是<strong>具体化</strong>和<strong>细分拆解</strong>，并在此过程中反复询问为什么要这么做。</p>
+</li>
+<li><p>时间片方法：25min工作 + 5min休息。pomotodo番茄法。关键就是<strong>拆分任务</strong></p>
+</li>
+<li><p>感知时间：相信我，你并不孤独。<a href="http://book.douban.com/subject/1115353/" target="_blank" rel="external">《奇特的一生》</a>柳比歇夫的“是件-时间日志”(Event-time Log),记录事件，和该事件所花费的时间。这样遇到不好的结果的时候，更容易找到缘由</p>
+</li>
+<li><p>再此基础上，制作预算。这个任务的完成是否对目标达成确实有益</p>
+</li>
+<li><p>计划，<strong>可行</strong></p>
+</li>
+<li><p>列表。纸和笔，要随手可及。</p>
+<ul>
+<li>最重要的任务永远只有一个。</li>
+<li>有新鲜主意的时候，专门记载一个下一阶段任务列表中，然后专注于当前该完成的任务上。</li>
+<li>列表一旦开始执行就一定要执行到底。</li>
+</ul>
+</li>
+<li><p>将要做的事情的整个过程在脑子里语言一遍甚至多遍（<em>尤其是重要的！</em>）</p>
+</li>
+<li><p>验收：做事之前，拿出纸笔记录下每一个预定的验收标准。 </p>
+</li>
+</ul>
+<h2 id="Chap_4_学习"><strong>Chap 4 学习</strong></h2>
+<ul>
+<li><p>获取知识最为起初的手段就是“体验”，更高级的就是“试错”(Trial and Error)。而“阅读”，是一种非常有效的体验。</p>
+</li>
+<li><p>哥白尼 “很多时候，人们的善良出自于软弱，而他们的残暴出只不过来自于恐惧。”</p>
+</li>
+<li><p>自学能力的基础技能是阅读理解能力，检索能力是建立在相当熟练的阅读能力基础上的能力。</p>
+</li>
+<li><p><strong>写作能力在自学能力中占据着重要的地位：</strong>写出写出简捷、有效、朴素、准确、具体的说明性说理性文章的能力。</p>
+</li>
+<li><p>实践能力是自学能力最终能够转化为真正价值的根本。</p>
+</li>
+</ul>
+<h2 id="Chap_5_思考"><strong>Chap 5 思考</strong></h2>
+<ul>
+<li><p>独立思考：当别人告诉你一个结论的时候，你自己动脑重新推演一遍得到结论的过程，看看有没有漏洞，有没有不合理的地方，衡量一下那结论到底有多少道理。</p>
+</li>
+<li><p>“诉诸权威”(Wishful Thinking)与“诉诸情绪”(Authority Addiction)</p>
+</li>
+<li><p>常见的逻辑错误（<a href="http://en.wikipedia.org/wiki/Category:Logical_fallacies" target="_blank" rel="external">Wikipedia</a>）</p>
+<ul>
+<li>概念不清：学习任何知识的时候，搞清楚所有它的基础概念是最重要的。明白“计划”和“目标”并非一回事，否则会Stick to the plan而最终无法达成目标。“上学”和“学习”不是一回事，“政府”和“国家”不是一回事。</li>
+<li>拒绝接受不确定性：所有的“仓促的结论”（Hasty conclusion）也好“仓促的概括”（Hasty<br>generalization）也好，“过分简单化”（Over simplification）也罢，从根源上来看，都是忽略、拒绝接受不确定性而造成的结果。再比如，所有的粗暴二分法（False dichotomy）也是拒绝接受不确定性的结果。</li>
+</ul>
+</li>
+<li><p>因果关系：</p>
+<ol>
+<li>A不一定是B的理由</li>
+<li>A不一定是B唯一的理由</li>
+<li>A不一定是B最重要的理由</li>
+</ol>
+</li>
+<li><p>双盲测试：安慰剂效应(Placebo effect)</p>
+</li>
+<li><p>自证预言：让自己相信</p>
+</li>
+<li><p>很多人做不到思维缜密是因为I）喜欢型拒绝思考.II）不懂如何思考。</p>
+<ul>
+<li>逆命题。分不清原命题和逆命题之间的区别e.g. : 1)  脑残者最好玩的地方在于他们认为别人才是脑残呢。这句话本身并不意味着说 2)”认为别人脑残的人才是脑残”</li>
+</ul>
+</li>
+<li><p>举证责任：“谁主张谁举证”并不仅仅是法律术语，事实上，它的应用范围涉及到生活的方方面面。有些人提出一个观点后，要求对方进行反证。他们的逻辑是“既然你无法证明我是错的，那么我就是对<br>的。”这是一种典型的逻辑错误，学称“Argument from ignorance”（或“appeal to ignorance”）。</p>
+</li>
+<li><p>案例局限(以偏概全)，对立论证，张冠李戴… …</p>
+</li>
+<li><p>感悟与道理：Ideas are cheap.感悟≠道理。<strong>道理</strong>是普适的，而<strong>感悟</strong>只不过来自个体经验。<br>e.g.成功学SB。成功者有“认知偏差”（Cognitive Biases），大脑有自我保护的功能：忘记痛苦。人普遍把成功揽到自己身上，把失败归咎于他人或者坏运气(Self-serving Bias 自利性偏差) </p>
+</li>
+<li><p>傻念头“要是…就好了”,不要这么想。</p>
+</li>
+</ul>
+<h2 id="Chap_6_交流"><strong>Chap 6 交流</strong></h2>
+<ul>
+<li><p>记住要点，理清要点之间的逻辑关系。讲者内容可分为：事实和看法。</p>
+</li>
+<li><p>一旦决定倾听，就要主动帮助讲者进入“倾诉”状态</p>
+</li>
+<li><p>勤于反思，深刻了解经验的局限</p>
+</li>
+<li><p><strong>使用记录是自己能够记住更多经验</strong>：用blog。</p>
+</li>
+<li><p>经常尝试使用类比(meaphor)跨越未知与已知的障碍。</p>
+</li>
+<li><p>运用时间积累；耐心等待不能跨越时间的经验。</p>
+</li>
+</ul>
+<h2 id="Chap_7_应用"><strong>Chap 7 应用</strong></h2>
+<ul>
+<li><p>兴趣：人并不是对正在做的事情没有兴趣，而是没能力把目前正在做的事情做好。最终没有人喜欢自己做不好的事情。现在说另外一个方面。人们总说他们真正感兴趣的是别的事情。可事实上，那应该仅仅是因为他们还没开始做那件事情，所以还没有在那件事情上遭受挫折而已。因为还没有遇到过挫折，还没有证明那件事情他们做不好，所以，那件事儿对他们来讲确实具备很大的吸引力。</p>
+</li>
+<li><p>方法：修佛有四万八千法门，重要的是<strong>策略</strong>和<strong>坚持</strong>。坚持就是重复。</p>
+</li>
+<li><p>记住痛苦：第一种办法是当你面临尴尬的时候，记得一定要拿出纸笔来，<strong>把你所遇到的尴尬记录下来</strong>—当然，最好是记录在同一个本子里。这样的记录是非常有意义的。因为它会提醒你，这是你曾经遇到过的尴尬。如果你不用纸笔记下来，那你就肯定会忘的。然后还要养成习惯，定期拿出这个本子回顾一下。这个习惯往往会使你很有成就感的，因为你知道，甚至可以清楚地看到你已经有进步了，因为那个本子里记录过的很多的错误你都不再犯了—当然，不再犯那些错误的原因是因为你在不停地提醒你自己！ 另外一个办法是，在面临尴尬的时候，尽量<strong>弱化你的痛苦</strong>。<strong>控制自己的情绪</strong>，不要被你的大脑的直接反应所左右。</p>
+</li>
+<li><p>灵感：Thomas Sowell的<a href="http://www.amazon.com/gp/product/0465037380" target="_blank" rel="external">《Knowledge and Decision》</a>。积累（这点我做的很不错，就不做笔记了）</p>
+</li>
+<li><p>鼓励：鼓励身边的人士一种小众但重要的美德。</p>
+</li>
+<li><p>效率：100%的效率是不可能的。黄金分割：如果规划的时间是10个小时，用6.18小时去工作。</p>
+</li>
+<li><p>想办法提前预知自己需要怎样的技能，然后确定那是一个自己可以通过练习真正熟练掌握的技能，而后制定长期计划。</p>
+</li>
+</ul>
+<h2 id="Chap_8_积累"><strong>Chap 8 积累</strong></h2>
+<ul>
+<li>Reinhold Niebuhr 在他那著名的“The Serenity Prayer”中说：<blockquote>
+<p>God grant me the serenity to accept the things I cannot<br>change, the courage to change the things I can, and the<br>wisdom to know the difference.<br>愿上帝赐予我从容去接受我不能改变的；赐予我勇<br>气去改变我能够改变的，并赐予我智慧去分辨这之<br>间的区别。</p>
+</blockquote>
+</li>
+<li><p>72法则(Rule of 72):每天增长r%，持续y天，若r*y=72,那y天后会差不多翻一番。</p>
+</li>
+<li><p>越早醒悟越好</p>
+<h2 id="What_I_Will_Do"><strong>What I Will Do</strong></h2>
+</li>
+</ul>
+<ol>
+<li><p>用本子记录下每天中每个工作所用的时间（笔记本和<a href="https://www.rescuetime.com/" target="_blank" rel="external">RescueTime</a>，后者能分析你每天在电脑前时间都花到哪儿去了）<br><img src="http://i.imgur.com/dZwA6.png" alt=""></p>
+</li>
+<li><p>工作约束用番茄工作法，每次专心25min，休息5min（<a href="http://pomotodo.com/" target="_blank" rel="external">pomotodo</a>和iOS的<a href="https://itunes.apple.com/hk/app/30-30/id505863977?mt=8" target="_blank" rel="external">30/30</a>）</p>
+</li>
+<li><p>有随身携带的任务记录提醒设备，比如手机。对于没有特定时间要求的，我就存在koalcat’s Clear里(是iPhone中的<a href="http://www.realmacsoftware.com/clear/" target="_blank" rel="external">Clear</a>的Android版)只设了Todo List和New Idea，记录要做的事和在做的过程中想到的新点子，切记！！不要因为新点子打断当前做的任务，一定要优先完成现在的任务！！！!对于有特定时间要求的，我用Google Calender，因为它能定时给手机发短信提醒哟！对Android手机同步也很好。</p>
+</li>
+<li><p>定期回顾。只有不断的回顾自己的过去反思才有意义，养成习惯，Wilbeibi，加油！！！</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[李笑来的《把时间当作朋友》一书的笔记，比较理性，值得一看。]]>
+    
+    </summary>
+    
+      <category term="notes" scheme="http://wilbeibi.com/tags/notes/"/>
+    
+  </entry>
+  
+</feed>

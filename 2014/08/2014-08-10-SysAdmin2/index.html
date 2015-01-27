@@ -1,0 +1,522 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>A Primer to System Administration - Know Thy System | Wilbeibi&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wilbeibi">
+    
+    <meta name="description" itemprop="description" content="A collection of commands for checking system information and performance. Tested on Ubuntu 14.04.">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="wilbeibi" />
+    <meta name="twitter:title" content="A Primer to System Administration - Know Thy System | Wilbeibi&#39;s Blog" />
+      
+        <meta name="twitter:description" content="A collection of commands for checking system information and performance. Tested on Ubuntu 14.04." />
+      
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Wilbeibi&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wilbeibi&#39;s Blog" title="Wilbeibi&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wilbeibi&#39;s Blog">Wilbeibi&#39;s Blog</a></h1>
+				<h2 class="blog-motto">The trick, William Potter, is not minding that it hurts.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wilbeibi.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/2014-08-10-SysAdmin2/" title="A Primer to System Administration - Know Thy System" itemprop="url">A Primer to System Administration - Know Thy System</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://wilbeibi.com/about" title="Wilbeibi" target="_blank" itemprop="author">Wilbeibi</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-10T04:00:00.000Z" itemprop="datePublished">Published Aug 10 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#General_information"><span class="toc-number">1.</span> <span class="toc-text">General information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU_information"><span class="toc-number">2.</span> <span class="toc-text">CPU information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disk_information"><span class="toc-number">3.</span> <span class="toc-text">Disk information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory_information"><span class="toc-number">4.</span> <span class="toc-text">Memory information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User_activity_information"><span class="toc-number">5.</span> <span class="toc-text">User activity information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network_information"><span class="toc-number">6.</span> <span class="toc-text">Network information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#You_may_Also_interested_in"><span class="toc-number">7.</span> <span class="toc-text">You may Also interested in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">8.</span> <span class="toc-text">Reference</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="General_information">General information</h2>
+<ol>
+<li><p>Use <code>uname</code> to get system information:</p>
+<p> uname -a</p>
+<p><code>-a</code> for print all the information.</p>
+</li>
+</ol>
+<h2 id="CPU_information">CPU information</h2>
+<ol>
+<li>Use <code>nproc</code> to print the number of processing units available (GNU coreutils):</li>
+</ol>
+<pre><code>   <span class="variable">$ </span>nproc
+   <span class="number">4</span>
+</code></pre><ol>
+<li>Use <code>lscpu</code> to display CPU architecture information (util-linux).</li>
+</ol>
+<h2 id="Disk_information">Disk information</h2>
+<ol>
+<li><code>df</code> is a powerful command for displaying system disk.</li>
+</ol>
+<pre><code>    df -h /path/<span class="built_in">to</span>/<span class="built_in">directory</span>
+</code></pre><ol>
+<li><code>cat /proc/partitions/</code> and <code>cat /proc/mounts</code> are also pretty handly solutions to check the partitions and mount disks.</li>
+</ol>
+<h2 id="Memory_information">Memory information</h2>
+<ol>
+<li><p>Just as same as disk, <code>cat /proc/meminfo</code> could easily check memory information (Thanks to Unix’s <a href="http://en.wikipedia.org/wiki/Everything_is_a_file" target="_blank" rel="external"><strong>Everything is a file</strong></a> design concept).</p>
+</li>
+<li><p>Alternatively, you can type <code>free -m</code>, which essentially is the same as check /meminfo. <code>-m</code> for display in megabytes (as you expected, -g for gigabytes, -k for kilobytes.)</p>
+</li>
+</ol>
+<h2 id="User_activity_information">User activity information</h2>
+<ol>
+<li><code>last</code> command will display user’s info like terminal, time, date and so forth. To check one specific user’s activity, <code>last username</code> is what you are looking for.</li>
+</ol>
+<ol>
+<li><p><code>w</code> is a great but rarely know command. It will display who is logged on and what they are doing. It’ll show username, terminal, from IP, login time, idle time, JCPU and the  command line of their current process. If you never heard it before, I strongly suggest you to have a try.</p>
+</li>
+<li><p><code>uptime</code>: Tell how long the system has been running.</p>
+</li>
+<li><p><code>ps</code>: a well known command for checking current processes, for instance, to list all zombie process:</p>
+<pre><code> ps aux | awk '{ <span class="literal">print</span> <span class="variable">$8</span> <span class="string">" "</span> <span class="variable">$2</span> }' | grep -w Z
+</code></pre><p> where <code>ps aux</code> to show processes for <strong>a</strong>ll users, the process’s <strong>u</strong>ser, and also show the processes not attached to a terminal (check man page for more details), then awk to filter the <code>STAT</code> and PID field, use grep to select the line contains <code>Z</code>(Zombie), now we get zombie processes pids. It’s easy to kill them by <code>kill -9 {PID}</code>.</p>
+</li>
+</ol>
+<ol>
+<li><code>top/htop</code>: Better not to use non-builtin command(for security reasons), but if you do want to, <code>htop</code> is a superior alternative to <code>top</code> — dynamically display current tasks.</li>
+</ol>
+<h2 id="Network_information">Network information</h2>
+<ol>
+<li><p>To get your own public IP, both <code>curl icanhazip.com</code> or <code>curl ifconfig.me</code> are easy ways to do that(previous one is much faster).</p>
+</li>
+<li><p><code>ping</code>: Even my mother knows to use <code>ping</code> to check network connectivity.</p>
+</li>
+<li><p><code>ifconfig</code>: A frequently used tool to view network interface information. BTW, I wrote a <a href="https://github.com/Wilbeibi/Ifconfig-extractor" target="_blank" rel="external">script</a> to filter IP, MAC addresses and networks from <code>ifconfig</code> (tested on Ubuntu, Fedora, OmniOS and FreeBSD).</p>
+</li>
+<li><p><code>lsof</code>, aka list open files, is definitely a swiss army knife for analyzing network. <code>lsof -i</code> for list all open Internet and X.25 network files. (The examples below are from Daniel Miessler’s blog, see reference)</p>
+<pre><code> lsof -iTCP # <span class="operator"><span class="keyword">Show</span> <span class="keyword">only</span> TCP connections
+ lsof -i:<span class="number">80</span> # <span class="keyword">Show</span> networking <span class="keyword">only</span> relate <span class="keyword">to</span> port <span class="number">80</span>
+ lsof -i@<span class="number">107.170</span><span class="number">.181</span><span class="number">.47</span> # <span class="keyword">Show</span> connections <span class="keyword">with</span> particular IP
+ lsof -u username # <span class="keyword">Show</span> given <span class="keyword">user</span><span class="string">'s connections
+ lsof -u ^username # Show connections except given user</span></span>
+</code></pre></li>
+</ol>
+<ol>
+<li><code>ss -s</code>: display Currently Established, Closed, Orphaned and Waiting TCP sockets</li>
+</ol>
+<h2 id="You_may_Also_interested_in">You may Also interested in</h2>
+<ol>
+<li>My previous post <a href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/" target="_blank" rel="external">A Primer to System Administration - Users and groups</a></li>
+<li>If you found any grammar misusage or typos, please help me correct by <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/blob/master/source/_posts/2014-08-10-SysAdmin2.md" target="_blank" rel="external">pull request here</a>.</li>
+</ol>
+<h2 id="Reference">Reference</h2>
+<p><a href="http://www.douban.com/note/265207425/" target="_blank" rel="external">nodejs 部署最佳实践 by 邻家 柠檬叔</a></p>
+<p><a href="http://www.tecmint.com/useful-linux-commands-for-system-administrators/" target="_blank" rel="external">30 Useful Linux Commands for System Administrators</a></p>
+<p><a href="http://unix.stackexchange.com/questions/106847/what-does-aux-mean-in-ps-aux" target="_blank" rel="external">What does aux mean in <code>ps aux</code>?</a></p>
+<p><a href="http://www.cyberciti.biz/tips/killing-zombie-process.html" target="_blank" rel="external">Killing zombie process</a></p>
+<p><a href="http://danielmiessler.com/study/lsof/" target="_blank" rel="external">An lsof Primer</a></p>
+<p><a href="http://www.cyberciti.biz/faq/check-network-connection-linux/" target="_blank" rel="external">Linux: Check Network Connection Command</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Sysadmin/">Sysadmin</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://wilbeibi.com/2014/08/2014-08-10-SysAdmin2/" data-title="A Primer to System Administration - Know Thy System | Wilbeibi&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/2014-08-29-SysAdmin3/" title="A Primer to System Administration - About SSH">
+  <strong>上一篇：</strong><br/>
+  <span>
+  A Primer to System Administration - About SSH</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/2014-08-08-SysAdmin/"  title="A Primer to System Administration - Users and groups">
+ <strong>下一篇：</strong><br/> 
+ <span>A Primer to System Administration - Users and groups
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#General_information"><span class="toc-number">1.</span> <span class="toc-text">General information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU_information"><span class="toc-number">2.</span> <span class="toc-text">CPU information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disk_information"><span class="toc-number">3.</span> <span class="toc-text">Disk information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory_information"><span class="toc-number">4.</span> <span class="toc-text">Memory information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User_activity_information"><span class="toc-number">5.</span> <span class="toc-text">User activity information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network_information"><span class="toc-number">6.</span> <span class="toc-text">Network information</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#You_may_Also_interested_in"><span class="toc-number">7.</span> <span class="toc-text">You may Also interested in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">8.</span> <span class="toc-text">Reference</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Collection/" title="Collection">Collection<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Sysadmin/" title="Sysadmin">Sysadmin<sup>3</sup></a></li>
+		
+			<li><a href="/tags/notes/" title="notes">notes<sup>3</sup></a></li>
+		
+			<li><a href="/tags/miscellaneous/" title="miscellaneous">miscellaneous<sup>2</sup></a></li>
+		
+			<li><a href="/tags/writing/" title="writing">writing<sup>2</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+		
+			<li><a href="/tags/algorihms/" title="algorihms">algorihms<sup>1</sup></a></li>
+		
+			<li><a href="/tags/subscribe/" title="subscribe">subscribe<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://stackbox.org" target="_blank" title="Stackbox">Stackbox's Blog</a></li>
+      <li><a href="http://hugofeng.info" target="_blank" title="hugo">Flight log</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello,I&#39;m Wilbeibi, a backend developer <br/>
+			May the force be with you.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/wilbeibi" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/wilbeibi" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.douban.com/people/wilbeibi" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		<a href="mailto:wilbeibi@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2015 
+		
+		<a href="http://wilbeibi.com/about" target="_blank" title="Wilbeibi">Wilbeibi</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wilbeibi"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wilmatrix';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-37214024-1', 'wilbeibi.com');  
+ga('send', 'pageview');
+</script>
+
+
+<div id="totop">
+<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
