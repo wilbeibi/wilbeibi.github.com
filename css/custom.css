@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Long+Cang&display=swap');
+
+/* Header title styling */
+#page-header .header-title {
+  font-family: 'Fredericka the Great', cursive !important;
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Header subtitle styling */
+#page-header .header-subtitle {
+  font-family: 'Long Cang', cursive !important;
+  font-size: 1.5rem !important;
+  font-style: italic;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
