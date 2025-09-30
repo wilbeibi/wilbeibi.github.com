@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="通过 Trie 提高搜索效率"/>
+
+
+
+
+  <meta name="keywords" content="algorithms, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2015/05/2015-05-09-K_edit_distances/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> 找出编辑距离不大于 K 的单词 - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          找出编辑距离不大于 K 的单词
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-05-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-edit-distance-%E7%9A%84%E4%B8%80%E9%81%93%E9%A2%98"><span class="toc-text">关于 edit distance 的一道题</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="关于-edit-distance-的一道题"><a href="#关于-edit-distance-的一道题" class="headerlink" title="关于 edit distance 的一道题"></a>关于 edit distance 的一道题</h1><p>最近看到一个很有意思的面试题：给一个单词和一个字典，找出字典中所有和给定单词编辑距离不大于 k 的词。</p>
+<p>一个常见的思路是遍历一遍，求单词和字典中每一项的编辑距离。我们知道编辑距离是二维 DP，时间复杂度为 $O(L^2)$，其中 L 为每个单词平均长度，则总时间复杂度为$O(NL^2)$， N 为字典中词的个数。</p>
+<p>这个方法的问题在于，一旦查询单词变多，性能会很糟糕。基于<a href="http://www.zhihu.com/question/29592463">知乎 Lee Shellay的回答</a>，可以通过构造 Trie， 结合 DFS，来解决这个问题。</p>
+<p>所以算法思路并不难：  </p>
+<ol>
+<li>根据字典中的单词构造前缀树，标记每个单词结束时的结束符为 ’$’。  </li>
+<li>设计函数 API 为<code>check_fuzzy(trie, word, path, tol)</code>。<code>trie</code>是在树中当前走到的节点，<code>word</code> 表示走到当前节点剩余需要处理的查询单词，<code>path</code>表示走到当前节点已经记录的字典单词前缀，<code>tol</code> 表示剩余可容忍的编辑距离。然后定义一个set，不断找到可能的单词并入这个set，直到结束。<br>  所以，函数只在<code>tol</code> 为0时候终止（为什么不是<code>word</code>为空时候终止？因为有可用的编辑距离都用在增加后缀的情况）。</li>
+</ol>
+<ul>
+<li>匹配当前字符，有两种情况：匹配，那么直接递归下一层；不匹配，可能是字母不一致或者是 word 已经结束（这个情况很容易被忽略），需要 tol 减一后递归下一层。</li>
+<li>增加任意字母（字典单词比查询单词多字母）。这里和知乎回答里的不一样，那里是枚举了26个字母，其实只要枚举当前 tree 的所有节点字母就行了（Jayxon 大牛想到的）。</li>
+<li>删除字符。word 向后移一个字母，tol 减一。</li>
+</ul>
+<p>最后代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Based on Lee Shellay&#x27;s code http://www.zhihu.com/question/29592463</span></span><br><span class="line"></span><br><span class="line">END = <span class="string">&#x27;$&#x27;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_trie</span>(<span class="params">words</span>):</span><br><span class="line">    trie = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        t = trie</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> word:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> t:</span><br><span class="line">                t[c] = &#123;&#125;</span><br><span class="line">            t = t[c]</span><br><span class="line">        t[END] = &#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> trie</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_fuzzy_v4</span>(<span class="params">trie, word, path = <span class="string">&#x27;&#x27;</span>, tol = <span class="number">1</span></span>):</span><br><span class="line">    <span class="keyword">if</span> tol &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">    ps = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">if</span> word == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> END <span class="keyword">in</span> trie:</span><br><span class="line">             ps = &#123;path&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> trie:</span><br><span class="line">        <span class="comment"># match current or mark as substition</span></span><br><span class="line">        ps |= check_fuzzy_v4(trie[k], word[<span class="number">1</span>:], path+k, tol - (<span class="keyword">not</span> word <span class="keyword">or</span> k != word[<span class="number">0</span>]))</span><br><span class="line">        <span class="comment"># add random char</span></span><br><span class="line">        ps |= check_fuzzy_v4(trie[k], word, path+k, tol-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># delete one (if word is empty, word[2:] will not report error)</span></span><br><span class="line">    ps |= check_fuzzy_v4(trie, word[<span class="number">1</span>:], path, tol-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> ps</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    words = [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;hela&#x27;</span>, <span class="string">&#x27;hel&#x27;</span>, <span class="string">&#x27;dokm&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;ke&#x27;</span>, <span class="string">&#x27;ik&#x27;</span>]</span><br><span class="line">    t = make_trie(words)</span><br><span class="line">    <span class="built_in">print</span> check_fuzzy_v4(t, <span class="string">&#x27;helo&#x27;</span>,<span class="string">&#x27;&#x27;</span>, tol=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后试试大一点的数据。我们知道在<code>/usr/share/dict/words</code>存着拼写检查的单词表，一共 2.4M 共 235886个单词（至少在我的 Mac 上是这么多）。可以用它来构造字典 <code>cat /usr/share/dict/words &gt; ./words.txt</code>。然后把一句话改的乱七八糟，用代码来跑跑试试：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    origin = <span class="string">&quot;For you know only a heap of broken images&quot;</span></span><br><span class="line">    modified = <span class="string">&quot;Far your knn onlie a deep of borken iimaes&quot;</span></span><br><span class="line"></span><br><span class="line">    words_list = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&#x27;words.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)]</span><br><span class="line">    tree = make_trie(words_list)</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> modified.split():</span><br><span class="line">        <span class="built_in">print</span> check_fuzzy_v4(tree, w, tol=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>结果也挺快的:</p>
+<ul>
+<li>CPython: 2.53s user 0.25s system 50% cpu 5.470 total</li>
+<li>Pypy: 1.63s user 0.19s system 43% cpu 4.186 total</li>
+</ul>
+<p>就是这样,  喵~</p>
+<p>PS: Lee Shellay回答又更新了，提升了性能和准确度，代码比我这的好，欢迎去看。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/algorithms/">algorithms</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/01/plan/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">2016 年计划</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/03/2015-03-02-coroutine-producer-comsumer/">
+        <span class="next-text nav-default">Producer consumer problem in coroutine</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2015/05/2015-05-09-K_edit_distances/';
+        this.page.identifier = '2015/05/2015-05-09-K_edit_distances/';
+        this.page.title = '找出编辑距离不大于 K 的单词';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

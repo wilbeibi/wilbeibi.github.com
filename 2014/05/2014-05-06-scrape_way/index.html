@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="My experience on how to scrape data from web."/>
+
+
+
+
+  <meta name="keywords" content="notes, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2014/05/2014-05-06-scrape_way/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> Scrape data the right way Part:1 - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Scrape data the right way Part:1
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2014-05-06
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-lxml"><span class="toc-text">Why lxml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Grab-data-from-Craglist"><span class="toc-text">Example: Grab data from Craglist</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/">lxml</a>.</p>
+<h2 id="Why-lxml"><a href="#Why-lxml" class="headerlink" title="Why lxml"></a>Why lxml</h2><p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html">lxml document</a> said:</p>
+<blockquote>
+<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml&#x2F;libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong><br>… …<br>The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
+</blockquote>
+<p>In short: lxml is faster when parsing well-formed web page.</p>
+<h2 id="Example-Grab-data-from-Craglist"><a href="#Example-Grab-data-from-Craglist" class="headerlink" title="Example: Grab data from Craglist"></a>Example: Grab data from Craglist</h2><p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
+<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:<br><img src="http://i.imgur.com/M5twZ1U.png"></p>
+<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>. </p>
+<pre><code>from lxml import html
+import requests
+ 
+with open(&#39;crag_link.txt&#39;, &#39;a&#39;) as f:
+    for i in range(0, 1000, 100):
+        pg = &#39;http://losangeles.craigslist.org/hhh/index&#39; + str(i) + &#39;.html&#39;
+        src = requests.get(pg)
+        if src.status_code == 404:
+            sys.exit(1)
+        tree = html.fromstring(src.text)
+        print &#39;Get page&#39;, i
+        for j in range(1, 100+1):
+            x_link = &#39;//*[@id=&quot;toc_rows&quot;]/div[2]/p[&#39; + str(j) + &#39;]/span[2]/a/@href&#39;
+            links = tree.xpath(x_link)
+            for ln in links:
+                f.write( &#39;http://losangeles.craigslist.org&#39; + ln + &#39;\n&#39;)
+        
+    f.close()
+</code></pre>
+<p>Click into one of the page, for instance, we want to get post id, copy xpath<br>like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
+<pre><code>try:
+    post_id = tree.xpath(&#39;//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]/text()&#39;)
+except:
+    # Handle Error
+</code></pre>
+<p>The reason we add try&#x2F;catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try&#x2F;catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
+<pre><code>def get_attr(tree, xps):
+    return attr_name = tree.xpath(xps)
+ 
+&#39;&#39;&#39; 
+xps_dict look like: 
+{&#39;post_id&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;,&#39;post_time&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;}
+&#39;&#39;&#39;
+for a, x in xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre>
+<p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/notes/">notes</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2014/07/2014-07-17-dropbox-coding/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Collaborative programming with Dropbox</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2014/03/2014-03-05-macandfriend/">
+        <span class="next-text nav-default">Mac程序员和他的朋友们</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2014/05/2014-05-06-scrape_way/';
+        this.page.identifier = '2014/05/2014-05-06-scrape_way/';
+        this.page.title = 'Scrape data the right way Part:1';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

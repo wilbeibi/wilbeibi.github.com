@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="colorize text, use dictionary as switch case, decorator with parameters"/>
+
+
+
+
+  <meta name="keywords" content="python, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2015/02/2015-02-17-colorize-log/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> Colorizing Loggers -- A simple practice of decorator - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Colorizing Loggers -- A simple practice of decorator
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-02-18
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-this-post-about"><span class="toc-text">What is this post about</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#colorize-your-text"><span class="toc-text">colorize your text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-choose-the-color-in-code"><span class="toc-text">How to choose the color in code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-the-decorator"><span class="toc-text">Use the decorator</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="What-is-this-post-about"><a href="#What-is-this-post-about" class="headerlink" title="What is this post about"></a>What is this post about</h2><p>Many people believe that decorator is one of the obscure concepts in Python.<br>Trust me, it is not. To be short, <strong>a decorator is a function that modifies other<br>functions via closures.</strong></p>
+<p>They are plenty detailed articles about what decorator it is so there is no need to write one more. If you are not familiar with it, you may want to check these:</p>
+<ul>
+<li><p><a href="http://sahandsaba.com/python-decorators.html">A Study of Python’s More Advanced Features Part II: Closures, Decorators and functools</a></p>
+</li>
+<li><p><a href="https://realpython.com/blog/python/primer-on-python-decorators/#.UvQEs0JdUwJ">Primer on Python Decorators</a></p>
+</li>
+</ul>
+<p>In this article, I am going to use a simple but interesting example to show</p>
+<ul>
+<li>how to colorize the output in command line</li>
+<li>how to implement a switch case in Python (Python does not have built-in switch case)</li>
+<li>a decorator with parameters</li>
+</ul>
+<p>OK, let’s rock.</p>
+<h2 id="colorize-your-text"><a href="#colorize-your-text" class="headerlink" title="colorize your text"></a>colorize your text</h2><p>There is a set of escape sequences used to change the color of texts. So if we want to colorize a sentence, we just need to put the sentence between the color escape sequence and reset escape sequence. For example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">&gt;&gt; RED = <span class="string">&#x27;\033[31m&#x27;</span></span><br><span class="line">&gt;&gt; GREEN = <span class="string">&#x27;\033[32m&#x27;</span></span><br><span class="line">&gt;&gt; BLUE = <span class="string">&#x27;\033[34m&#x27;</span></span><br><span class="line">&gt;&gt; RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">&gt;&gt; <span class="built_in">print</span> ORANGE + <span class="string">&quot;Chinese New Year&quot;</span> + RESET</span><br><span class="line">&gt;&gt; <span class="built_in">print</span> GREEN + <span class="string">&quot;Chinese&quot;</span> + GREEN + <span class="string">&quot;New&quot;</span> + BLUE + <span class="string">&quot;Year&quot;</span> + RESET</span><br></pre></td></tr></table></figure>
+<p>You will see<br><font style="font-family: courier;" color="orange">Chinese New Year</font></p>
+<p>and<br><font style="font-family: courier;" color="red">Chinese </font><font style="font-family: courier;" color="green">New </font><font style="font-family: courier;" color="blue">Year</font></p>
+<h2 id="How-to-choose-the-color-in-code"><a href="#How-to-choose-the-color-in-code" class="headerlink" title="How to choose the color in code"></a>How to choose the color in code</h2><p>As I said, Python does not support switch case. So we cannot switch the color name and choose the corresponding escaped sequence. Fortunately, dictionary would do the work.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">    <span class="comment"># @param color: string like &quot;red&quot; or &quot;yellow&quot;</span></span><br><span class="line">    <span class="comment"># @return the corresponding escape sequence.</span></span><br><span class="line">    <span class="comment"># If not valid, return empty string</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    RED = <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">    GREEN = <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">    BLUE = <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">    <span class="comment"># and more ...</span></span><br><span class="line">    ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">    &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>The trick is, the dictionary’s built in <code>get</code> method. The first parameter here is key, the second optional parameter is default. As the docstring shows:</p>
+<blockquote>
+<p>D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.</p>
+</blockquote>
+<h2 id="Use-the-decorator"><a href="#Use-the-decorator" class="headerlink" title="Use the decorator"></a>Use the decorator</h2><p>Suppose we have a function to implement a task. It may has three kind of return string, if task is completed successfully, it returns “SUCCESS: blah blah …”, if the task is finished but we cannot ensure it’s corretness, it returns “WARNING: blah blah …”, if task failed, returns “ERROR: blah blah …”, how do we colorize these return strings?</p>
+<p><a href="https://gist.github.com/Wilbeibi/a2ac59f211bcd681d007">Raw code</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">colorize</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&#x27;black&#x27;</span> : <span class="string">&#x27;\033[30m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;red&#x27;</span> : <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;green&#x27;</span> : <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;orange&#x27;</span> : <span class="string">&#x27;\033[33m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;blue&#x27;</span> : <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;purple&#x27;</span> : <span class="string">&#x27;\033[35m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;cyan&#x27;</span> : <span class="string">&#x27;\033[36m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;light_grey&#x27;</span> : <span class="string">&#x27;\033[37m&#x27;</span></span><br><span class="line">        &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_colorize</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">            RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">            text = func()</span><br><span class="line">            <span class="comment">#if not isinstance(text, basestring):</span></span><br><span class="line">            <span class="comment">#    text = str(text)</span></span><br><span class="line">            level = text.split(<span class="string">&#x27;:&#x27;</span>, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">            color = &#123;</span><br><span class="line">                <span class="string">&#x27;SUCCESS&#x27;</span>: args[<span class="number">0</span>],</span><br><span class="line">                <span class="string">&#x27;WARNING&#x27;</span>: args[<span class="number">1</span>],</span><br><span class="line">                <span class="string">&#x27;ERROR&#x27;</span>: args[<span class="number">2</span>]</span><br><span class="line">            &#125;.get(level, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&#123;0&#125;&#123;1&#125;&#123;2&#125;&quot;</span>.<span class="built_in">format</span>(getColor(color), text, RESET)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> _colorize</span><br><span class="line"></span><br><span class="line"><span class="meta">@colorize(<span class="params"><span class="string">&quot;green&quot;</span>, <span class="string">&quot;orange&quot;</span>, <span class="string">&quot;red&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">do_task</span>():</span><br><span class="line">    <span class="comment"># working working ....</span></span><br><span class="line">    <span class="keyword">if</span> (success):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;SUCCESS: Yeah~~&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> (warning):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;WARNING: wait, what?&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ERROR: something went wrong here.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you can tell, to make the decorator with parameters, we need to put it in another decorator.</p>
+<p>Decorator are often used as cache, profiler, logger, synchronization(acquire lock, drop lock) and so forth. One of my favourite library <a href="http://click.pocoo.org/3/">Click</a> is also a wonderful example.</p>
+<p>Happy Chinese New Year ~</p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/03/2015-03-02-coroutine-producer-comsumer/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Producer consumer problem in coroutine</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/02/2015-02-12-2D-pointer/">
+        <span class="next-text nav-default">How to delete nodes of linked list with pointers-to-pointers (Chinese)</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2015/02/2015-02-17-colorize-log/';
+        this.page.identifier = '2015/02/2015-02-17-colorize-log/';
+        this.page.title = 'Colorizing Loggers -- A simple practice of decorator';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

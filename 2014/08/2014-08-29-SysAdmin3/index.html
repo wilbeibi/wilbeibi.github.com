@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Basic usages of ssh. Tested on Mac OSX 10.9.4, OpenSSH_6.2p2"/>
+
+
+
+
+  <meta name="keywords" content="Sysadmin, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2014/08/2014-08-29-SysAdmin3/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> A Primer to System Administration - About SSH - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          A Primer to System Administration - About SSH
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2014-08-29
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-generate-key-pair"><span class="toc-text">How to generate key pair?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-SSH-login-without-authentication"><span class="toc-text">How to SSH login without authentication?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Make-an-alias-of-the-connection"><span class="toc-text">Make an alias of the connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-security"><span class="toc-text">About security</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
+<blockquote>
+<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
+</blockquote>
+<p><img src="http://www.openssh.com/images/openssh.gif"></p>
+<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
+<h2 id="How-to-generate-key-pair"><a href="#How-to-generate-key-pair" class="headerlink" title="How to generate key pair?"></a>How to generate key pair?</h2><p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">more secure</a>. We can generate a key pair through:</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+# Creates a new ssh key, using the provided email as a label
+Generating public/private rsa key pair.
+# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+</code></pre>
+<p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
+<pre><code>eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_rsa
+</code></pre>
+<h2 id="How-to-SSH-login-without-authentication"><a href="#How-to-SSH-login-without-authentication" class="headerlink" title="How to SSH login without authentication?"></a>How to SSH login without authentication?</h2><p>Now it’s time use our public key. For Linux user:</p>
+<pre><code> ssh-copy-id user@machine
+ 
+</code></pre>
+<p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys">typing</a>:</p>
+<pre><code> cat ~/.ssh/id_rsa.pub | ssh user@machine &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;
+</code></pre>
+<p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
+<h2 id="Make-an-alias-of-the-connection"><a href="#Make-an-alias-of-the-connection" class="headerlink" title="Make an alias of the connection"></a>Make an alias of the connection</h2><p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
+<pre><code> Host matrix
+      HostName &lt;domain name or public IP&gt;
+      User &lt;user name&gt;
+      IdentityFile &lt;/path/to/private_key&gt;
+</code></pre>
+<p>One more thing, ssh config support wildcard, so you can use </p>
+<pre><code> Host *compute-1.amazonaws.com
+</code></pre>
+<p>for all your ec2 instances. I also added</p>
+<pre><code>TCPKeepAlive=yes
+ServerAliveInterval=15    
+ServerAliveCountMax=6
+StrictHostKeyChecking=no
+Compression=yes
+ForwardAgent=yes
+RSAAuthentication=yes
+PasswordAuthentication=yes
+</code></pre>
+<p>in my config file to add more feature.</p>
+<h2 id="About-security"><a href="#About-security" class="headerlink" title="About security"></a>About security</h2><ol>
+<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory">stolen from memory</a>.</li>
+<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Sysadmin/">Sysadmin</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/01/2015-01-27-plan/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">2015 年部分计划</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2014/08/2014-08-10-SysAdmin2/">
+        <span class="next-text nav-default">A Primer to System Administration - Know Thy System</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2014/08/2014-08-29-SysAdmin3/';
+        this.page.identifier = '2014/08/2014-08-29-SysAdmin3/';
+        this.page.title = 'A Primer to System Administration - About SSH';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Reading notes of Pro Git."/>
+
+
+
+
+  <meta name="keywords" content="notes, git, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2012/12/2012-12-30-ProGit/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> Notes of Git - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Notes of Git
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2012-12-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-Branches"><span class="toc-text">Git Branches</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><em><strong>Pro Git</strong></em> is an excellent book about Git, and these are my reading notes.  </p>
+<p>This is a brief notes about some points of <a href="http://www.amazon.com/gp/product/1430218339"><em><strong>Pro Git</strong></em></a>. It only contains first 3 chapters (contains most commonly used commands of Git). I will maintain this article and keep revising it. Hope it might helpful to you.</p>
+<p>##Before Running Git</p>
+<ul>
+<li><p><strong>Snapshots, Not Differences</strong><br>The major difference between Git and any other VCS (Subversion and friends included) is the way Git thinks about its data. Conceptually, most other systems store information as a list of file-based changes.</p>
+</li>
+<li><p><strong>Nearly Every Operation Is Local</strong><br>Most operations in Git only need local files and resources to operate ¡ª generally no information is needed from another computer on your network.</p>
+</li>
+<li><p><strong>Git Has Integrity</strong><br>Git use checksum, namely, SHA-1, as a reference.</p>
+</li>
+<li><p><strong>Three States</strong><br>Git has three main states that your files can<br>reside in: <strong>committed</strong>, <strong>modified</strong>, and <strong>staged</strong>. Committed means that the data is safely stored in your local database. Modified means that you have changed the file but have not committed it to your database yet. Staged means that you have marked a modified file in its current version to go into your next commit snapshot.<br><img src="http://i.imgur.com/yT4Pg.png"></p>
+<p>  The basic Git workflow goes something like this:  </p>
+<ol>
+<li>You modify files in your working directory.  </li>
+<li>You stage the files, adding snapshots of them to your staging area.  </li>
+<li>You do a commit, which takes the files as they are in the staging area and   stores that snapshot permanently to your Git directory.</li>
+</ol>
+</li>
+</ul>
+<p>##Git Basics</p>
+<ul>
+<li><p>Clone<br><code>git clone git://github.com/USERNAME/REPO.git</code></p>
+</li>
+<li><p>Check Status<br> <code>git status</code></p>
+</li>
+<li><p>Trace New File<br><code>git add FILE</code> (The FILE edited after git add need to redo git add to store the changes)</p>
+</li>
+<li><p>Gitignore<br>if you want to ignore some files, add thier patter to <em>.gitignore</em>. Like *.[oa] (generate while compiling)</p>
+<blockquote>
+<p>Glob patterns are like simplified regular expressions that shells use. An asterisk (*) matches zero or more characters; [abc]matches any character inside the brackets (in this case a, b, or c); a question mark (?) matches a single character; and brackets enclosing characters separated by a hyphen([0-9]) matches any character between them (in this case 0 through 9) .</p>
+</blockquote>
+</li>
+<li><p>Diff between staged and last commit file<br><code>git diff --cached</code></p>
+</li>
+<li><p>Committing Changes<br><code>git status</code> before <code>git commit</code>. add <code>-m</code> flag to add commit message, <code>-v</code> to explicit remind every place you modified, <code>-a</code> to automatically stage every file that is already tracked before doing the commit, letting skip the git add part.</p>
+</li>
+<li><p>Remove<br><code>rm FILE</code> and <code>git rm FILE</code> to delete local files. <code>git rm --cached FILE</code> to remove files in repository.(Could use glob)</p>
+</li>
+<li><p>Move<br><code>git mv OLD NEW</code> to change the names.</p>
+</li>
+<li><p>Viewing History<br><code>git log</code>, add <code>-p</code> to show differences in every commits, use <code>-2</code> to see lasted 2 updates, <code>–stat</code> abbreviated stats, <code>–pretty</code> customized formats.</p>
+</li>
+<li><p>Undo<br>use <code>git commit --amend</code> to add forgetted files or reedit commit messages. (See Book 2.4.1)</p>
+</li>
+<li><p>Unstaging Staged File<br><code>git reset HEAD FILE</code></p>
+</li>
+<li><p>Unmodifying a Modified File<br>use <code>git status</code> (See Book 2.4.3)</p>
+</li>
+<li><p>Fetching and Pulling<br><code>git fetch REMOTE-NAME</code> pull down all the data from that remote project that you don’t have yet.</p>
+<blockquote>
+<p><code>git fetch origin</code> fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. It’s important to note that the fetch command pulls the data to your local repository and it doesn’t automatically merge it with any of your work or modify what you’re currently working on. You have to merge it manually into your work when you’re ready.</p>
+</blockquote>
+</li>
+<li><p>Push<br><code>git push origin master</code> will push local master branch to origin server.</p>
+</li>
+<li><p>Tagging<br><code>git tag</code> to add tags.<code>-a</code> to annotated, <code>-m</code> add comments, <code>git show</code> to check version info.</p>
+</li>
+<li><p>Git Aliases<br>You can set up an alias for each command with git config. For example, using <code>git config --global alias.ci commit</code> to instead <code>git commit</code> with <code>git ci</code>. Useful Tips: <code>git config --global alias.last &#39;log -1 HEAD&#39;</code> to check last commit by <code>git last</code>.</p>
+</li>
+</ul>
+<h2 id="Git-Branches"><a href="#Git-Branches" class="headerlink" title="Git Branches"></a>Git Branches</h2><ul>
+<li><p>HEAD<br>In Git, this is apointer to the local branch you’re currently on.</p>
+</li>
+<li><p>New Branch<br>Because a branch in Git is in actuality a simple file that contains the 40 character <a href="http://en.wikipedia.org/wiki/SHA-1"><strong>SHA-1</strong></a> checksum of the commit it points to, branches are cheap to create and destroy. Creating a new branch is as quick and simple as writing 41 bytes to a file (40 characters and a newline).</p>
+</li>
+<li><p>Basic Branching and Merging<br>switch to a certain branch <code>git Check -b BRANCH-B</code>, <code>git merge</code> to merge to master.</p>
+</li>
+<li><p>Delete Branch<br><code>git branch -d</code> to delete branches. It could be failed if it was unmerged. Thus, you could use <code>git branch -D BRANCH-B</code> to force deleting it, and <code>git branch --no-merged</code> to check unmerged work.</p>
+</li>
+<li><p>Remote Branch<br>You’d better read the related part of this book! It is a little comfusing but important.</p>
+</li>
+<li><p>Rebasing<br>With the rebase command, you can take all the changes that were committed on one branch and replay them on another one. For example, <code>git rebase master server</code> checks out the topic branch (in this case,server) for you and replays it onto the base branch (master).It quite cool, read Book 3.5.1 to know more. Summed up in one line <strong>Do not rebase commits that you have pushed to a public repository.</strong></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/notes/">notes</a>
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2013/10/2013-10-16-awayfrom/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">The Better Way to learn programming is to get away from it</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2012/12/2012-12-11-rss/">
+        <span class="next-text nav-default">一个RSS订阅者的自我修养</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2012/12/2012-12-30-ProGit/';
+        this.page.identifier = '2012/12/2012-12-30-ProGit/';
+        this.page.title = 'Notes of Git';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Just some examples, no big deal. Tested on Ubuntu 14.04."/>
+
+
+
+
+  <meta name="keywords" content="Sysadmin, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> A Primer to System Administration - Users and groups - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          A Primer to System Administration - Users and groups
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2014-08-08
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-create-a-user"><span class="toc-text">How to create a user</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-create-a-group"><span class="toc-text">How to create a group</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-add-a-user-to-a-group"><span class="toc-text">How to add a user to a group</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-list-all-users-in-a-group"><span class="toc-text">How to list all users in a group</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-sticky-bit"><span class="toc-text">What is sticky bit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-sticky-bit-looks-like"><span class="toc-text">What is sticky bit looks like</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-set-it"><span class="toc-text">How to set it</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-setuid"><span class="toc-text">What is setuid</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-set-it-1"><span class="toc-text">How to set it</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#And-it-is-dangerous"><span class="toc-text">And it is dangerous</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BTW"><span class="toc-text">BTW</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="How-to-create-a-user"><a href="#How-to-create-a-user" class="headerlink" title="How to create a user"></a>How to create a user</h2><p>By useradd:</p>
+<pre><code>useradd -m -d &lt;HomeDir&gt; -g &lt;Group&gt; username
+ 	
+</code></pre>
+<p>It’s optional to specify the new user’s home directory and group, but I strongly suggest to do so. <code>-m</code> stands for create home, <code>-d</code> to allocate a directory. (Warning, don’t mess up <code>useradd</code> and <code>adduser</code>, the later one is a higher level’s implementation. Here is a <a href="http://askubuntu.com/questions/345974/what-is-the-difference-between-adduser-and-useradd">detailed explanation of these two’s differences</a>.)</p>
+<h2 id="How-to-create-a-group"><a href="#How-to-create-a-group" class="headerlink" title="How to create a group"></a>How to create a group</h2><p>By groupadd:</p>
+<pre><code>groupadd groupname
+</code></pre>
+<h2 id="How-to-add-a-user-to-a-group"><a href="#How-to-add-a-user-to-a-group" class="headerlink" title="How to add a user to a group"></a>How to add a user to a group</h2><p>By usermod:<br>    usermod -a -G <groupname> username</p>
+<p>where <code>usermod</code> means modify a user account, <code>-a</code> stands for append, append this user to a group.</p>
+<p><a href="http://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">Read more</a></p>
+<h2 id="How-to-list-all-users-in-a-group"><a href="#How-to-list-all-users-in-a-group" class="headerlink" title="How to list all users in a group"></a>How to list all users in a group</h2><p>Well, there is not such a built-in command for that, but we can use:<br>	<br>	grep ‘^groupname’ &#x2F;etc&#x2F;group<br>	<br>or <code>apt-get install members</code>, then</p>
+<pre><code>members groupname
+</code></pre>
+<h2 id="What-is-sticky-bit"><a href="#What-is-sticky-bit" class="headerlink" title="What is sticky bit"></a>What is sticky bit</h2><h3 id="What-is-sticky-bit-looks-like"><a href="#What-is-sticky-bit-looks-like" class="headerlink" title="What is sticky bit looks like"></a>What is sticky bit looks like</h3><p>Sticky bit is used for directories. As wikipedia said:</p>
+<blockquote>
+<p>When the sticky bit is set, only the item’s owner, the directory’s owner, or root can rename or delete files. Without the sticky bit set, any user with write and execute permissions for the directory can rename or delete contained files, regardless of owner.</p>
+</blockquote>
+<p>For example, if the professor create a &#x2F;homework directory with sticky bit, every student can upload their homework, but they cannot rename or delete other students’ homework.</p>
+<h3 id="How-to-set-it"><a href="#How-to-set-it" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code> chmod +t /path/to/directory
+</code></pre>
+<p>or</p>
+<pre><code> chmod 1755
+</code></pre>
+<p>where 1 stands for sticky bit, 7 for owner has all privilege, 5 for read and execute privilege for the group, and for others.</p>
+<p>Now, &#x2F;path&#x2F;to&#x2F;directory should looks like this (replaced last character):</p>
+<pre><code>drwxr-xr-t   1 root     other          0 Nov 10 12:57 test
+</code></pre>
+<p>As wikipedia said, if the sticky-bit is set on the directory without the execution bit set for the others category, it is indicated with a capital T:</p>
+<pre><code>drwxr-xr-T   1 root     other          0 Nov 10 12:57 test
+ 
+</code></pre>
+<p><a href="http://www.linuxnix.com/2012/01/sticky-bit-set-linux.html">Read more …</a></p>
+<h2 id="What-is-setuid"><a href="#What-is-setuid" class="headerlink" title="What is setuid"></a>What is setuid</h2><p>One sentence explanation: Regardless of who runs this program, run it as the user who owns it, not the user that executes it.</p>
+<h3 id="How-to-set-it-1"><a href="#How-to-set-it-1" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code>chmod u+s /path/to/file
+</code></pre>
+<h3 id="And-it-is-dangerous"><a href="#And-it-is-dangerous" class="headerlink" title="And it is dangerous"></a>And it is dangerous</h3><p>For instance, a simple shell script <code>showfile.sh</code> has set setuid as root privilege:</p>
+<pre><code> #!/bin/sh
+ # showfile
+ ls -l | sort
+</code></pre>
+<p>And If I am a bad guy, I could easily write script :</p>
+<pre><code> rm -rf /some/where/important
+</code></pre>
+<p>and saved as name <code>ls</code>, add my <code>ls</code> to the front of $PATH. Now when I tried to run showfile.sh, Boom ! The files are deleted.</p>
+<h2 id="BTW"><a href="#BTW" class="headerlink" title="BTW"></a>BTW</h2><p>If you found grammar errors or typos, please feel free to help me <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/edit/master/source/_posts/2014-08-08-SysAdmin.md">correct it</a>.</p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Sysadmin/">Sysadmin</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2014/08/2014-08-10-SysAdmin2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">A Primer to System Administration - Know Thy System</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2014/07/2014-7-21-gitAtoZ/">
+        <span class="next-text nav-default">How to deal with Git A-Z?</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/';
+        this.page.identifier = '2014/08/2014-08-08-SysAdmin/';
+        this.page.title = 'A Primer to System Administration - Users and groups';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

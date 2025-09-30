@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="what coroutine is and a sample code of producer consumer problem."/>
+
+
+
+
+  <meta name="keywords" content="python, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2015/03/2015-03-02-coroutine-producer-comsumer/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> Producer consumer problem in coroutine - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Producer consumer problem in coroutine
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-03-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-coroutine"><span class="toc-text">What is coroutine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Producer-and-consumer-problem"><span class="toc-text">Producer and consumer problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Coroutine-usage"><span class="toc-text">Coroutine usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-and-Recommended-Reading"><span class="toc-text">Reference and Recommended Reading:</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="What-is-coroutine"><a href="#What-is-coroutine" class="headerlink" title="What is coroutine"></a>What is coroutine</h2><p>As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it’s essentially just context switching. Not surprisingly, coroutine is implemented in primitives like setjmp&#x2F;longjump or ucontext in low level.</p>
+<p>In many senarioes, coroutine is a more light-weight alternative of threads. For programming languages with GIL (like Python), coroutine would used to handle concurrency.</p>
+<h2 id="Producer-and-consumer-problem"><a href="#Producer-and-consumer-problem" class="headerlink" title="Producer and consumer problem"></a>Producer and consumer problem</h2><p>Let’s take a look at classic “producer-consumer” problem. At each time, one coroutine produce products and add them into queue, the other coroutine take products from queue and use it (hmm, sounds like video buffering, right?). </p>
+<p>The code below assumes you already have some knowledge of generator.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coroutine</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="comment"># A wrapper to convert function into generator</span></span><br><span class="line">    <span class="comment"># From David Beazley</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">        cr = func(*args,**kwargs)</span><br><span class="line">        cr.<span class="built_in">next</span>()</span><br><span class="line">        <span class="keyword">return</span> cr</span><br><span class="line">    <span class="keyword">return</span> start  </span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">producer</span>(<span class="params">target</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = random.randint(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# producer: sending data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        target.send(data)</span><br><span class="line">        </span><br><span class="line"><span class="meta">@coroutine</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consumer</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# consumer: receving data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    g_consumer = consumer()</span><br><span class="line">    producer(g_consumer)</span><br></pre></td></tr></table></figure>
+<p>Simple enough, <code>send()</code> is a built-in function of generator. The producer send data to consumer, consumer receives data from <code>yield</code>.</p>
+<h2 id="Coroutine-usage"><a href="#Coroutine-usage" class="headerlink" title="Coroutine usage"></a>Coroutine usage</h2><p>Yes, the famous concurrency library gevent is based on coroutine.</p>
+<h2 id="Reference-and-Recommended-Reading"><a href="#Reference-and-Recommended-Reading" class="headerlink" title="Reference and Recommended Reading:"></a>Reference and Recommended Reading:</h2><p><a href="https://www.python.org/dev/peps/pep-0342/">PEP 342: Coroutines via Enhanced Generators</a></p>
+<p><a href="http://coolshell.cn/articles/10975.html">一个“蝇量级” C 语言协程库</a></p>
+<p><a href="http://learn-gevent-socketio.readthedocs.org/en/latest/general_concepts.html">General concepts: concurrency, parallelism, threads and processes</a></p>
+<p><a href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/05/2015-05-09-K_edit_distances/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">找出编辑距离不大于 K 的单词</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/02/2015-02-17-colorize-log/">
+        <span class="next-text nav-default">Colorizing Loggers -- A simple practice of decorator</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2015/03/2015-03-02-coroutine-producer-comsumer/';
+        this.page.identifier = '2015/03/2015-03-02-coroutine-producer-comsumer/';
+        this.page.title = 'Producer consumer problem in coroutine';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="A personal Git FAQ"/>
+
+
+
+
+  <meta name="keywords" content="git, Wilbeibi" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wilbeibi" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://wilbeibi.com/2014/07/2014-7-21-gitAtoZ/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title> How to deal with Git A-Z? - Wilbeibi </title>
+  <meta name="generator" content="Hexo 8.0.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Wilbeibi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Wilbeibi</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          How to deal with Git A-Z?
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2014-07-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-modify-file-and-update-to-remote-repository"><span class="toc-text">How to modify file and update to remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-change-last-commit"><span class="toc-text">How to change last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-delete-files-in-remote-repository"><span class="toc-text">How to delete files in remote repository?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull-or-Fetch"><span class="toc-text">Pull or Fetch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So-what-if-files-conflict-after-git-pull-auto-merge-failed"><span class="toc-text">So, what if files conflict after git pull (auto merge failed)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-overwrite-rather-than-merge-one-branch-from-another"><span class="toc-text">How to overwrite, rather than merge, one branch from another</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-delete-a-branch"><span class="toc-text">How to delete a branch?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-roll-back-to-a-specific-commit"><span class="toc-text">How to roll back to a specific commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-commit-a"><span class="toc-text">What is commit -a?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-git-ignore-something-except-a-certain-file"><span class="toc-text">How to git ignore something except a certain file?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-give-up-all-the-changes-since-last-commit"><span class="toc-text">How to give up all the changes since last commit?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-clone-a-specific-branch"><span class="toc-text">How to clone a specific branch</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git">here</a>.</p>
+<h2 id="How-to-modify-file-and-update-to-remote-repository"><a href="#How-to-modify-file-and-update-to-remote-repository" class="headerlink" title="How to modify file and update to remote repository?"></a>How to modify file and update to remote repository?</h2><pre><code>git add file
+git commit -m &quot;Aha, file modified&quot;
+</code></pre>
+<p>Or, just type</p>
+<pre><code>git commit -am &quot;Aha, file modified&quot;
+</code></pre>
+<p>After that, push to remote repository:</p>
+<pre><code>git push origin branch_name
+</code></pre>
+<p>So, what’s difference between these two? I will reach to that later.</p>
+<h2 id="How-to-change-last-commit"><a href="#How-to-change-last-commit" class="headerlink" title="How to change last commit?"></a>How to change last commit?</h2><p>It’s a good practice to fix a wrong commit rather than make a new commit.<br>So, first, edit the file with the problem, make the corrections, then:</p>
+<pre><code>git add now_right_file
+git commit --amend
+git push --force branch_name   # Warning!
+</code></pre>
+<p>Be careful, The <code>--force</code> is dangerous, it works fine to me for 99% cases, but it dose have potential harmness, and that’s <a href="http://stackoverflow.com/a/432518/1035859">why Linus doesn’t recommend it</a>.  </p>
+<h2 id="How-to-delete-files-in-remote-repository"><a href="#How-to-delete-files-in-remote-repository" class="headerlink" title="How to delete files in remote repository?"></a>How to delete files in remote repository?</h2><p>There are two ways of delete files, delete locally and commit to remote repository, or just directly delete files in remote repository, like:</p>
+<pre><code>git rm --cached file_to_delete
+</code></pre>
+<p>Even better, you can delete all the files match a certain <a href="http://linux.about.com/library/cmd/blcmdl7_glob.htm">glob</a>:</p>
+<pre><code>git rm --cached &#39;merge-*&#39; # delete all the files start with &quot;merge-&quot;
+</code></pre>
+<h2 id="Pull-or-Fetch"><a href="#Pull-or-Fetch" class="headerlink" title="Pull or Fetch?"></a>Pull or Fetch?</h2><p>There already has an excellent and well accepted answer on StackOverflow, it’s way much better than my explanation –&gt; <a href="http://stackoverflow.com/questions/292357/difference-between-git-pull-and-git-fetch">link</a>:</p>
+<blockquote>
+<p>In the simplest terms, <code>git pull</code> does a <code>git fetch</code> followed by a <code>git merge</code>.<br>You can do a <code>git fetch</code> at any time to update your remote-tracking branches under <code>refs/remotes/&lt;remote&gt;/</code>. This operation never changes any of your own local branches under <code>refs/heads</code>, and is safe to do without changing your working copy. I have even heard of people running git fetch periodically in a cron job in the background (although I wouldn’t recommend doing this).</p>
+</blockquote>
+<blockquote>
+<p>A <code>git pull</code> is what you would do to bring a local branch up-to-date with its remote version, while also updating your other remote-tracking branches.</p>
+</blockquote>
+<h2 id="So-what-if-files-conflict-after-git-pull-auto-merge-failed"><a href="#So-what-if-files-conflict-after-git-pull-auto-merge-failed" class="headerlink" title="So, what if files conflict after git pull (auto merge failed)"></a>So, what if files conflict after git pull (auto merge failed)</h2><pre><code>git pull # will auto merge unconflicted part
+git status # check the information of conflicted files
+</code></pre>
+<p>Use your favorite editor to edit the conflicted file with “&lt;&lt;&lt;&lt;&lt;&lt;” and “&gt;&gt;&gt;&gt;&gt;&gt;”, save it, commit it, that’s all.</p>
+<p><a href="https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line">Read more</a>…</p>
+<h2 id="How-to-overwrite-rather-than-merge-one-branch-from-another"><a href="#How-to-overwrite-rather-than-merge-one-branch-from-another" class="headerlink" title="How to overwrite, rather than merge, one branch from another"></a>How to overwrite, rather than merge, one branch from another</h2><pre><code>git checkout latest_branch
+git merge -s ours to_overwrite_branch
+</code></pre>
+<p>What’s the <code>ours</code> means here? It’s a merge strategy, you can find it in <a href="http://git-scm.com/docs/git-checkout">git checkout doc</a>:</p>
+<blockquote>
+<p>  git checkout [–ours| theirs] branch<br>  –ours<br>	  –theirs<br>	<br>When checking out paths from the index, check out stage #2 (ours) or #3 (theirs) for unmerged paths.  </p>
+</blockquote>
+<blockquote>
+<p>The index may contain unmerged entries because of a previous failed merge. By default, if you try to check out such an entry from the index, the checkout operation will fail and nothing will be checked out. Using -f will ignore these unmerged entries. The contents from a specific side of the merge can be checked out of the index by using –ours or –theirs. With -m, changes made to the working tree file can be discarded to re-create the original conflicted merge result.</p>
+</blockquote>
+<h2 id="How-to-delete-a-branch"><a href="#How-to-delete-a-branch" class="headerlink" title="How to delete a branch?"></a>How to delete a branch?</h2><pre><code>git branch -d died_branch
+git push origin --delete die_branch # or git push origin :died_branch
+</code></pre>
+<p><a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely">Read more</a>…</p>
+<h2 id="How-to-roll-back-to-a-specific-commit"><a href="#How-to-roll-back-to-a-specific-commit" class="headerlink" title="How to roll back to a specific commit?"></a>How to roll back to a specific commit?</h2><pre><code>git reflog show # find revision hash
+git checkout revision_hash .
+</code></pre>
+<p>I will explain this a little bit. <code>git reflog show</code> gives us a list of all the commits and their hashes. Then, checkout that specific hash.</p>
+<p>Read more:</p>
+<ul>
+<li><a href="http://alblue.bandlem.com/2011/05/git-tip-of-week-reflogs.html">A deep look at <code>reflog</code></a> </li>
+<li><a href="http://stackoverflow.com/questions/17857723/whats-the-difference-between-git-reflog-and-log">Difference between <code>reflog</code> and <code>log</code></a></li>
+</ul>
+<h2 id="What-is-commit-a"><a href="#What-is-commit-a" class="headerlink" title="What is commit -a?"></a>What is commit -a?</h2><p>Many people always ask how to combine <code>git add</code> and <code>git commit</code> in one command, and the most answered solution is <code>git commit -a -m &quot;blah blah&quot;</code>.</p>
+<p>Yes and no. For the files which have been <code>git add</code> before, <code>git commit -a</code> will do the <code>git add</code> for you. But for rest files(aka untracked files), we have to the <code>git add</code>. If you really want to save the time for these tedious work, alias is what you are looking for.</p>
+<h2 id="How-to-git-ignore-something-except-a-certain-file"><a href="#How-to-git-ignore-something-except-a-certain-file" class="headerlink" title="How to git ignore something except a certain file?"></a>How to git ignore something except a certain file?</h2><p>In .gitignore:</p>
+<pre><code># Ignore everything
+*
+!except_script.sh
+</code></pre>
+<p>This will ignore everything but except_scrpit.sh.</p>
+<h2 id="How-to-give-up-all-the-changes-since-last-commit"><a href="#How-to-give-up-all-the-changes-since-last-commit" class="headerlink" title="How to give up all the changes since last commit?"></a>How to give up all the changes since last commit?</h2><p>Once my silly cat was dancing on my keyboard after a commit mess up all the files!<br>Luckily, we can use</p>
+<pre><code>git reset hard --HEAD^
+</code></pre>
+<p>to revert to the previous commit.</p>
+<p>Or, I wrongly <code>git add should_not_add_file</code> , we can also use</p>
+<pre><code>git reset HEAD should_not_add_file
+</code></pre>
+<p>to upstage that file. </p>
+<h2 id="How-to-clone-a-specific-branch"><a href="#How-to-clone-a-specific-branch" class="headerlink" title="How to clone a specific branch"></a>How to clone a specific branch</h2><p><a href="http://stackoverflow.com/questions/1911109/git-clone-a-specific-branch">Stolen from Stackoverflow again</a></p>
+<pre><code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code> git clone -b my-branch git@github.com:user/myproject.git
+</code></pre>
+<p>Alternative (no public key setup needed):</p>
+<pre><code>git clone -b my-branch https://git@github.com/username/myproject.git
+</code></pre>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2014/08/2014-08-08-SysAdmin/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">A Primer to System Administration - Users and groups</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2014/07/2014-07-17-dropbox-coding/">
+        <span class="next-text nav-default">Collaborative programming with Dropbox</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Wilbeibi" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/wilbeibi" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">wilbeibi</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wilbeibi.com/2014/07/2014-7-21-gitAtoZ/';
+        this.page.identifier = '2014/07/2014-7-21-gitAtoZ/';
+        this.page.title = 'How to deal with Git A-Z?';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//wilmatrix.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
