@@ -21,3 +21,8 @@
 #page-header {
   background-position: center bottom !important;
 }
+
+/* Hide duplicate site title in the fixed nav bar */
+#page-header #site-name {
+  display: none;
+}

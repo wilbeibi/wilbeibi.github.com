@@ -174,6 +174,48 @@
       </tags>
   </entry>
   <entry>
+    <title>一个RSS订阅者的自我修养</title>
+    <url>/2012/12/2012-12-11-rss/</url>
+    <content><![CDATA[<h2 id="这篇文章想说什么"><a href="#这篇文章想说什么" class="headerlink" title="这篇文章想说什么"></a>这篇文章想说什么</h2><p>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？  </p>
+<p><img src="http://i.imgur.com/hZ2eX.jpg">  </p>
+<p>RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。</p>
+<p>##RSS阅读器<br>国内比较流行的RSS阅读器有鲜果，抓虾，看天下…个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。</p>
+<p>##做笔记<br>Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后<br>者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进<a href="http://getpocket.com/">Pocket</a>——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用<a href="http://fivefilters.org/">FiveFilters.org</a>提供的全文feed生成器,把网址往里一扔，OK了。  </p>
+<p><img src="http://i.imgur.com/4uIeN.png"></p>
+<p>那如果在平板上呢？这时候，就要靠<a href="http://ifttt.com/">ifttt</a>这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。<br><img src="http://i.imgur.com/exc5Y.png"></p>
+<p>##纸和笔<br>如果只是这样做笔记，只不过是一种更有效的copy&amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。<br>要把笔记变成自己的东西，一定要有自己的<strong>主动</strong>参与，还是需要保持看纸质书和手写笔记的习惯。</p>
+<p>##写出来<br>写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），<a href="http://www.yangzhiping.com/tech/writing-space.html">Github+Jekyll</a>，或者Octopress都能满足你的要求。</p>
+<p>##博客的排版<br>博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">Markdown</a>就是为此应运而生的。此外，Emacs下强大的<a href="http://orgmode.org/">Org-mode</a>也是个相当不错的选择。</p>
+<p>##最后，分享一些我觉得不错的博客</p>
+<p><strong>Matrix67</strong> <a href="http://www.matrix67.com/">www.matrix67.com</a></p>
+<p><strong>酷壳</strong><br><a href="http://coolshell.com/">CoolShell.com</a></p>
+<p><strong>浏忙大爆炸</strong><br><a href="http://blog.waterlin.org/">blog.waterlin.org</a></p>
+<p><strong>刘未鹏 Mind Hacks</strong><br><a href="http://mindhacks.cn/">mindhacks.cn&#x2F;</a></p>
+<p><strong>阮一峰的网络日志</strong><br><a href="http://www.ruanyifeng.com/">www.ruanyifeng.com</a></p>
+<p><strong>good coders code,great reuse</strong><br><a href="http://www.catonmat.net/">www.catonmat.net/</a></p>
+<p><strong>外刊IT评论</strong><br><a href="http://www.aqee.net/">www.aqee.net/</a></p>
+<p><strong>Planet Emacsen</strong><br><a href="http://planet.emacsen.org/">planet.emacsen.org&#x2F;</a></p>
+<p><strong>talich闲侃</strong><br><a href="http://talich.cinepedia.cn/">talich.cinepedia.cn</a></p>
+<p><strong>李笑来</strong><br><a href="http://lixiaolai.com/">lixiaolai.com&#x2F;</a></p>
+<p><strong>学而时嘻之</strong><br><a href="http://www.geekonomics10000.com/">www.geekonomics10000.com/</a></p>
+<p><strong>不许联想</strong><br><a href="http://www.wangxiaofeng.net/">www.wangxiaofeng.net/</a></p>
+<p><strong>张佳玮写东西的地方</strong><br><a href="http://zhangjiawei.blog.tianya.cn/">zhangjiawei.blog.tianya.cn&#x2F;</a></p>
+<p><strong>西西弗斯的健忘症</strong><br><a href="http://lilyshen.wordpress.com/">lilyshen.wordpress.com&#x2F;</a></p>
+<p><strong>柴静的博客</strong><br><a href="http://blog.sina.com.cn/chjguancha">blog.sina.com.cn&#x2F;chjguancha</a></p>
+<p><strong>和菜头的槽边往事</strong><br><a href="http://www.hecaitou.net/">www.hecaitou.net/</a></p>
+<p><strong>吴万伟的博客</strong><br><a href="http://blog.163.com/wuwanwei@yeah/">blog.163.com&#x2F;wuwanwei@yeah&#x2F;</a></p>
+<p><strong>马伯庸的异教徒告解室</strong><br><a href="http://blog.sina.com.cn/maboyong">blog.sina.com.cn&#x2F;maboyong</a></p>
+<p><strong>Tear Down This Wall</strong><br><a href="http://www.bullogger.com/blogs/tdtw/">http://www.bullogger.com/blogs/tdtw/</a></p>
+]]></content>
+      <categories>
+        <category>Collection</category>
+      </categories>
+      <tags>
+        <tag>RSS</tag>
+        <tag>subscribe</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Notes of Git</title>
     <url>/2012/12/2012-12-30-ProGit/</url>
     <content><![CDATA[<p><em><strong>Pro Git</strong></em> is an excellent book about Git, and these are my reading notes.  </p>
@@ -312,48 +354,6 @@
 ]]></content>
       <tags>
         <tag>writing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个RSS订阅者的自我修养</title>
-    <url>/2012/12/2012-12-11-rss/</url>
-    <content><![CDATA[<h2 id="这篇文章想说什么"><a href="#这篇文章想说什么" class="headerlink" title="这篇文章想说什么"></a>这篇文章想说什么</h2><p>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？  </p>
-<p><img src="http://i.imgur.com/hZ2eX.jpg">  </p>
-<p>RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。</p>
-<p>##RSS阅读器<br>国内比较流行的RSS阅读器有鲜果，抓虾，看天下…个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。</p>
-<p>##做笔记<br>Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后<br>者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进<a href="http://getpocket.com/">Pocket</a>——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用<a href="http://fivefilters.org/">FiveFilters.org</a>提供的全文feed生成器,把网址往里一扔，OK了。  </p>
-<p><img src="http://i.imgur.com/4uIeN.png"></p>
-<p>那如果在平板上呢？这时候，就要靠<a href="http://ifttt.com/">ifttt</a>这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。<br><img src="http://i.imgur.com/exc5Y.png"></p>
-<p>##纸和笔<br>如果只是这样做笔记，只不过是一种更有效的copy&amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。<br>要把笔记变成自己的东西，一定要有自己的<strong>主动</strong>参与，还是需要保持看纸质书和手写笔记的习惯。</p>
-<p>##写出来<br>写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），<a href="http://www.yangzhiping.com/tech/writing-space.html">Github+Jekyll</a>，或者Octopress都能满足你的要求。</p>
-<p>##博客的排版<br>博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">Markdown</a>就是为此应运而生的。此外，Emacs下强大的<a href="http://orgmode.org/">Org-mode</a>也是个相当不错的选择。</p>
-<p>##最后，分享一些我觉得不错的博客</p>
-<p><strong>Matrix67</strong> <a href="http://www.matrix67.com/">www.matrix67.com</a></p>
-<p><strong>酷壳</strong><br><a href="http://coolshell.com/">CoolShell.com</a></p>
-<p><strong>浏忙大爆炸</strong><br><a href="http://blog.waterlin.org/">blog.waterlin.org</a></p>
-<p><strong>刘未鹏 Mind Hacks</strong><br><a href="http://mindhacks.cn/">mindhacks.cn&#x2F;</a></p>
-<p><strong>阮一峰的网络日志</strong><br><a href="http://www.ruanyifeng.com/">www.ruanyifeng.com</a></p>
-<p><strong>good coders code,great reuse</strong><br><a href="http://www.catonmat.net/">www.catonmat.net/</a></p>
-<p><strong>外刊IT评论</strong><br><a href="http://www.aqee.net/">www.aqee.net/</a></p>
-<p><strong>Planet Emacsen</strong><br><a href="http://planet.emacsen.org/">planet.emacsen.org&#x2F;</a></p>
-<p><strong>talich闲侃</strong><br><a href="http://talich.cinepedia.cn/">talich.cinepedia.cn</a></p>
-<p><strong>李笑来</strong><br><a href="http://lixiaolai.com/">lixiaolai.com&#x2F;</a></p>
-<p><strong>学而时嘻之</strong><br><a href="http://www.geekonomics10000.com/">www.geekonomics10000.com/</a></p>
-<p><strong>不许联想</strong><br><a href="http://www.wangxiaofeng.net/">www.wangxiaofeng.net/</a></p>
-<p><strong>张佳玮写东西的地方</strong><br><a href="http://zhangjiawei.blog.tianya.cn/">zhangjiawei.blog.tianya.cn&#x2F;</a></p>
-<p><strong>西西弗斯的健忘症</strong><br><a href="http://lilyshen.wordpress.com/">lilyshen.wordpress.com&#x2F;</a></p>
-<p><strong>柴静的博客</strong><br><a href="http://blog.sina.com.cn/chjguancha">blog.sina.com.cn&#x2F;chjguancha</a></p>
-<p><strong>和菜头的槽边往事</strong><br><a href="http://www.hecaitou.net/">www.hecaitou.net/</a></p>
-<p><strong>吴万伟的博客</strong><br><a href="http://blog.163.com/wuwanwei@yeah/">blog.163.com&#x2F;wuwanwei@yeah&#x2F;</a></p>
-<p><strong>马伯庸的异教徒告解室</strong><br><a href="http://blog.sina.com.cn/maboyong">blog.sina.com.cn&#x2F;maboyong</a></p>
-<p><strong>Tear Down This Wall</strong><br><a href="http://www.bullogger.com/blogs/tdtw/">http://www.bullogger.com/blogs/tdtw/</a></p>
-]]></content>
-      <categories>
-        <category>Collection</category>
-      </categories>
-      <tags>
-        <tag>RSS</tag>
-        <tag>subscribe</tag>
       </tags>
   </entry>
   <entry>
@@ -538,6 +538,144 @@ for a, x in xps_dict.iteritems():
       </tags>
   </entry>
   <entry>
+    <title>A Primer to System Administration - Know Thy System</title>
+    <url>/2014/08/2014-08-10-SysAdmin2/</url>
+    <content><![CDATA[<h2 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h2><ol>
+<li><p>Use <code>uname</code> to get system information:</p>
+<p> uname -a</p>
+<p><code>-a</code> for print all the information.</p>
+</li>
+</ol>
+<h2 id="CPU-information"><a href="#CPU-information" class="headerlink" title="CPU information"></a>CPU information</h2><ol>
+<li><p>Use <code>nproc</code> to print the number of processing units available (GNU coreutils):</p>
+<pre><code>$ nproc
+4
+</code></pre>
+</li>
+<li><p>Use <code>lscpu</code> to display CPU architecture information (util-linux).</p>
+</li>
+</ol>
+<h2 id="Disk-information"><a href="#Disk-information" class="headerlink" title="Disk information"></a>Disk information</h2><ol>
+<li><p><code>df</code> is a powerful command for displaying system disk.</p>
+<pre><code> df -h /path/to/directory
+</code></pre>
+</li>
+<li><p><code>cat /proc/partitions/</code> and <code>cat /proc/mounts</code> are also pretty handly solutions to check the partitions and mount disks.</p>
+</li>
+</ol>
+<h2 id="Memory-information"><a href="#Memory-information" class="headerlink" title="Memory information"></a>Memory information</h2><ol>
+<li><p>Just as same as disk, <code>cat /proc/meminfo</code> could easily check memory information (Thanks to Unix’s <a href="http://en.wikipedia.org/wiki/Everything_is_a_file"><strong>Everything is a file</strong></a> design concept).</p>
+</li>
+<li><p>Alternatively, you can type <code>free -m</code>, which essentially is the same as check &#x2F;meminfo. <code>-m</code> for display in megabytes (as you expected, -g for gigabytes, -k for kilobytes.)</p>
+</li>
+</ol>
+<h2 id="User-activity-information"><a href="#User-activity-information" class="headerlink" title="User activity information"></a>User activity information</h2><ol>
+<li><p><code>last</code> command will display user’s info like terminal, time, date and so forth. To check one specific user’s activity, <code>last username</code> is what you are looking for.</p>
+</li>
+<li><p><code>w</code> is a great but rarely know command. It will display who is logged on and what they are doing. It’ll show username, terminal, from IP, login time, idle time, JCPU and the  command line of their current process. If you never heard it before, I strongly suggest you to have a try.</p>
+</li>
+<li><p><code>uptime</code>: Tell how long the system has been running.</p>
+</li>
+<li><p><code>ps</code>: a well known command for checking current processes, for instance, to list all zombie process:</p>
+<pre><code> ps aux | awk &#39;{ print $8 &quot; &quot; $2 }&#39; | grep -w Z
+ 
+</code></pre>
+<p> where <code>ps aux</code> to show processes for <strong>a</strong>ll users, the process’s <strong>u</strong>ser, and also show the processes not attached to a terminal (check man page for more details), then awk to filter the <code>STAT</code> and PID field, use grep to select the line contains <code>Z</code>(Zombie), now we get zombie processes pids. It’s easy to kill them by <code>kill -9 {PID}</code>.</p>
+</li>
+<li><p><code>top/htop</code>: Better not to use non-builtin command(for security reasons), but if you do want to, <code>htop</code> is a superior alternative to <code>top</code> – dynamically display current tasks.</p>
+</li>
+</ol>
+<h2 id="Network-information"><a href="#Network-information" class="headerlink" title="Network information"></a>Network information</h2><ol>
+<li><p>To get your own public IP, both <code>curl icanhazip.com</code> or <code>curl ifconfig.me</code> are easy ways to do that(previous one is much faster).</p>
+</li>
+<li><p><code>ping</code>: Even my mother knows to use <code>ping</code> to check network connectivity.</p>
+</li>
+<li><p><code>ifconfig</code>: A frequently used tool to view network interface information. BTW, I wrote a <a href="https://github.com/Wilbeibi/Ifconfig-extractor">script</a> to filter IP, MAC addresses and networks from <code>ifconfig</code> (tested on Ubuntu, Fedora, OmniOS and FreeBSD).</p>
+</li>
+<li><p><code>lsof</code>, aka list open files, is definitely a swiss army knife for analyzing network. <code>lsof -i</code> for list all open Internet and X.25 network files. (The examples below are from Daniel Miessler’s blog, see reference)</p>
+<pre><code> lsof -iTCP # Show only TCP connections
+ lsof -i:80 # Show networking only relate to port 80
+ lsof -i@107.170.181.47 # Show connections with particular IP
+ lsof -u username # Show given user&#39;s connections
+ lsof -u ^username # Show connections except given user
+ 
+</code></pre>
+</li>
+<li><p><code>ss -s</code>: display Currently Established, Closed, Orphaned and Waiting TCP sockets</p>
+</li>
+</ol>
+<h2 id="You-may-Also-interested-in"><a href="#You-may-Also-interested-in" class="headerlink" title="You may Also interested in"></a>You may Also interested in</h2><ol>
+<li>My previous post <a href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/">A Primer to System Administration - Users and groups</a></li>
+<li>If you found any grammar misusage or typos, please help me correct by <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/blob/master/source/_posts/2014-08-10-SysAdmin2.md">pull request here</a>.</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.douban.com/note/265207425/">nodejs 部署最佳实践 by 邻家 柠檬叔</a></p>
+<p><a href="http://www.tecmint.com/useful-linux-commands-for-system-administrators/">30 Useful Linux Commands for System Administrators</a></p>
+<p><a href="http://unix.stackexchange.com/questions/106847/what-does-aux-mean-in-ps-aux">What does aux mean in <code>ps aux</code>?</a></p>
+<p><a href="http://www.cyberciti.biz/tips/killing-zombie-process.html">Killing zombie process</a></p>
+<p><a href="http://danielmiessler.com/study/lsof/">An lsof Primer</a></p>
+<p><a href="http://www.cyberciti.biz/faq/check-network-connection-linux/">Linux: Check Network Connection Command</a></p>
+]]></content>
+      <tags>
+        <tag>Sysadmin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Primer to System Administration - About SSH</title>
+    <url>/2014/08/2014-08-29-SysAdmin3/</url>
+    <content><![CDATA[<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
+<blockquote>
+<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
+</blockquote>
+<p><img src="http://www.openssh.com/images/openssh.gif"></p>
+<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
+<h2 id="How-to-generate-key-pair"><a href="#How-to-generate-key-pair" class="headerlink" title="How to generate key pair?"></a>How to generate key pair?</h2><p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">more secure</a>. We can generate a key pair through:</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+# Creates a new ssh key, using the provided email as a label
+Generating public/private rsa key pair.
+# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+</code></pre>
+<p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
+<pre><code>eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_rsa
+</code></pre>
+<h2 id="How-to-SSH-login-without-authentication"><a href="#How-to-SSH-login-without-authentication" class="headerlink" title="How to SSH login without authentication?"></a>How to SSH login without authentication?</h2><p>Now it’s time use our public key. For Linux user:</p>
+<pre><code> ssh-copy-id user@machine
+ 
+</code></pre>
+<p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys">typing</a>:</p>
+<pre><code> cat ~/.ssh/id_rsa.pub | ssh user@machine &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;
+</code></pre>
+<p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
+<h2 id="Make-an-alias-of-the-connection"><a href="#Make-an-alias-of-the-connection" class="headerlink" title="Make an alias of the connection"></a>Make an alias of the connection</h2><p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
+<pre><code> Host matrix
+      HostName &lt;domain name or public IP&gt;
+      User &lt;user name&gt;
+      IdentityFile &lt;/path/to/private_key&gt;
+</code></pre>
+<p>One more thing, ssh config support wildcard, so you can use </p>
+<pre><code> Host *compute-1.amazonaws.com
+</code></pre>
+<p>for all your ec2 instances. I also added</p>
+<pre><code>TCPKeepAlive=yes
+ServerAliveInterval=15    
+ServerAliveCountMax=6
+StrictHostKeyChecking=no
+Compression=yes
+ForwardAgent=yes
+RSAAuthentication=yes
+PasswordAuthentication=yes
+</code></pre>
+<p>in my config file to add more feature.</p>
+<h2 id="About-security"><a href="#About-security" class="headerlink" title="About security"></a>About security</h2><ol>
+<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory">stolen from memory</a>.</li>
+<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Sysadmin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>How to deal with Git A-Z?</title>
     <url>/2014/07/2014-7-21-gitAtoZ/</url>
     <content><![CDATA[<p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git">here</a>.</p>
@@ -626,144 +764,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A Primer to System Administration - About SSH</title>
-    <url>/2014/08/2014-08-29-SysAdmin3/</url>
-    <content><![CDATA[<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
-<blockquote>
-<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
-</blockquote>
-<p><img src="http://www.openssh.com/images/openssh.gif"></p>
-<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
-<h2 id="How-to-generate-key-pair"><a href="#How-to-generate-key-pair" class="headerlink" title="How to generate key pair?"></a>How to generate key pair?</h2><p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">more secure</a>. We can generate a key pair through:</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
-# Creates a new ssh key, using the provided email as a label
-Generating public/private rsa key pair.
-# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
-</code></pre>
-<p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
-<pre><code>eval &quot;$(ssh-agent -s)&quot;
-ssh-add ~/.ssh/id_rsa
-</code></pre>
-<h2 id="How-to-SSH-login-without-authentication"><a href="#How-to-SSH-login-without-authentication" class="headerlink" title="How to SSH login without authentication?"></a>How to SSH login without authentication?</h2><p>Now it’s time use our public key. For Linux user:</p>
-<pre><code> ssh-copy-id user@machine
- 
-</code></pre>
-<p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys">typing</a>:</p>
-<pre><code> cat ~/.ssh/id_rsa.pub | ssh user@machine &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;
-</code></pre>
-<p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
-<h2 id="Make-an-alias-of-the-connection"><a href="#Make-an-alias-of-the-connection" class="headerlink" title="Make an alias of the connection"></a>Make an alias of the connection</h2><p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
-<pre><code> Host matrix
-      HostName &lt;domain name or public IP&gt;
-      User &lt;user name&gt;
-      IdentityFile &lt;/path/to/private_key&gt;
-</code></pre>
-<p>One more thing, ssh config support wildcard, so you can use </p>
-<pre><code> Host *compute-1.amazonaws.com
-</code></pre>
-<p>for all your ec2 instances. I also added</p>
-<pre><code>TCPKeepAlive=yes
-ServerAliveInterval=15    
-ServerAliveCountMax=6
-StrictHostKeyChecking=no
-Compression=yes
-ForwardAgent=yes
-RSAAuthentication=yes
-PasswordAuthentication=yes
-</code></pre>
-<p>in my config file to add more feature.</p>
-<h2 id="About-security"><a href="#About-security" class="headerlink" title="About security"></a>About security</h2><ol>
-<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory">stolen from memory</a>.</li>
-<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Sysadmin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A Primer to System Administration - Know Thy System</title>
-    <url>/2014/08/2014-08-10-SysAdmin2/</url>
-    <content><![CDATA[<h2 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h2><ol>
-<li><p>Use <code>uname</code> to get system information:</p>
-<p> uname -a</p>
-<p><code>-a</code> for print all the information.</p>
-</li>
-</ol>
-<h2 id="CPU-information"><a href="#CPU-information" class="headerlink" title="CPU information"></a>CPU information</h2><ol>
-<li><p>Use <code>nproc</code> to print the number of processing units available (GNU coreutils):</p>
-<pre><code>$ nproc
-4
-</code></pre>
-</li>
-<li><p>Use <code>lscpu</code> to display CPU architecture information (util-linux).</p>
-</li>
-</ol>
-<h2 id="Disk-information"><a href="#Disk-information" class="headerlink" title="Disk information"></a>Disk information</h2><ol>
-<li><p><code>df</code> is a powerful command for displaying system disk.</p>
-<pre><code> df -h /path/to/directory
-</code></pre>
-</li>
-<li><p><code>cat /proc/partitions/</code> and <code>cat /proc/mounts</code> are also pretty handly solutions to check the partitions and mount disks.</p>
-</li>
-</ol>
-<h2 id="Memory-information"><a href="#Memory-information" class="headerlink" title="Memory information"></a>Memory information</h2><ol>
-<li><p>Just as same as disk, <code>cat /proc/meminfo</code> could easily check memory information (Thanks to Unix’s <a href="http://en.wikipedia.org/wiki/Everything_is_a_file"><strong>Everything is a file</strong></a> design concept).</p>
-</li>
-<li><p>Alternatively, you can type <code>free -m</code>, which essentially is the same as check &#x2F;meminfo. <code>-m</code> for display in megabytes (as you expected, -g for gigabytes, -k for kilobytes.)</p>
-</li>
-</ol>
-<h2 id="User-activity-information"><a href="#User-activity-information" class="headerlink" title="User activity information"></a>User activity information</h2><ol>
-<li><p><code>last</code> command will display user’s info like terminal, time, date and so forth. To check one specific user’s activity, <code>last username</code> is what you are looking for.</p>
-</li>
-<li><p><code>w</code> is a great but rarely know command. It will display who is logged on and what they are doing. It’ll show username, terminal, from IP, login time, idle time, JCPU and the  command line of their current process. If you never heard it before, I strongly suggest you to have a try.</p>
-</li>
-<li><p><code>uptime</code>: Tell how long the system has been running.</p>
-</li>
-<li><p><code>ps</code>: a well known command for checking current processes, for instance, to list all zombie process:</p>
-<pre><code> ps aux | awk &#39;{ print $8 &quot; &quot; $2 }&#39; | grep -w Z
- 
-</code></pre>
-<p> where <code>ps aux</code> to show processes for <strong>a</strong>ll users, the process’s <strong>u</strong>ser, and also show the processes not attached to a terminal (check man page for more details), then awk to filter the <code>STAT</code> and PID field, use grep to select the line contains <code>Z</code>(Zombie), now we get zombie processes pids. It’s easy to kill them by <code>kill -9 {PID}</code>.</p>
-</li>
-<li><p><code>top/htop</code>: Better not to use non-builtin command(for security reasons), but if you do want to, <code>htop</code> is a superior alternative to <code>top</code> – dynamically display current tasks.</p>
-</li>
-</ol>
-<h2 id="Network-information"><a href="#Network-information" class="headerlink" title="Network information"></a>Network information</h2><ol>
-<li><p>To get your own public IP, both <code>curl icanhazip.com</code> or <code>curl ifconfig.me</code> are easy ways to do that(previous one is much faster).</p>
-</li>
-<li><p><code>ping</code>: Even my mother knows to use <code>ping</code> to check network connectivity.</p>
-</li>
-<li><p><code>ifconfig</code>: A frequently used tool to view network interface information. BTW, I wrote a <a href="https://github.com/Wilbeibi/Ifconfig-extractor">script</a> to filter IP, MAC addresses and networks from <code>ifconfig</code> (tested on Ubuntu, Fedora, OmniOS and FreeBSD).</p>
-</li>
-<li><p><code>lsof</code>, aka list open files, is definitely a swiss army knife for analyzing network. <code>lsof -i</code> for list all open Internet and X.25 network files. (The examples below are from Daniel Miessler’s blog, see reference)</p>
-<pre><code> lsof -iTCP # Show only TCP connections
- lsof -i:80 # Show networking only relate to port 80
- lsof -i@107.170.181.47 # Show connections with particular IP
- lsof -u username # Show given user&#39;s connections
- lsof -u ^username # Show connections except given user
- 
-</code></pre>
-</li>
-<li><p><code>ss -s</code>: display Currently Established, Closed, Orphaned and Waiting TCP sockets</p>
-</li>
-</ol>
-<h2 id="You-may-Also-interested-in"><a href="#You-may-Also-interested-in" class="headerlink" title="You may Also interested in"></a>You may Also interested in</h2><ol>
-<li>My previous post <a href="http://wilbeibi.com/2014/08/2014-08-08-SysAdmin/">A Primer to System Administration - Users and groups</a></li>
-<li>If you found any grammar misusage or typos, please help me correct by <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/blob/master/source/_posts/2014-08-10-SysAdmin2.md">pull request here</a>.</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.douban.com/note/265207425/">nodejs 部署最佳实践 by 邻家 柠檬叔</a></p>
-<p><a href="http://www.tecmint.com/useful-linux-commands-for-system-administrators/">30 Useful Linux Commands for System Administrators</a></p>
-<p><a href="http://unix.stackexchange.com/questions/106847/what-does-aux-mean-in-ps-aux">What does aux mean in <code>ps aux</code>?</a></p>
-<p><a href="http://www.cyberciti.biz/tips/killing-zombie-process.html">Killing zombie process</a></p>
-<p><a href="http://danielmiessler.com/study/lsof/">An lsof Primer</a></p>
-<p><a href="http://www.cyberciti.biz/faq/check-network-connection-linux/">Linux: Check Network Connection Command</a></p>
-]]></content>
-      <tags>
-        <tag>Sysadmin</tag>
       </tags>
   </entry>
   <entry>
