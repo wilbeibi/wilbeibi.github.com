@@ -464,6 +464,60 @@ for a, x in xps_dict.iteritems():
       </tags>
   </entry>
   <entry>
+    <title>A Primer to System Administration - Users and groups</title>
+    <url>/2014/08/2014-08-08-SysAdmin/</url>
+    <content><![CDATA[<h2 id="How-to-create-a-user"><a href="#How-to-create-a-user" class="headerlink" title="How to create a user"></a>How to create a user</h2><p>By useradd:</p>
+<pre><code>useradd -m -d &lt;HomeDir&gt; -g &lt;Group&gt; username
+ 	
+</code></pre>
+<p>It’s optional to specify the new user’s home directory and group, but I strongly suggest to do so. <code>-m</code> stands for create home, <code>-d</code> to allocate a directory. (Warning, don’t mess up <code>useradd</code> and <code>adduser</code>, the later one is a higher level’s implementation. Here is a <a href="http://askubuntu.com/questions/345974/what-is-the-difference-between-adduser-and-useradd">detailed explanation of these two’s differences</a>.)</p>
+<h2 id="How-to-create-a-group"><a href="#How-to-create-a-group" class="headerlink" title="How to create a group"></a>How to create a group</h2><p>By groupadd:</p>
+<pre><code>groupadd groupname
+</code></pre>
+<h2 id="How-to-add-a-user-to-a-group"><a href="#How-to-add-a-user-to-a-group" class="headerlink" title="How to add a user to a group"></a>How to add a user to a group</h2><p>By usermod:<br>    usermod -a -G <groupname> username</p>
+<p>where <code>usermod</code> means modify a user account, <code>-a</code> stands for append, append this user to a group.</p>
+<p><a href="http://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">Read more</a></p>
+<h2 id="How-to-list-all-users-in-a-group"><a href="#How-to-list-all-users-in-a-group" class="headerlink" title="How to list all users in a group"></a>How to list all users in a group</h2><p>Well, there is not such a built-in command for that, but we can use:<br>	<br>	grep ‘^groupname’ &#x2F;etc&#x2F;group<br>	<br>or <code>apt-get install members</code>, then</p>
+<pre><code>members groupname
+</code></pre>
+<h2 id="What-is-sticky-bit"><a href="#What-is-sticky-bit" class="headerlink" title="What is sticky bit"></a>What is sticky bit</h2><h3 id="What-is-sticky-bit-looks-like"><a href="#What-is-sticky-bit-looks-like" class="headerlink" title="What is sticky bit looks like"></a>What is sticky bit looks like</h3><p>Sticky bit is used for directories. As wikipedia said:</p>
+<blockquote>
+<p>When the sticky bit is set, only the item’s owner, the directory’s owner, or root can rename or delete files. Without the sticky bit set, any user with write and execute permissions for the directory can rename or delete contained files, regardless of owner.</p>
+</blockquote>
+<p>For example, if the professor create a &#x2F;homework directory with sticky bit, every student can upload their homework, but they cannot rename or delete other students’ homework.</p>
+<h3 id="How-to-set-it"><a href="#How-to-set-it" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code> chmod +t /path/to/directory
+</code></pre>
+<p>or</p>
+<pre><code> chmod 1755
+</code></pre>
+<p>where 1 stands for sticky bit, 7 for owner has all privilege, 5 for read and execute privilege for the group, and for others.</p>
+<p>Now, &#x2F;path&#x2F;to&#x2F;directory should looks like this (replaced last character):</p>
+<pre><code>drwxr-xr-t   1 root     other          0 Nov 10 12:57 test
+</code></pre>
+<p>As wikipedia said, if the sticky-bit is set on the directory without the execution bit set for the others category, it is indicated with a capital T:</p>
+<pre><code>drwxr-xr-T   1 root     other          0 Nov 10 12:57 test
+ 
+</code></pre>
+<p><a href="http://www.linuxnix.com/2012/01/sticky-bit-set-linux.html">Read more …</a></p>
+<h2 id="What-is-setuid"><a href="#What-is-setuid" class="headerlink" title="What is setuid"></a>What is setuid</h2><p>One sentence explanation: Regardless of who runs this program, run it as the user who owns it, not the user that executes it.</p>
+<h3 id="How-to-set-it-1"><a href="#How-to-set-it-1" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code>chmod u+s /path/to/file
+</code></pre>
+<h3 id="And-it-is-dangerous"><a href="#And-it-is-dangerous" class="headerlink" title="And it is dangerous"></a>And it is dangerous</h3><p>For instance, a simple shell script <code>showfile.sh</code> has set setuid as root privilege:</p>
+<pre><code> #!/bin/sh
+ # showfile
+ ls -l | sort
+</code></pre>
+<p>And If I am a bad guy, I could easily write script :</p>
+<pre><code> rm -rf /some/where/important
+</code></pre>
+<p>and saved as name <code>ls</code>, add my <code>ls</code> to the front of $PATH. Now when I tried to run showfile.sh, Boom ! The files are deleted.</p>
+<h2 id="BTW"><a href="#BTW" class="headerlink" title="BTW"></a>BTW</h2><p>If you found grammar errors or typos, please feel free to help me <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/edit/master/source/_posts/2014-08-08-SysAdmin.md">correct it</a>.</p>
+]]></content>
+      <tags>
+        <tag>Sysadmin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Collaborative programming with Dropbox</title>
     <url>/2014/07/2014-07-17-dropbox-coding/</url>
     <content><![CDATA[<p>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a problem: How can we programming together smoothly? Which means, at any moment of time, I can check his code while he is programming.</p>
@@ -566,116 +620,6 @@ for a, x in xps_dict.iteritems():
       </tags>
   </entry>
   <entry>
-    <title>A Primer to System Administration - About SSH</title>
-    <url>/2014/08/2014-08-29-SysAdmin3/</url>
-    <content><![CDATA[<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
-<blockquote>
-<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
-</blockquote>
-<p><img src="http://www.openssh.com/images/openssh.gif"></p>
-<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
-<h2 id="How-to-generate-key-pair"><a href="#How-to-generate-key-pair" class="headerlink" title="How to generate key pair?"></a>How to generate key pair?</h2><p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">more secure</a>. We can generate a key pair through:</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
-# Creates a new ssh key, using the provided email as a label
-Generating public/private rsa key pair.
-# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
-</code></pre>
-<p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
-<pre><code>eval &quot;$(ssh-agent -s)&quot;
-ssh-add ~/.ssh/id_rsa
-</code></pre>
-<h2 id="How-to-SSH-login-without-authentication"><a href="#How-to-SSH-login-without-authentication" class="headerlink" title="How to SSH login without authentication?"></a>How to SSH login without authentication?</h2><p>Now it’s time use our public key. For Linux user:</p>
-<pre><code> ssh-copy-id user@machine
- 
-</code></pre>
-<p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys">typing</a>:</p>
-<pre><code> cat ~/.ssh/id_rsa.pub | ssh user@machine &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;
-</code></pre>
-<p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
-<h2 id="Make-an-alias-of-the-connection"><a href="#Make-an-alias-of-the-connection" class="headerlink" title="Make an alias of the connection"></a>Make an alias of the connection</h2><p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
-<pre><code> Host matrix
-      HostName &lt;domain name or public IP&gt;
-      User &lt;user name&gt;
-      IdentityFile &lt;/path/to/private_key&gt;
-</code></pre>
-<p>One more thing, ssh config support wildcard, so you can use </p>
-<pre><code> Host *compute-1.amazonaws.com
-</code></pre>
-<p>for all your ec2 instances. I also added</p>
-<pre><code>TCPKeepAlive=yes
-ServerAliveInterval=15    
-ServerAliveCountMax=6
-StrictHostKeyChecking=no
-Compression=yes
-ForwardAgent=yes
-RSAAuthentication=yes
-PasswordAuthentication=yes
-</code></pre>
-<p>in my config file to add more feature.</p>
-<h2 id="About-security"><a href="#About-security" class="headerlink" title="About security"></a>About security</h2><ol>
-<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory">stolen from memory</a>.</li>
-<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Sysadmin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A Primer to System Administration - Users and groups</title>
-    <url>/2014/08/2014-08-08-SysAdmin/</url>
-    <content><![CDATA[<h2 id="How-to-create-a-user"><a href="#How-to-create-a-user" class="headerlink" title="How to create a user"></a>How to create a user</h2><p>By useradd:</p>
-<pre><code>useradd -m -d &lt;HomeDir&gt; -g &lt;Group&gt; username
- 	
-</code></pre>
-<p>It’s optional to specify the new user’s home directory and group, but I strongly suggest to do so. <code>-m</code> stands for create home, <code>-d</code> to allocate a directory. (Warning, don’t mess up <code>useradd</code> and <code>adduser</code>, the later one is a higher level’s implementation. Here is a <a href="http://askubuntu.com/questions/345974/what-is-the-difference-between-adduser-and-useradd">detailed explanation of these two’s differences</a>.)</p>
-<h2 id="How-to-create-a-group"><a href="#How-to-create-a-group" class="headerlink" title="How to create a group"></a>How to create a group</h2><p>By groupadd:</p>
-<pre><code>groupadd groupname
-</code></pre>
-<h2 id="How-to-add-a-user-to-a-group"><a href="#How-to-add-a-user-to-a-group" class="headerlink" title="How to add a user to a group"></a>How to add a user to a group</h2><p>By usermod:<br>    usermod -a -G <groupname> username</p>
-<p>where <code>usermod</code> means modify a user account, <code>-a</code> stands for append, append this user to a group.</p>
-<p><a href="http://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">Read more</a></p>
-<h2 id="How-to-list-all-users-in-a-group"><a href="#How-to-list-all-users-in-a-group" class="headerlink" title="How to list all users in a group"></a>How to list all users in a group</h2><p>Well, there is not such a built-in command for that, but we can use:<br>	<br>	grep ‘^groupname’ &#x2F;etc&#x2F;group<br>	<br>or <code>apt-get install members</code>, then</p>
-<pre><code>members groupname
-</code></pre>
-<h2 id="What-is-sticky-bit"><a href="#What-is-sticky-bit" class="headerlink" title="What is sticky bit"></a>What is sticky bit</h2><h3 id="What-is-sticky-bit-looks-like"><a href="#What-is-sticky-bit-looks-like" class="headerlink" title="What is sticky bit looks like"></a>What is sticky bit looks like</h3><p>Sticky bit is used for directories. As wikipedia said:</p>
-<blockquote>
-<p>When the sticky bit is set, only the item’s owner, the directory’s owner, or root can rename or delete files. Without the sticky bit set, any user with write and execute permissions for the directory can rename or delete contained files, regardless of owner.</p>
-</blockquote>
-<p>For example, if the professor create a &#x2F;homework directory with sticky bit, every student can upload their homework, but they cannot rename or delete other students’ homework.</p>
-<h3 id="How-to-set-it"><a href="#How-to-set-it" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code> chmod +t /path/to/directory
-</code></pre>
-<p>or</p>
-<pre><code> chmod 1755
-</code></pre>
-<p>where 1 stands for sticky bit, 7 for owner has all privilege, 5 for read and execute privilege for the group, and for others.</p>
-<p>Now, &#x2F;path&#x2F;to&#x2F;directory should looks like this (replaced last character):</p>
-<pre><code>drwxr-xr-t   1 root     other          0 Nov 10 12:57 test
-</code></pre>
-<p>As wikipedia said, if the sticky-bit is set on the directory without the execution bit set for the others category, it is indicated with a capital T:</p>
-<pre><code>drwxr-xr-T   1 root     other          0 Nov 10 12:57 test
- 
-</code></pre>
-<p><a href="http://www.linuxnix.com/2012/01/sticky-bit-set-linux.html">Read more …</a></p>
-<h2 id="What-is-setuid"><a href="#What-is-setuid" class="headerlink" title="What is setuid"></a>What is setuid</h2><p>One sentence explanation: Regardless of who runs this program, run it as the user who owns it, not the user that executes it.</p>
-<h3 id="How-to-set-it-1"><a href="#How-to-set-it-1" class="headerlink" title="How to set it"></a>How to set it</h3><pre><code>chmod u+s /path/to/file
-</code></pre>
-<h3 id="And-it-is-dangerous"><a href="#And-it-is-dangerous" class="headerlink" title="And it is dangerous"></a>And it is dangerous</h3><p>For instance, a simple shell script <code>showfile.sh</code> has set setuid as root privilege:</p>
-<pre><code> #!/bin/sh
- # showfile
- ls -l | sort
-</code></pre>
-<p>And If I am a bad guy, I could easily write script :</p>
-<pre><code> rm -rf /some/where/important
-</code></pre>
-<p>and saved as name <code>ls</code>, add my <code>ls</code> to the front of $PATH. Now when I tried to run showfile.sh, Boom ! The files are deleted.</p>
-<h2 id="BTW"><a href="#BTW" class="headerlink" title="BTW"></a>BTW</h2><p>If you found grammar errors or typos, please feel free to help me <a href="https://github.com/Wilbeibi/wilbeibi_blog_src/edit/master/source/_posts/2014-08-08-SysAdmin.md">correct it</a>.</p>
-]]></content>
-      <tags>
-        <tag>Sysadmin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>How to deal with Git A-Z?</title>
     <url>/2014/07/2014-7-21-gitAtoZ/</url>
     <content><![CDATA[<p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git">here</a>.</p>
@@ -767,6 +711,79 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
+    <title>2015 年部分计划</title>
+    <url>/2015/01/2015-01-27-plan/</url>
+    <content><![CDATA[<h2 id="2015-小部分计划"><a href="#2015-小部分计划" class="headerlink" title="2015 小部分计划"></a>2015 小部分计划</h2><p>2015年都过了一个月了。现在才开始写新年计划有点晚了，可晚比没有强。<br>规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline<br>（deadline driven development 是最有生产力的）。</p>
+<ul>
+<li>二月底至三月，拿到offer，希望大厂收留，这是今年，甚至是这几年最大的事儿。</li>
+<li>读书，Peter Thiel 的 《Zero To One》， 王兴推荐的《Resource Revoution》, 朴灵大大的《深入浅出Nodejs》，还有王力的《中国古代文化常识》。</li>
+<li>写博客，博客至少一周两更。不管是写技术还是什么乱七八糟的。</li>
+<li>掌握Haskell的Monad。</li>
+<li>最后一条，希望。。。唉，看缘分吧，现在时间是有了，再也没什么欺骗自己的借口了。<br>（说的好像有妹子看我博客一样，噗~）</li>
+</ul>
+<p>暂时就想到这么多，wilbeibi，加油！</p>
+]]></content>
+      <tags>
+        <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Primer to System Administration - About SSH</title>
+    <url>/2014/08/2014-08-29-SysAdmin3/</url>
+    <content><![CDATA[<p>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</p>
+<blockquote>
+<p>OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.</p>
+</blockquote>
+<p><img src="http://www.openssh.com/images/openssh.gif"></p>
+<p>And I believe <code>ssh</code> is one of the most used commands for programmers (Windows users, you have putty, that’s … not bad). In this post I am going to list some most basic usage of <code>ssh</code>.</p>
+<h2 id="How-to-generate-key-pair"><a href="#How-to-generate-key-pair" class="headerlink" title="How to generate key pair?"></a>How to generate key pair?</h2><p>They are two ways to identify users: via password and via key pair. The latter one is <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">more secure</a>. We can generate a key pair through:</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+# Creates a new ssh key, using the provided email as a label
+Generating public/private rsa key pair.
+# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+</code></pre>
+<p>where <code>-t</code> stands for encryption type, <code>-C</code> for comment. Then choose a strong passphrase (in case of your rsa keys being stolen). Now, you will see id_rsa (private key) and id_rsa.pub (public key)in your <code>~/.ssh/</code> directory(Don’t let others know your private key).<br>At last, add your key to <code>ssh-agent</code>(a keys management tool):</p>
+<pre><code>eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_rsa
+</code></pre>
+<h2 id="How-to-SSH-login-without-authentication"><a href="#How-to-SSH-login-without-authentication" class="headerlink" title="How to SSH login without authentication?"></a>How to SSH login without authentication?</h2><p>Now it’s time use our public key. For Linux user:</p>
+<pre><code> ssh-copy-id user@machine
+ 
+</code></pre>
+<p>For Mac user, we can either <code>brew install ssh-copy-id</code> to install and use this command or <a href="http://askubuntu.com/questions/46424/adding-ssh-keys-to-authorized-keys">typing</a>:</p>
+<pre><code> cat ~/.ssh/id_rsa.pub | ssh user@machine &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;
+</code></pre>
+<p>As you can tell, actually what we are doing here is copy the content of id_rsa.pub to server’s <code>~/.ssh/authorized_keys</code>.</p>
+<h2 id="Make-an-alias-of-the-connection"><a href="#Make-an-alias-of-the-connection" class="headerlink" title="Make an alias of the connection"></a>Make an alias of the connection</h2><p>Laziness is a great virtue of a programmer. Add these to local <code>~/.ssh/config</code> (create if not exist) to simplify your life:</p>
+<pre><code> Host matrix
+      HostName &lt;domain name or public IP&gt;
+      User &lt;user name&gt;
+      IdentityFile &lt;/path/to/private_key&gt;
+</code></pre>
+<p>One more thing, ssh config support wildcard, so you can use </p>
+<pre><code> Host *compute-1.amazonaws.com
+</code></pre>
+<p>for all your ec2 instances. I also added</p>
+<pre><code>TCPKeepAlive=yes
+ServerAliveInterval=15    
+ServerAliveCountMax=6
+StrictHostKeyChecking=no
+Compression=yes
+ForwardAgent=yes
+RSAAuthentication=yes
+PasswordAuthentication=yes
+</code></pre>
+<p>in my config file to add more feature.</p>
+<h2 id="About-security"><a href="#About-security" class="headerlink" title="About security"></a>About security</h2><ol>
+<li>Always set passphrase, or it might be <a href="https://www.netspi.com/blog/entryid/235/stealing-unencrypted-ssh-agent-keys-from-memory">stolen from memory</a>.</li>
+<li>Maybe, use another port instead of 22 is a good idea (Check this: <a href="https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/">Changing your ssh server’s port from the default: Is it worth it?</a>)</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Sysadmin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我为什么要编程</title>
     <url>/2015/02/2015-02-06-whyiwrite/</url>
     <content><![CDATA[<p>王小波和乔治奥威尔都曾以《我为什么要写作》为题写过他们的走上作家之路原因。对于这个问题，王小波借用了一位登山家的回答，“因为山在那儿。” （如你所知，那位登山家最后也确实在珠峰上挂掉了。）乔治奥威尔的回答则显得更有条理：纯粹的个人主义，美学热枕，历史责任感和政治目的。</p>
@@ -808,63 +825,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>algorithms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Colorizing Loggers -- A simple practice of decorator</title>
-    <url>/2015/02/2015-02-17-colorize-log/</url>
-    <content><![CDATA[<h2 id="What-is-this-post-about"><a href="#What-is-this-post-about" class="headerlink" title="What is this post about"></a>What is this post about</h2><p>Many people believe that decorator is one of the obscure concepts in Python.<br>Trust me, it is not. To be short, <strong>a decorator is a function that modifies other<br>functions via closures.</strong></p>
-<p>They are plenty detailed articles about what decorator it is so there is no need to write one more. If you are not familiar with it, you may want to check these:</p>
-<ul>
-<li><p><a href="http://sahandsaba.com/python-decorators.html">A Study of Python’s More Advanced Features Part II: Closures, Decorators and functools</a></p>
-</li>
-<li><p><a href="https://realpython.com/blog/python/primer-on-python-decorators/#.UvQEs0JdUwJ">Primer on Python Decorators</a></p>
-</li>
-</ul>
-<p>In this article, I am going to use a simple but interesting example to show</p>
-<ul>
-<li>how to colorize the output in command line</li>
-<li>how to implement a switch case in Python (Python does not have built-in switch case)</li>
-<li>a decorator with parameters</li>
-</ul>
-<p>OK, let’s rock.</p>
-<h2 id="colorize-your-text"><a href="#colorize-your-text" class="headerlink" title="colorize your text"></a>colorize your text</h2><p>There is a set of escape sequences used to change the color of texts. So if we want to colorize a sentence, we just need to put the sentence between the color escape sequence and reset escape sequence. For example:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt;&gt; ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">&gt;&gt; RED = <span class="string">&#x27;\033[31m&#x27;</span></span><br><span class="line">&gt;&gt; GREEN = <span class="string">&#x27;\033[32m&#x27;</span></span><br><span class="line">&gt;&gt; BLUE = <span class="string">&#x27;\033[34m&#x27;</span></span><br><span class="line">&gt;&gt; RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">&gt;&gt; <span class="built_in">print</span> ORANGE + <span class="string">&quot;Chinese New Year&quot;</span> + RESET</span><br><span class="line">&gt;&gt; <span class="built_in">print</span> GREEN + <span class="string">&quot;Chinese&quot;</span> + GREEN + <span class="string">&quot;New&quot;</span> + BLUE + <span class="string">&quot;Year&quot;</span> + RESET</span><br></pre></td></tr></table></figure>
-<p>You will see<br><font style="font-family: courier;" color="orange">Chinese New Year</font></p>
-<p>and<br><font style="font-family: courier;" color="red">Chinese </font><font style="font-family: courier;" color="green">New </font><font style="font-family: courier;" color="blue">Year</font></p>
-<h2 id="How-to-choose-the-color-in-code"><a href="#How-to-choose-the-color-in-code" class="headerlink" title="How to choose the color in code"></a>How to choose the color in code</h2><p>As I said, Python does not support switch case. So we cannot switch the color name and choose the corresponding escaped sequence. Fortunately, dictionary would do the work.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">    <span class="comment"># @param color: string like &quot;red&quot; or &quot;yellow&quot;</span></span><br><span class="line">    <span class="comment"># @return the corresponding escape sequence.</span></span><br><span class="line">    <span class="comment"># If not valid, return empty string</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    RED = <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">    GREEN = <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">    BLUE = <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">    <span class="comment"># and more ...</span></span><br><span class="line">    ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">    &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>The trick is, the dictionary’s built in <code>get</code> method. The first parameter here is key, the second optional parameter is default. As the docstring shows:</p>
-<blockquote>
-<p>D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.</p>
-</blockquote>
-<h2 id="Use-the-decorator"><a href="#Use-the-decorator" class="headerlink" title="Use the decorator"></a>Use the decorator</h2><p>Suppose we have a function to implement a task. It may has three kind of return string, if task is completed successfully, it returns “SUCCESS: blah blah …”, if the task is finished but we cannot ensure it’s corretness, it returns “WARNING: blah blah …”, if task failed, returns “ERROR: blah blah …”, how do we colorize these return strings?</p>
-<p><a href="https://gist.github.com/Wilbeibi/a2ac59f211bcd681d007">Raw code</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">colorize</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&#x27;black&#x27;</span> : <span class="string">&#x27;\033[30m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;red&#x27;</span> : <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;green&#x27;</span> : <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;orange&#x27;</span> : <span class="string">&#x27;\033[33m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;blue&#x27;</span> : <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;purple&#x27;</span> : <span class="string">&#x27;\033[35m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;cyan&#x27;</span> : <span class="string">&#x27;\033[36m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;light_grey&#x27;</span> : <span class="string">&#x27;\033[37m&#x27;</span></span><br><span class="line">        &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_colorize</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">            RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">            text = func()</span><br><span class="line">            <span class="comment">#if not isinstance(text, basestring):</span></span><br><span class="line">            <span class="comment">#    text = str(text)</span></span><br><span class="line">            level = text.split(<span class="string">&#x27;:&#x27;</span>, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">            color = &#123;</span><br><span class="line">                <span class="string">&#x27;SUCCESS&#x27;</span>: args[<span class="number">0</span>],</span><br><span class="line">                <span class="string">&#x27;WARNING&#x27;</span>: args[<span class="number">1</span>],</span><br><span class="line">                <span class="string">&#x27;ERROR&#x27;</span>: args[<span class="number">2</span>]</span><br><span class="line">            &#125;.get(level, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&#123;0&#125;&#123;1&#125;&#123;2&#125;&quot;</span>.<span class="built_in">format</span>(getColor(color), text, RESET)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> _colorize</span><br><span class="line"></span><br><span class="line"><span class="meta">@colorize(<span class="params"><span class="string">&quot;green&quot;</span>, <span class="string">&quot;orange&quot;</span>, <span class="string">&quot;red&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">do_task</span>():</span><br><span class="line">    <span class="comment"># working working ....</span></span><br><span class="line">    <span class="keyword">if</span> (success):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;SUCCESS: Yeah~~&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> (warning):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;WARNING: wait, what?&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ERROR: something went wrong here.&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>As you can tell, to make the decorator with parameters, we need to put it in another decorator.</p>
-<p>Decorator are often used as cache, profiler, logger, synchronization(acquire lock, drop lock) and so forth. One of my favourite library <a href="http://click.pocoo.org/3/">Click</a> is also a wonderful example.</p>
-<p>Happy Chinese New Year ~</p>
-]]></content>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2015 年部分计划</title>
-    <url>/2015/01/2015-01-27-plan/</url>
-    <content><![CDATA[<h2 id="2015-小部分计划"><a href="#2015-小部分计划" class="headerlink" title="2015 小部分计划"></a>2015 小部分计划</h2><p>2015年都过了一个月了。现在才开始写新年计划有点晚了，可晚比没有强。<br>规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline<br>（deadline driven development 是最有生产力的）。</p>
-<ul>
-<li>二月底至三月，拿到offer，希望大厂收留，这是今年，甚至是这几年最大的事儿。</li>
-<li>读书，Peter Thiel 的 《Zero To One》， 王兴推荐的《Resource Revoution》, 朴灵大大的《深入浅出Nodejs》，还有王力的《中国古代文化常识》。</li>
-<li>写博客，博客至少一周两更。不管是写技术还是什么乱七八糟的。</li>
-<li>掌握Haskell的Monad。</li>
-<li>最后一条，希望。。。唉，看缘分吧，现在时间是有了，再也没什么欺骗自己的借口了。<br>（说的好像有妹子看我博客一样，噗~）</li>
-</ul>
-<p>暂时就想到这么多，wilbeibi，加油！</p>
-]]></content>
-      <tags>
-        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -937,16 +897,43 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
-    <title>一周笔记</title>
-    <url>/2016/05/2016-05-21-weekly1/</url>
-    <content><![CDATA[<h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><p>这周 RSS 里没啥非常好的文章，就把以前的笔记里翻出来几篇凑数。</p>
-<h2 id="Elevate-yourself-with-side-projects"><a href="#Elevate-yourself-with-side-projects" class="headerlink" title="Elevate yourself with side projects"></a><a href="https://slackhq.com/elevate-yourself-with-side-projects-acbc43229422#.12qjef3av">Elevate yourself with side projects</a></h2><p>爱因斯坦的在专利局工作时候的 side project 是相对论论文，学校门卫波洛克（对，现代艺术甩泥点子那位）的 side project 是画画，Slack 一开始也是游戏公司的 side project 聊天工具。Side project 能真正有效促进一个人的专业进步（深有同感）。不是有句话说么，这年头在湾区没有一两个 side project 都不好意跟人打招呼。</p>
-<h2 id="What-every-computer-science-major-should-know"><a href="#What-every-computer-science-major-should-know" class="headerlink" title="What every computer science major should know"></a><a href="http://matt.might.net/articles/what-cs-majors-should-know/">What every computer science major should know</a></h2><p>压箱底的老文章。 知名博主 Matt Might的一篇长文，很详细的列出了一个合格的 CS 学生应该学习和掌握的知识，任何一个学 CS 的学生都应该看看这篇文章。</p>
-<h2 id="Peer-Code-Reviews-At-Loose-Cannon"><a href="#Peer-Code-Reviews-At-Loose-Cannon" class="headerlink" title="Peer Code Reviews At Loose Cannon"></a><a href="http://scottbilas.com/blog/peer-code-reviews-at-loose-cannon/">Peer Code Reviews At Loose Cannon</a></h2><p>技术博客大多谈的是如何学习新技术，如何设计架构，如何找工作，却很少谈如何正确的 Code Review 的。Code Review 在工作中非常重要，是有效的学习&#x2F;分享知识，增进办公室人际关系的途径。这一系列文章就很详细的谈了如何 Code Review。附赠这篇 <a href="http://www.kevinlondon.com/2015/05/05/code-review-best-practices.html">Code Review Best Practices</a>。</p>
-<h2 id="香草冰淇淋，世界末日与烧鹿骨"><a href="#香草冰淇淋，世界末日与烧鹿骨" class="headerlink" title="香草冰淇淋，世界末日与烧鹿骨"></a><a href="http://chuansong.me/n/123723">香草冰淇淋，世界末日与烧鹿骨</a></h2><p>这是一篇我很喜欢的非技术文章。从顾客离奇的投诉『新车会对香草冰淇淋过敏』说起，分析了一些显式因果关系和其背后看似荒诞的理性依据。原文链接已经失效，给的链接是别的网站转的。</p>
+    <title>Colorizing Loggers -- A simple practice of decorator</title>
+    <url>/2015/02/2015-02-17-colorize-log/</url>
+    <content><![CDATA[<h2 id="What-is-this-post-about"><a href="#What-is-this-post-about" class="headerlink" title="What is this post about"></a>What is this post about</h2><p>Many people believe that decorator is one of the obscure concepts in Python.<br>Trust me, it is not. To be short, <strong>a decorator is a function that modifies other<br>functions via closures.</strong></p>
+<p>They are plenty detailed articles about what decorator it is so there is no need to write one more. If you are not familiar with it, you may want to check these:</p>
+<ul>
+<li><p><a href="http://sahandsaba.com/python-decorators.html">A Study of Python’s More Advanced Features Part II: Closures, Decorators and functools</a></p>
+</li>
+<li><p><a href="https://realpython.com/blog/python/primer-on-python-decorators/#.UvQEs0JdUwJ">Primer on Python Decorators</a></p>
+</li>
+</ul>
+<p>In this article, I am going to use a simple but interesting example to show</p>
+<ul>
+<li>how to colorize the output in command line</li>
+<li>how to implement a switch case in Python (Python does not have built-in switch case)</li>
+<li>a decorator with parameters</li>
+</ul>
+<p>OK, let’s rock.</p>
+<h2 id="colorize-your-text"><a href="#colorize-your-text" class="headerlink" title="colorize your text"></a>colorize your text</h2><p>There is a set of escape sequences used to change the color of texts. So if we want to colorize a sentence, we just need to put the sentence between the color escape sequence and reset escape sequence. For example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt;&gt; ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">&gt;&gt; RED = <span class="string">&#x27;\033[31m&#x27;</span></span><br><span class="line">&gt;&gt; GREEN = <span class="string">&#x27;\033[32m&#x27;</span></span><br><span class="line">&gt;&gt; BLUE = <span class="string">&#x27;\033[34m&#x27;</span></span><br><span class="line">&gt;&gt; RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">&gt;&gt; <span class="built_in">print</span> ORANGE + <span class="string">&quot;Chinese New Year&quot;</span> + RESET</span><br><span class="line">&gt;&gt; <span class="built_in">print</span> GREEN + <span class="string">&quot;Chinese&quot;</span> + GREEN + <span class="string">&quot;New&quot;</span> + BLUE + <span class="string">&quot;Year&quot;</span> + RESET</span><br></pre></td></tr></table></figure>
+<p>You will see<br><font style="font-family: courier;" color="orange">Chinese New Year</font></p>
+<p>and<br><font style="font-family: courier;" color="red">Chinese </font><font style="font-family: courier;" color="green">New </font><font style="font-family: courier;" color="blue">Year</font></p>
+<h2 id="How-to-choose-the-color-in-code"><a href="#How-to-choose-the-color-in-code" class="headerlink" title="How to choose the color in code"></a>How to choose the color in code</h2><p>As I said, Python does not support switch case. So we cannot switch the color name and choose the corresponding escaped sequence. Fortunately, dictionary would do the work.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">    <span class="comment"># @param color: string like &quot;red&quot; or &quot;yellow&quot;</span></span><br><span class="line">    <span class="comment"># @return the corresponding escape sequence.</span></span><br><span class="line">    <span class="comment"># If not valid, return empty string</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    RED = <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">    GREEN = <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">    BLUE = <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">    <span class="comment"># and more ...</span></span><br><span class="line">    ORANGE = <span class="string">&#x27;\033[33m&#x27;</span></span><br><span class="line">    &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>The trick is, the dictionary’s built in <code>get</code> method. The first parameter here is key, the second optional parameter is default. As the docstring shows:</p>
+<blockquote>
+<p>D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.</p>
+</blockquote>
+<h2 id="Use-the-decorator"><a href="#Use-the-decorator" class="headerlink" title="Use the decorator"></a>Use the decorator</h2><p>Suppose we have a function to implement a task. It may has three kind of return string, if task is completed successfully, it returns “SUCCESS: blah blah …”, if the task is finished but we cannot ensure it’s corretness, it returns “WARNING: blah blah …”, if task failed, returns “ERROR: blah blah …”, how do we colorize these return strings?</p>
+<p><a href="https://gist.github.com/Wilbeibi/a2ac59f211bcd681d007">Raw code</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">colorize</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getColor</span>(<span class="params">color</span>):</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&#x27;black&#x27;</span> : <span class="string">&#x27;\033[30m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;red&#x27;</span> : <span class="string">&#x27;\033[31m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;green&#x27;</span> : <span class="string">&#x27;\033[32m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;orange&#x27;</span> : <span class="string">&#x27;\033[33m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;blue&#x27;</span> : <span class="string">&#x27;\033[34m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;purple&#x27;</span> : <span class="string">&#x27;\033[35m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;cyan&#x27;</span> : <span class="string">&#x27;\033[36m&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;light_grey&#x27;</span> : <span class="string">&#x27;\033[37m&#x27;</span></span><br><span class="line">        &#125;.get(color, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_colorize</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">            RESET = <span class="string">&#x27;\033[0m&#x27;</span></span><br><span class="line">            text = func()</span><br><span class="line">            <span class="comment">#if not isinstance(text, basestring):</span></span><br><span class="line">            <span class="comment">#    text = str(text)</span></span><br><span class="line">            level = text.split(<span class="string">&#x27;:&#x27;</span>, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">            color = &#123;</span><br><span class="line">                <span class="string">&#x27;SUCCESS&#x27;</span>: args[<span class="number">0</span>],</span><br><span class="line">                <span class="string">&#x27;WARNING&#x27;</span>: args[<span class="number">1</span>],</span><br><span class="line">                <span class="string">&#x27;ERROR&#x27;</span>: args[<span class="number">2</span>]</span><br><span class="line">            &#125;.get(level, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&#123;0&#125;&#123;1&#125;&#123;2&#125;&quot;</span>.<span class="built_in">format</span>(getColor(color), text, RESET)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> _colorize</span><br><span class="line"></span><br><span class="line"><span class="meta">@colorize(<span class="params"><span class="string">&quot;green&quot;</span>, <span class="string">&quot;orange&quot;</span>, <span class="string">&quot;red&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">do_task</span>():</span><br><span class="line">    <span class="comment"># working working ....</span></span><br><span class="line">    <span class="keyword">if</span> (success):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;SUCCESS: Yeah~~&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> (warning):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;WARNING: wait, what?&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ERROR: something went wrong here.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you can tell, to make the decorator with parameters, we need to put it in another decorator.</p>
+<p>Decorator are often used as cache, profiler, logger, synchronization(acquire lock, drop lock) and so forth. One of my favourite library <a href="http://click.pocoo.org/3/">Click</a> is also a wonderful example.</p>
+<p>Happy Chinese New Year ~</p>
 ]]></content>
       <tags>
-        <tag>notes</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1004,6 +991,19 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周笔记</title>
+    <url>/2016/05/2016-05-21-weekly1/</url>
+    <content><![CDATA[<h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><p>这周 RSS 里没啥非常好的文章，就把以前的笔记里翻出来几篇凑数。</p>
+<h2 id="Elevate-yourself-with-side-projects"><a href="#Elevate-yourself-with-side-projects" class="headerlink" title="Elevate yourself with side projects"></a><a href="https://slackhq.com/elevate-yourself-with-side-projects-acbc43229422#.12qjef3av">Elevate yourself with side projects</a></h2><p>爱因斯坦的在专利局工作时候的 side project 是相对论论文，学校门卫波洛克（对，现代艺术甩泥点子那位）的 side project 是画画，Slack 一开始也是游戏公司的 side project 聊天工具。Side project 能真正有效促进一个人的专业进步（深有同感）。不是有句话说么，这年头在湾区没有一两个 side project 都不好意跟人打招呼。</p>
+<h2 id="What-every-computer-science-major-should-know"><a href="#What-every-computer-science-major-should-know" class="headerlink" title="What every computer science major should know"></a><a href="http://matt.might.net/articles/what-cs-majors-should-know/">What every computer science major should know</a></h2><p>压箱底的老文章。 知名博主 Matt Might的一篇长文，很详细的列出了一个合格的 CS 学生应该学习和掌握的知识，任何一个学 CS 的学生都应该看看这篇文章。</p>
+<h2 id="Peer-Code-Reviews-At-Loose-Cannon"><a href="#Peer-Code-Reviews-At-Loose-Cannon" class="headerlink" title="Peer Code Reviews At Loose Cannon"></a><a href="http://scottbilas.com/blog/peer-code-reviews-at-loose-cannon/">Peer Code Reviews At Loose Cannon</a></h2><p>技术博客大多谈的是如何学习新技术，如何设计架构，如何找工作，却很少谈如何正确的 Code Review 的。Code Review 在工作中非常重要，是有效的学习&#x2F;分享知识，增进办公室人际关系的途径。这一系列文章就很详细的谈了如何 Code Review。附赠这篇 <a href="http://www.kevinlondon.com/2015/05/05/code-review-best-practices.html">Code Review Best Practices</a>。</p>
+<h2 id="香草冰淇淋，世界末日与烧鹿骨"><a href="#香草冰淇淋，世界末日与烧鹿骨" class="headerlink" title="香草冰淇淋，世界末日与烧鹿骨"></a><a href="http://chuansong.me/n/123723">香草冰淇淋，世界末日与烧鹿骨</a></h2><p>这是一篇我很喜欢的非技术文章。从顾客离奇的投诉『新车会对香草冰淇淋过敏』说起，分析了一些显式因果关系和其背后看似荒诞的理性依据。原文链接已经失效，给的链接是别的网站转的。</p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>
