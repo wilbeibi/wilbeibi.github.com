@@ -16,3 +16,8 @@
   margin-top: 0.5rem;
   opacity: 0.9;
 }
+
+/* Nudge hero background so the lower portion of the image stays visible */
+#page-header {
+  background-position: center bottom !important;
+}
