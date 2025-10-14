@@ -216,6 +216,64 @@
       </tags>
   </entry>
   <entry>
+    <title>The Better Way to learn programming is to get away from it</title>
+    <url>/2013/10/2013-10-16-awayfrom/</url>
+    <content><![CDATA[<p>In the last few weeks I led a life writing C programs 10 hours a day. It was interesting and frustrating, and I learned a lot from that. For one thing, programming is an enjoyable game to me. It drives me thinking problems, force me constructing ideas and making proper solutions. What’s more fascinating is, the machine would tell me whether my solution program is right or wrong in less than a second. The frustrating part is, it always tells me I was wrong. Truth to be told, I am not a good programmer as my friends thought. Hours and hours, I wasting time debugging my programs and finally found out I was wrong at the first thought. So, the problem is, what can I do with that?</p>
+<p>The answer generally came to my mind: <strong>The Better Way to learn programming is to get away from it</strong>. Don’t panic, I don’t mean not programming, I mean not programming that soon. We live in an era that computers and internet are easy to access anytime and anywhere, which is lucky, or maybe unlucky to all of us. One story told by <a href="http://en.wikipedia.org/wiki/Alan_Kay">Alan Kay</a> explained my reason:     </p>
+<blockquote>
+<p>When I was at Stanford with the AI project [in the late 1960s] one of the things we used to do every Thanksgiving is have a computer programming contest with people on research projects in the Bay area. The prize I think was a turkey.</p>
+</blockquote>
+<blockquote>
+<p>[John] McCarthy used to make up the problems. The one year that Knuth entered this, he won both the fastest time getting the program running and he also won the fastest execution of the algorithm. He did it on the worst system with remote batch called the Wilbur system. And he basically beat the shit out of everyone.</p>
+</blockquote>
+<blockquote>
+<p>And they asked him, “How could you possibly do this?” And he answered, “When I learned to program, you were lucky if you got five minutes with the machine a day. If you wanted to get the program going, it just had to be written right. <strong>So people just learned to program like it was carving stone</strong>. You sort of have to sidle up to it. That’s how I learned to program.”</p>
+</blockquote>
+<p>The dean of my undergraduate CS department has similar experience. When the time they learned programming, the computer didn’t even has a BIOS. They had to use punched cards to operate the machine. Each program they ran has been wrote and reviewed many times. That generation students, have all become something in the field of academic now. </p>
+<p>What I learned from these is, <code>gcc -Wall -pendantic-error</code> seems an easy and relatively friendly way to detect where were you wrong in your programs, but scratch paper and pencil would be your more loyally friend when you struggling figuring out the solution of programs. </p>
+<p>Someone might ask, does it still worth in nowadays? As a successful example with plenty failure experience of rush to program first each time, I have to say, probably yes, but not necessary. Some of us with  strong ability of abstraction may find is easy to run programs with no errors and warnings at first time. They usually adopt a top-down approach to organize their code: design structures and interfaces first, then implement the details. The classic example of this philosophy could be found in Robert Sedgewick’s <em>&lt;<a href="http://www.amazon.com/gp/product/B004P8J1NA">Algorithms</a>&gt;</em>. </p>
+<p>The sad fact is that most people, me included, cannot. So, close your laptop, make a cup of tea, prepare a pencil and some scratch paper, start to program with your brain.</p>
+<p>Last but not least, learn to enjoy the life out of the computer science world would also helps you in computer science field. Like Eric S. Raymond’s words in <em>&lt;<a href="http://www.catb.org/esr/faqs/hacker-howto.html">How to become a hacker</a>&gt;</em>:</p>
+<blockquote>
+<p>Again, to be a hacker, you have to enter the hacker mindset. There are some things you can do when you’re not at a computer that seem to help. They’re not substitutes for hacking (nothing is) but many hackers do them, and feel that they connect in some basic way with the essence of hacking.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><strong>Learn to write your native language well.</strong> Though it’s a common stereotype that programmers can’t write, a surprising number of hackers (including all the most accomplished ones I know of) are very able writers.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><strong>Read science fiction.</strong> Go to science fiction conventions (a good way to meet hackers and proto-hackers).</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><strong>Train in a martial-arts form.</strong> The kind of mental discipline required for martial arts seems to be similar in important ways to what hackers do. The most popular forms among hackers are definitely Asian empty-hand arts such as Tae Kwon Do, various forms of Karate, Kung Fu, Aikido, or Ju Jitsu. Western fencing and Asian sword arts also have visible followings. In places where it’s legal, pistol shooting has been rising in popularity since the late 1990s. The most hackerly martial arts are those which emphasize mental discipline, relaxed awareness, and control, rather than raw strength, athleticism, or physical toughness.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li><strong>Study an actual meditation discipline.</strong> The perennial favorite among hackers is Zen (importantly, it is possible to benefit from Zen without acquiring a religion or discarding one you already have). Other styles may work as well, but be careful to choose one that doesn’t require you to believe crazy things.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li><strong>Develop an analytical ear for music.</strong> Learn to appreciate peculiar kinds of music. Learn to play some musical instrument well, or how to sing.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li><strong>Develop your appreciation of puns and wordplay.</strong></li>
+</ol>
+</blockquote>
+<p>PS: After writing this post, I found Jeff Atwood wrote a similar article in 2007, here it is <a href="http://www.codinghorror.com/blog/2007/01/how-to-become-a-better-programmer-by-not-programming.html">How To Become a Better Programmer by Not Programming</a>.</p>
+]]></content>
+      <tags>
+        <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Notes of Git</title>
     <url>/2012/12/2012-12-30-ProGit/</url>
     <content><![CDATA[<p><em><strong>Pro Git</strong></em> is an excellent book about Git, and these are my reading notes.  </p>
@@ -296,64 +354,6 @@
       <tags>
         <tag>notes</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>The Better Way to learn programming is to get away from it</title>
-    <url>/2013/10/2013-10-16-awayfrom/</url>
-    <content><![CDATA[<p>In the last few weeks I led a life writing C programs 10 hours a day. It was interesting and frustrating, and I learned a lot from that. For one thing, programming is an enjoyable game to me. It drives me thinking problems, force me constructing ideas and making proper solutions. What’s more fascinating is, the machine would tell me whether my solution program is right or wrong in less than a second. The frustrating part is, it always tells me I was wrong. Truth to be told, I am not a good programmer as my friends thought. Hours and hours, I wasting time debugging my programs and finally found out I was wrong at the first thought. So, the problem is, what can I do with that?</p>
-<p>The answer generally came to my mind: <strong>The Better Way to learn programming is to get away from it</strong>. Don’t panic, I don’t mean not programming, I mean not programming that soon. We live in an era that computers and internet are easy to access anytime and anywhere, which is lucky, or maybe unlucky to all of us. One story told by <a href="http://en.wikipedia.org/wiki/Alan_Kay">Alan Kay</a> explained my reason:     </p>
-<blockquote>
-<p>When I was at Stanford with the AI project [in the late 1960s] one of the things we used to do every Thanksgiving is have a computer programming contest with people on research projects in the Bay area. The prize I think was a turkey.</p>
-</blockquote>
-<blockquote>
-<p>[John] McCarthy used to make up the problems. The one year that Knuth entered this, he won both the fastest time getting the program running and he also won the fastest execution of the algorithm. He did it on the worst system with remote batch called the Wilbur system. And he basically beat the shit out of everyone.</p>
-</blockquote>
-<blockquote>
-<p>And they asked him, “How could you possibly do this?” And he answered, “When I learned to program, you were lucky if you got five minutes with the machine a day. If you wanted to get the program going, it just had to be written right. <strong>So people just learned to program like it was carving stone</strong>. You sort of have to sidle up to it. That’s how I learned to program.”</p>
-</blockquote>
-<p>The dean of my undergraduate CS department has similar experience. When the time they learned programming, the computer didn’t even has a BIOS. They had to use punched cards to operate the machine. Each program they ran has been wrote and reviewed many times. That generation students, have all become something in the field of academic now. </p>
-<p>What I learned from these is, <code>gcc -Wall -pendantic-error</code> seems an easy and relatively friendly way to detect where were you wrong in your programs, but scratch paper and pencil would be your more loyally friend when you struggling figuring out the solution of programs. </p>
-<p>Someone might ask, does it still worth in nowadays? As a successful example with plenty failure experience of rush to program first each time, I have to say, probably yes, but not necessary. Some of us with  strong ability of abstraction may find is easy to run programs with no errors and warnings at first time. They usually adopt a top-down approach to organize their code: design structures and interfaces first, then implement the details. The classic example of this philosophy could be found in Robert Sedgewick’s <em>&lt;<a href="http://www.amazon.com/gp/product/B004P8J1NA">Algorithms</a>&gt;</em>. </p>
-<p>The sad fact is that most people, me included, cannot. So, close your laptop, make a cup of tea, prepare a pencil and some scratch paper, start to program with your brain.</p>
-<p>Last but not least, learn to enjoy the life out of the computer science world would also helps you in computer science field. Like Eric S. Raymond’s words in <em>&lt;<a href="http://www.catb.org/esr/faqs/hacker-howto.html">How to become a hacker</a>&gt;</em>:</p>
-<blockquote>
-<p>Again, to be a hacker, you have to enter the hacker mindset. There are some things you can do when you’re not at a computer that seem to help. They’re not substitutes for hacking (nothing is) but many hackers do them, and feel that they connect in some basic way with the essence of hacking.</p>
-</blockquote>
-<blockquote>
-<ol>
-<li><strong>Learn to write your native language well.</strong> Though it’s a common stereotype that programmers can’t write, a surprising number of hackers (including all the most accomplished ones I know of) are very able writers.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li><strong>Read science fiction.</strong> Go to science fiction conventions (a good way to meet hackers and proto-hackers).</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li><strong>Train in a martial-arts form.</strong> The kind of mental discipline required for martial arts seems to be similar in important ways to what hackers do. The most popular forms among hackers are definitely Asian empty-hand arts such as Tae Kwon Do, various forms of Karate, Kung Fu, Aikido, or Ju Jitsu. Western fencing and Asian sword arts also have visible followings. In places where it’s legal, pistol shooting has been rising in popularity since the late 1990s. The most hackerly martial arts are those which emphasize mental discipline, relaxed awareness, and control, rather than raw strength, athleticism, or physical toughness.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="4">
-<li><strong>Study an actual meditation discipline.</strong> The perennial favorite among hackers is Zen (importantly, it is possible to benefit from Zen without acquiring a religion or discarding one you already have). Other styles may work as well, but be careful to choose one that doesn’t require you to believe crazy things.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="5">
-<li><strong>Develop an analytical ear for music.</strong> Learn to appreciate peculiar kinds of music. Learn to play some musical instrument well, or how to sing.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="6">
-<li><strong>Develop your appreciation of puns and wordplay.</strong></li>
-</ol>
-</blockquote>
-<p>PS: After writing this post, I found Jeff Atwood wrote a similar article in 2007, here it is <a href="http://www.codinghorror.com/blog/2007/01/how-to-become-a-better-programmer-by-not-programming.html">How To Become a Better Programmer by Not Programming</a>.</p>
-]]></content>
-      <tags>
-        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -464,26 +464,6 @@ for a, x in xps_dict.iteritems():
       </tags>
   </entry>
   <entry>
-    <title>Collaborative programming with Dropbox</title>
-    <url>/2014/07/2014-07-17-dropbox-coding/</url>
-    <content><![CDATA[<p>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a problem: How can we programming together smoothly? Which means, at any moment of time, I can check his code while he is programming.</p>
-<h2 id="Why-not-Github"><a href="#Why-not-Github" class="headerlink" title="Why not Github?"></a>Why not Github?</h2><p>No, that’s little bit heavy for this project. So, what’s alternative choices? Dropbox! Dropbox maybe the easiest way to share folder (wait, you means <code>rsync</code>? Dropbox did a lot of algorithm improvement to ensure it’s higher speed of syncing)<br><img src="http://dl.dropbox.com/u/1656836/web3/invite-to-folder.png" alt="Alt text"></p>
-<p>But, something weird happens. My Webstorm automatically changed layout views. That because he is also using Webstorm, and In each project, Webstorm use a <code>.idea/</code> directory to save specific settings (as the document below said).</p>
-<blockquote>
-<p>Project settings are stored with each specific project as a set of xml files under the .idea folder. If you specify the default project settings, these settings will be automatically used for each newly created project.</p>
-</blockquote>
-<h2 id="Is-there-any-gitginore-like-file-in-Dropbox"><a href="#Is-there-any-gitginore-like-file-in-Dropbox" class="headerlink" title="Is there any .gitginore like file in Dropbox?"></a>Is there any <code>.gitginore</code> like file in Dropbox?</h2><p>Sure. Of course it’s not as powerful as <code>.gitginore</code>. In dropbox -&gt; Preference -&gt; Account -&gt; Change Setting, unclick <code>.idea</code> folder, that’s all.</p>
-<p>Also, I strongly suggest unclick <code>node_modules</code> folder. It takes Dropbox too much time to synchronize a bunch of small pieces of files.</p>
-<p>And if you sometimes use Emacs, to avoid annoying temporary files (but some time really save you ass), the only way I know is to add this in <code>.emacs</code> file.</p>
-<pre><code> (setq make-backup-files nil)
-</code></pre>
-<p>Please feel free to correct my typos or grammar.</p>
-]]></content>
-      <tags>
-        <tag>miscellaneous</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>A Primer to System Administration - Users and groups</title>
     <url>/2014/08/2014-08-08-SysAdmin/</url>
     <content><![CDATA[<h2 id="How-to-create-a-user"><a href="#How-to-create-a-user" class="headerlink" title="How to create a user"></a>How to create a user</h2><p>By useradd:</p>
@@ -535,6 +515,26 @@ for a, x in xps_dict.iteritems():
 ]]></content>
       <tags>
         <tag>Sysadmin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Collaborative programming with Dropbox</title>
+    <url>/2014/07/2014-07-17-dropbox-coding/</url>
+    <content><![CDATA[<p>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a problem: How can we programming together smoothly? Which means, at any moment of time, I can check his code while he is programming.</p>
+<h2 id="Why-not-Github"><a href="#Why-not-Github" class="headerlink" title="Why not Github?"></a>Why not Github?</h2><p>No, that’s little bit heavy for this project. So, what’s alternative choices? Dropbox! Dropbox maybe the easiest way to share folder (wait, you means <code>rsync</code>? Dropbox did a lot of algorithm improvement to ensure it’s higher speed of syncing)<br><img src="http://dl.dropbox.com/u/1656836/web3/invite-to-folder.png" alt="Alt text"></p>
+<p>But, something weird happens. My Webstorm automatically changed layout views. That because he is also using Webstorm, and In each project, Webstorm use a <code>.idea/</code> directory to save specific settings (as the document below said).</p>
+<blockquote>
+<p>Project settings are stored with each specific project as a set of xml files under the .idea folder. If you specify the default project settings, these settings will be automatically used for each newly created project.</p>
+</blockquote>
+<h2 id="Is-there-any-gitginore-like-file-in-Dropbox"><a href="#Is-there-any-gitginore-like-file-in-Dropbox" class="headerlink" title="Is there any .gitginore like file in Dropbox?"></a>Is there any <code>.gitginore</code> like file in Dropbox?</h2><p>Sure. Of course it’s not as powerful as <code>.gitginore</code>. In dropbox -&gt; Preference -&gt; Account -&gt; Change Setting, unclick <code>.idea</code> folder, that’s all.</p>
+<p>Also, I strongly suggest unclick <code>node_modules</code> folder. It takes Dropbox too much time to synchronize a bunch of small pieces of files.</p>
+<p>And if you sometimes use Emacs, to avoid annoying temporary files (but some time really save you ass), the only way I know is to add this in <code>.emacs</code> file.</p>
+<pre><code> (setq make-backup-files nil)
+</code></pre>
+<p>Please feel free to correct my typos or grammar.</p>
+]]></content>
+      <tags>
+        <tag>miscellaneous</tag>
       </tags>
   </entry>
   <entry>
@@ -676,6 +676,23 @@ PasswordAuthentication=yes
       </tags>
   </entry>
   <entry>
+    <title>2015 年部分计划</title>
+    <url>/2015/01/2015-01-27-plan/</url>
+    <content><![CDATA[<h2 id="2015-小部分计划"><a href="#2015-小部分计划" class="headerlink" title="2015 小部分计划"></a>2015 小部分计划</h2><p>2015年都过了一个月了。现在才开始写新年计划有点晚了，可晚比没有强。<br>规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline<br>（deadline driven development 是最有生产力的）。</p>
+<ul>
+<li>二月底至三月，拿到offer，希望大厂收留，这是今年，甚至是这几年最大的事儿。</li>
+<li>读书，Peter Thiel 的 《Zero To One》， 王兴推荐的《Resource Revoution》, 朴灵大大的《深入浅出Nodejs》，还有王力的《中国古代文化常识》。</li>
+<li>写博客，博客至少一周两更。不管是写技术还是什么乱七八糟的。</li>
+<li>掌握Haskell的Monad。</li>
+<li>最后一条，希望。。。唉，看缘分吧，现在时间是有了，再也没什么欺骗自己的借口了。<br>（说的好像有妹子看我博客一样，噗~）</li>
+</ul>
+<p>暂时就想到这么多，wilbeibi，加油！</p>
+]]></content>
+      <tags>
+        <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>How to deal with Git A-Z?</title>
     <url>/2014/07/2014-7-21-gitAtoZ/</url>
     <content><![CDATA[<p>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at <a href="https://help.github.com/articles/set-up-git">here</a>.</p>
@@ -764,48 +781,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2015 年部分计划</title>
-    <url>/2015/01/2015-01-27-plan/</url>
-    <content><![CDATA[<h2 id="2015-小部分计划"><a href="#2015-小部分计划" class="headerlink" title="2015 小部分计划"></a>2015 小部分计划</h2><p>2015年都过了一个月了。现在才开始写新年计划有点晚了，可晚比没有强。<br>规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline<br>（deadline driven development 是最有生产力的）。</p>
-<ul>
-<li>二月底至三月，拿到offer，希望大厂收留，这是今年，甚至是这几年最大的事儿。</li>
-<li>读书，Peter Thiel 的 《Zero To One》， 王兴推荐的《Resource Revoution》, 朴灵大大的《深入浅出Nodejs》，还有王力的《中国古代文化常识》。</li>
-<li>写博客，博客至少一周两更。不管是写技术还是什么乱七八糟的。</li>
-<li>掌握Haskell的Monad。</li>
-<li>最后一条，希望。。。唉，看缘分吧，现在时间是有了，再也没什么欺骗自己的借口了。<br>（说的好像有妹子看我博客一样，噗~）</li>
-</ul>
-<p>暂时就想到这么多，wilbeibi，加油！</p>
-]]></content>
-      <tags>
-        <tag>writing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我为什么要编程</title>
-    <url>/2015/02/2015-02-06-whyiwrite/</url>
-    <content><![CDATA[<p>王小波和乔治奥威尔都曾以《我为什么要写作》为题写过他们的走上作家之路原因。对于这个问题，王小波借用了一位登山家的回答，“因为山在那儿。” （如你所知，那位登山家最后也确实在珠峰上挂掉了。）乔治奥威尔的回答则显得更有条理：纯粹的个人主义，美学热枕，历史责任感和政治目的。</p>
-<p>你看，程序员界就很少有这么高的境界，去中关村随便抓个程序员，问他为什么编程，他就绝不会回答 “为公司立心，为开源立命，为community开太平”。当然，也有一些身怀抱负的有为青年（比如我），会不时纠结于这个问题。比如最近，我就为自己的志大才疏感到无比痛苦。成功学那些骗小孩儿的早就免疫了，得靠一些真实的数据来打鸡血。</p>
-<p>首先，优秀的技术大牛是什么样的？我把我RSS订阅里的中文技术博客博主的信息都翻了一遍，统计出了一些有趣的东西：</p>
-<ul>
-<li>2&#x2F;3的大牛来自top20的学校，他们中不少人在读PhD。</li>
-<li>至少一半的人大学前就开始接触编程。</li>
-<li>15% 左右的人在海外留学或者工作，基本全部来自第一项的top20学校中。</li>
-<li>在国内工作的中有四个都是在阿里。</li>
-<li>貌似全部都用Mac。</li>
-<li>30% 以上的人有优异的数学（参加过中学数学竞赛等）或者算法（ACM, OI）背景。</li>
-<li>大部分人都有相当不错的文字功底，写作能力和阅读量都不赖。</li>
-<li>他们大多数至少在国外技术博文翻译、Linux及开源、函数式编程、算法这四项中沾一样（这项可能是我口味问题，订阅有偏向性）。</li>
-<li>30岁以上的人中，有不少是非计算机专业的。30岁以下的，基本都是CS科班出身。</li>
-</ul>
-<p>所以，我还不是完全没有机会的。我之所以喜欢这一行，就是因为这一行的聪明人太多了，勤奋的人太多了，这让我很有压力，这种压力很爽。</p>
-<p>正如莱蒙托夫在的那首小诗《帆》：</p>
-<p>在大海的深蓝色的云雾里，<br>一只孤独的帆儿闪着白光。<br>它在寻求什么，在那遥远的异地？<br>它抛下了什么，在那自己的故乡？<br>波涛在汹涌着，海风在呼啸着，<br>桅杆弓起腰来发出扎扎的声响。<br>不，它不是在寻求幸福，<br>它也不是在逃避幸福！<br>它下面是碧色的澄清的水流，<br>它上面是金色的太阳，<br>而它，不安地，在祈求着风暴，<br>仿佛是在风暴中才有安详。 </p>
-]]></content>
-      <tags>
-        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -937,29 +912,28 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
-    <title>一周笔记</title>
-    <url>/2016/05/2016-05-21-weekly1/</url>
-    <content><![CDATA[<h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><p>这周 RSS 里没啥非常好的文章，就把以前的笔记里翻出来几篇凑数。</p>
-<h2 id="Elevate-yourself-with-side-projects"><a href="#Elevate-yourself-with-side-projects" class="headerlink" title="Elevate yourself with side projects"></a><a href="https://slackhq.com/elevate-yourself-with-side-projects-acbc43229422#.12qjef3av">Elevate yourself with side projects</a></h2><p>爱因斯坦的在专利局工作时候的 side project 是相对论论文，学校门卫波洛克（对，现代艺术甩泥点子那位）的 side project 是画画，Slack 一开始也是游戏公司的 side project 聊天工具。Side project 能真正有效促进一个人的专业进步（深有同感）。不是有句话说么，这年头在湾区没有一两个 side project 都不好意跟人打招呼。</p>
-<h2 id="What-every-computer-science-major-should-know"><a href="#What-every-computer-science-major-should-know" class="headerlink" title="What every computer science major should know"></a><a href="http://matt.might.net/articles/what-cs-majors-should-know/">What every computer science major should know</a></h2><p>压箱底的老文章。 知名博主 Matt Might的一篇长文，很详细的列出了一个合格的 CS 学生应该学习和掌握的知识，任何一个学 CS 的学生都应该看看这篇文章。</p>
-<h2 id="Peer-Code-Reviews-At-Loose-Cannon"><a href="#Peer-Code-Reviews-At-Loose-Cannon" class="headerlink" title="Peer Code Reviews At Loose Cannon"></a><a href="http://scottbilas.com/blog/peer-code-reviews-at-loose-cannon/">Peer Code Reviews At Loose Cannon</a></h2><p>技术博客大多谈的是如何学习新技术，如何设计架构，如何找工作，却很少谈如何正确的 Code Review 的。Code Review 在工作中非常重要，是有效的学习&#x2F;分享知识，增进办公室人际关系的途径。这一系列文章就很详细的谈了如何 Code Review。附赠这篇 <a href="http://www.kevinlondon.com/2015/05/05/code-review-best-practices.html">Code Review Best Practices</a>。</p>
-<h2 id="香草冰淇淋，世界末日与烧鹿骨"><a href="#香草冰淇淋，世界末日与烧鹿骨" class="headerlink" title="香草冰淇淋，世界末日与烧鹿骨"></a><a href="http://chuansong.me/n/123723">香草冰淇淋，世界末日与烧鹿骨</a></h2><p>这是一篇我很喜欢的非技术文章。从顾客离奇的投诉『新车会对香草冰淇淋过敏』说起，分析了一些显式因果关系和其背后看似荒诞的理性依据。原文链接已经失效，给的链接是别的网站转的。</p>
+    <title>我为什么要编程</title>
+    <url>/2015/02/2015-02-06-whyiwrite/</url>
+    <content><![CDATA[<p>王小波和乔治奥威尔都曾以《我为什么要写作》为题写过他们的走上作家之路原因。对于这个问题，王小波借用了一位登山家的回答，“因为山在那儿。” （如你所知，那位登山家最后也确实在珠峰上挂掉了。）乔治奥威尔的回答则显得更有条理：纯粹的个人主义，美学热枕，历史责任感和政治目的。</p>
+<p>你看，程序员界就很少有这么高的境界，去中关村随便抓个程序员，问他为什么编程，他就绝不会回答 “为公司立心，为开源立命，为community开太平”。当然，也有一些身怀抱负的有为青年（比如我），会不时纠结于这个问题。比如最近，我就为自己的志大才疏感到无比痛苦。成功学那些骗小孩儿的早就免疫了，得靠一些真实的数据来打鸡血。</p>
+<p>首先，优秀的技术大牛是什么样的？我把我RSS订阅里的中文技术博客博主的信息都翻了一遍，统计出了一些有趣的东西：</p>
+<ul>
+<li>2&#x2F;3的大牛来自top20的学校，他们中不少人在读PhD。</li>
+<li>至少一半的人大学前就开始接触编程。</li>
+<li>15% 左右的人在海外留学或者工作，基本全部来自第一项的top20学校中。</li>
+<li>在国内工作的中有四个都是在阿里。</li>
+<li>貌似全部都用Mac。</li>
+<li>30% 以上的人有优异的数学（参加过中学数学竞赛等）或者算法（ACM, OI）背景。</li>
+<li>大部分人都有相当不错的文字功底，写作能力和阅读量都不赖。</li>
+<li>他们大多数至少在国外技术博文翻译、Linux及开源、函数式编程、算法这四项中沾一样（这项可能是我口味问题，订阅有偏向性）。</li>
+<li>30岁以上的人中，有不少是非计算机专业的。30岁以下的，基本都是CS科班出身。</li>
+</ul>
+<p>所以，我还不是完全没有机会的。我之所以喜欢这一行，就是因为这一行的聪明人太多了，勤奋的人太多了，这让我很有压力，这种压力很爽。</p>
+<p>正如莱蒙托夫在的那首小诗《帆》：</p>
+<p>在大海的深蓝色的云雾里，<br>一只孤独的帆儿闪着白光。<br>它在寻求什么，在那遥远的异地？<br>它抛下了什么，在那自己的故乡？<br>波涛在汹涌着，海风在呼啸着，<br>桅杆弓起腰来发出扎扎的声响。<br>不，它不是在寻求幸福，<br>它也不是在逃避幸福！<br>它下面是碧色的澄清的水流，<br>它上面是金色的太阳，<br>而它，不安地，在祈求着风暴，<br>仿佛是在风暴中才有安详。 </p>
 ]]></content>
       <tags>
-        <tag>notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一周笔记</title>
-    <url>/2016/06/2016-06-05-weekly2/</url>
-    <content><![CDATA[<h2 id="The-Software-Development-Poverty-Trap"><a href="#The-Software-Development-Poverty-Trap" class="headerlink" title="The Software Development Poverty Trap"></a><a href="http://alexandros.resin.io/the-software-development-poverty-trap/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">The Software Development Poverty Trap</a></h2><p>软件开发中的马太效应，越是差劲的团队越缺乏长期规划，用老旧的技术，写 ad-hoc 的代码，优秀的工程师越容易离开（斜眼看我司）。</p>
-<h2 id="“把程序写好”这回事"><a href="#“把程序写好”这回事" class="headerlink" title="“把程序写好”这回事"></a><a href="http://mp.weixin.qq.com/s?__biz=MzA3MDMwOTcwMg==&mid=2650004561&idx=1&sn=967c3816e3b0993b5517799183efb3be&scene=0#rd">“把程序写好”这回事</a></h2><p>来此余晟的微信公共号（对，就是翻译正则表达式的那哥们）。很多程序员在学校和工作中编程，但不知道如何写好程序，貌似也没有学校教如何『写好程序』。写好程序绝不是编译通过，跑过测试，符合 coding style 那么简单。文中提到的『荣誉感』还是挺重要的，我写代码的时候就会想着对自己的每一行代码负责，通过 code review 看别人的代码质量也会潜移默化影响我对这个人的评价，和对待他的态度。</p>
-<h2 id="What-every-programmer-should-know-about-memory"><a href="#What-every-programmer-should-know-about-memory" class="headerlink" title="What every programmer should know about memory"></a><a href="https://www.akkadia.org/drepper/cpumemory.pdf">What every programmer should know about memory</a></h2><p>挺长的，从偏硬件的角度讲解内存的原理。前面几章在各个 OS 教科书上都能找到，后面的内容就比较贴近现实，看着很有意思。</p>
-<h2 id="The-Little-Manual-of-API-Design"><a href="#The-Little-Manual-of-API-Design" class="headerlink" title="The Little Manual of API Design"></a><a href="http://people.mpi-inf.mpg.de/~jblanche/api-design.pdf">The Little Manual of API Design</a></h2><p>记得 GoogleTechTalk 里著名的一集 <a href="https://www.youtube.com/watch?v=aAb7hSCtvGw">How To Design A Good API and Why it Matters</a> 么，这个 manual 可以看作那个 talk 的扩展读物。API Design 在程序设计中的重要性相比于架构不遑多让，看看这些 best practices 有益身心~~</p>
-<h2 id="What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies"><a href="#What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies" class="headerlink" title="What Powers Instagram: Hundreds of Instances, Dozens of Technologies"></a><a href="http://instagram-engineering.tumblr.com/post/13649370142/what-powers-instagram-hundreds-of-instances?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">What Powers Instagram: Hundreds of Instances, Dozens of Technologies</a></h2><p>一篇老文章，介绍 Instagram 早期时候（2012）的架构。我最喜欢这种早期架构的文章，看别人在高速增长期如何用快糙猛的方法解决问题。里面给的小部分技术在今天看来有些过时了，但大部分还很有借鉴意义。比如提到的 gunicorn 和 Fabric，是 Python  web 开发中的标配（还有 supervisor）；vmtouch （查了下发现是一个超级light weight的内存数据管理工具，代码也写的很棒）；Munin，Pingdom  监控，Sentry 报告错误。</p>
-]]></content>
-      <tags>
-        <tag>notes</tag>
+        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -978,6 +952,19 @@ git checkout revision_hash .
 <h2 id="The-Product-Managers’-Guide-to-Continuous-Delivery-and-DevOps"><a href="#The-Product-Managers’-Guide-to-Continuous-Delivery-and-DevOps" class="headerlink" title="The Product Managers’ Guide to Continuous Delivery and DevOps"></a><a href="http://www.mindtheproduct.com/2016/02/what-the-hell-are-ci-cd-and-devops-a-cheatsheet-for-the-rest-of-us">The Product Managers’ Guide to Continuous Delivery and DevOps</a></h2><p>简单介绍什么是 Continuous Delivery 和 DevOps。</p>
 <h2 id="ResysChina"><a href="#ResysChina" class="headerlink" title="ResysChina"></a><a href="https://zhuanlan.zhihu.com/resyschina">ResysChina</a></h2><p>着重推荐算法文章的高质量知乎专栏</p>
 <h2 id="Real–world-HTTP-2-400gb-of-images-per-day"><a href="#Real–world-HTTP-2-400gb-of-images-per-day" class="headerlink" title="Real–world HTTP&#x2F;2: 400gb of images per day"></a><a href="https://99designs.com/tech-blog/blog/2016/07/14/real-world-http-2-400gb-of-images-per-day/">Real–world HTTP&#x2F;2: 400gb of images per day</a></h2><p>也是 debug 类的好网站。一个图片分享网站讲他们迁移到 HTTP&#x2F;2 的性能提升和坑。</p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周笔记</title>
+    <url>/2016/06/2016-06-05-weekly2/</url>
+    <content><![CDATA[<h2 id="The-Software-Development-Poverty-Trap"><a href="#The-Software-Development-Poverty-Trap" class="headerlink" title="The Software Development Poverty Trap"></a><a href="http://alexandros.resin.io/the-software-development-poverty-trap/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">The Software Development Poverty Trap</a></h2><p>软件开发中的马太效应，越是差劲的团队越缺乏长期规划，用老旧的技术，写 ad-hoc 的代码，优秀的工程师越容易离开（斜眼看我司）。</p>
+<h2 id="“把程序写好”这回事"><a href="#“把程序写好”这回事" class="headerlink" title="“把程序写好”这回事"></a><a href="http://mp.weixin.qq.com/s?__biz=MzA3MDMwOTcwMg==&mid=2650004561&idx=1&sn=967c3816e3b0993b5517799183efb3be&scene=0#rd">“把程序写好”这回事</a></h2><p>来此余晟的微信公共号（对，就是翻译正则表达式的那哥们）。很多程序员在学校和工作中编程，但不知道如何写好程序，貌似也没有学校教如何『写好程序』。写好程序绝不是编译通过，跑过测试，符合 coding style 那么简单。文中提到的『荣誉感』还是挺重要的，我写代码的时候就会想着对自己的每一行代码负责，通过 code review 看别人的代码质量也会潜移默化影响我对这个人的评价，和对待他的态度。</p>
+<h2 id="What-every-programmer-should-know-about-memory"><a href="#What-every-programmer-should-know-about-memory" class="headerlink" title="What every programmer should know about memory"></a><a href="https://www.akkadia.org/drepper/cpumemory.pdf">What every programmer should know about memory</a></h2><p>挺长的，从偏硬件的角度讲解内存的原理。前面几章在各个 OS 教科书上都能找到，后面的内容就比较贴近现实，看着很有意思。</p>
+<h2 id="The-Little-Manual-of-API-Design"><a href="#The-Little-Manual-of-API-Design" class="headerlink" title="The Little Manual of API Design"></a><a href="http://people.mpi-inf.mpg.de/~jblanche/api-design.pdf">The Little Manual of API Design</a></h2><p>记得 GoogleTechTalk 里著名的一集 <a href="https://www.youtube.com/watch?v=aAb7hSCtvGw">How To Design A Good API and Why it Matters</a> 么，这个 manual 可以看作那个 talk 的扩展读物。API Design 在程序设计中的重要性相比于架构不遑多让，看看这些 best practices 有益身心~~</p>
+<h2 id="What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies"><a href="#What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies" class="headerlink" title="What Powers Instagram: Hundreds of Instances, Dozens of Technologies"></a><a href="http://instagram-engineering.tumblr.com/post/13649370142/what-powers-instagram-hundreds-of-instances?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">What Powers Instagram: Hundreds of Instances, Dozens of Technologies</a></h2><p>一篇老文章，介绍 Instagram 早期时候（2012）的架构。我最喜欢这种早期架构的文章，看别人在高速增长期如何用快糙猛的方法解决问题。里面给的小部分技术在今天看来有些过时了，但大部分还很有借鉴意义。比如提到的 gunicorn 和 Fabric，是 Python  web 开发中的标配（还有 supervisor）；vmtouch （查了下发现是一个超级light weight的内存数据管理工具，代码也写的很棒）；Munin，Pingdom  监控，Sentry 报告错误。</p>
 ]]></content>
       <tags>
         <tag>notes</tag>
@@ -1004,6 +991,19 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周笔记</title>
+    <url>/2016/05/2016-05-21-weekly1/</url>
+    <content><![CDATA[<h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><p>这周 RSS 里没啥非常好的文章，就把以前的笔记里翻出来几篇凑数。</p>
+<h2 id="Elevate-yourself-with-side-projects"><a href="#Elevate-yourself-with-side-projects" class="headerlink" title="Elevate yourself with side projects"></a><a href="https://slackhq.com/elevate-yourself-with-side-projects-acbc43229422#.12qjef3av">Elevate yourself with side projects</a></h2><p>爱因斯坦的在专利局工作时候的 side project 是相对论论文，学校门卫波洛克（对，现代艺术甩泥点子那位）的 side project 是画画，Slack 一开始也是游戏公司的 side project 聊天工具。Side project 能真正有效促进一个人的专业进步（深有同感）。不是有句话说么，这年头在湾区没有一两个 side project 都不好意跟人打招呼。</p>
+<h2 id="What-every-computer-science-major-should-know"><a href="#What-every-computer-science-major-should-know" class="headerlink" title="What every computer science major should know"></a><a href="http://matt.might.net/articles/what-cs-majors-should-know/">What every computer science major should know</a></h2><p>压箱底的老文章。 知名博主 Matt Might的一篇长文，很详细的列出了一个合格的 CS 学生应该学习和掌握的知识，任何一个学 CS 的学生都应该看看这篇文章。</p>
+<h2 id="Peer-Code-Reviews-At-Loose-Cannon"><a href="#Peer-Code-Reviews-At-Loose-Cannon" class="headerlink" title="Peer Code Reviews At Loose Cannon"></a><a href="http://scottbilas.com/blog/peer-code-reviews-at-loose-cannon/">Peer Code Reviews At Loose Cannon</a></h2><p>技术博客大多谈的是如何学习新技术，如何设计架构，如何找工作，却很少谈如何正确的 Code Review 的。Code Review 在工作中非常重要，是有效的学习&#x2F;分享知识，增进办公室人际关系的途径。这一系列文章就很详细的谈了如何 Code Review。附赠这篇 <a href="http://www.kevinlondon.com/2015/05/05/code-review-best-practices.html">Code Review Best Practices</a>。</p>
+<h2 id="香草冰淇淋，世界末日与烧鹿骨"><a href="#香草冰淇淋，世界末日与烧鹿骨" class="headerlink" title="香草冰淇淋，世界末日与烧鹿骨"></a><a href="http://chuansong.me/n/123723">香草冰淇淋，世界末日与烧鹿骨</a></h2><p>这是一篇我很喜欢的非技术文章。从顾客离奇的投诉『新车会对香草冰淇淋过敏』说起，分析了一些显式因果关系和其背后看似荒诞的理性依据。原文链接已经失效，给的链接是别的网站转的。</p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Gradient Ascent</title>
   <icon>http://wilbeibi.com/icon.png</icon>
-  <subtitle>Maximize Expected Return on Learning</subtitle>
+  <subtitle>In the direction of greatest curiosity</subtitle>
   <link href="http://wilbeibi.com/atom.xml" rel="self"/>
   
   <link href="http://wilbeibi.com/"/>
