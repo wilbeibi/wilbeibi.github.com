@@ -22,6 +22,13 @@
   background-position: center bottom !important;
 }
 
+/* Safari/iPad background-attachment fix */
+@supports (-webkit-overflow-scrolling: touch) {
+  #nav {
+    background-attachment: scroll !important;
+  }
+}
+
 /* Hide duplicate site title in the fixed nav bar */
 #page-header #site-name {
   display: none;
