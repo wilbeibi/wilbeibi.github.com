@@ -1,101 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>一个RSS订阅者的自我修养</title>
-    <url>/2012/12/2012-12-11-rss/</url>
-    <content><![CDATA[<h2 id="这篇文章想说什么"><a href="#这篇文章想说什么" class="headerlink" title="这篇文章想说什么"></a>这篇文章想说什么</h2><p>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？  </p>
-<p><img src="http://i.imgur.com/hZ2eX.jpg">  </p>
-<p>RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。</p>
-<p>##RSS阅读器<br>国内比较流行的RSS阅读器有鲜果，抓虾，看天下…个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。</p>
-<p>##做笔记<br>Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后<br>者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进<a href="http://getpocket.com/">Pocket</a>——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用<a href="http://fivefilters.org/">FiveFilters.org</a>提供的全文feed生成器,把网址往里一扔，OK了。  </p>
-<p><img src="http://i.imgur.com/4uIeN.png"></p>
-<p>那如果在平板上呢？这时候，就要靠<a href="http://ifttt.com/">ifttt</a>这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。<br><img src="http://i.imgur.com/exc5Y.png"></p>
-<p>##纸和笔<br>如果只是这样做笔记，只不过是一种更有效的copy&amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。<br>要把笔记变成自己的东西，一定要有自己的<strong>主动</strong>参与，还是需要保持看纸质书和手写笔记的习惯。</p>
-<p>##写出来<br>写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），<a href="http://www.yangzhiping.com/tech/writing-space.html">Github+Jekyll</a>，或者Octopress都能满足你的要求。</p>
-<p>##博客的排版<br>博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">Markdown</a>就是为此应运而生的。此外，Emacs下强大的<a href="http://orgmode.org/">Org-mode</a>也是个相当不错的选择。</p>
-<p>##最后，分享一些我觉得不错的博客</p>
-<p><strong>Matrix67</strong> <a href="http://www.matrix67.com/">www.matrix67.com</a></p>
-<p><strong>酷壳</strong><br><a href="http://coolshell.com/">CoolShell.com</a></p>
-<p><strong>浏忙大爆炸</strong><br><a href="http://blog.waterlin.org/">blog.waterlin.org</a></p>
-<p><strong>刘未鹏 Mind Hacks</strong><br><a href="http://mindhacks.cn/">mindhacks.cn&#x2F;</a></p>
-<p><strong>阮一峰的网络日志</strong><br><a href="http://www.ruanyifeng.com/">www.ruanyifeng.com</a></p>
-<p><strong>good coders code,great reuse</strong><br><a href="http://www.catonmat.net/">www.catonmat.net/</a></p>
-<p><strong>外刊IT评论</strong><br><a href="http://www.aqee.net/">www.aqee.net/</a></p>
-<p><strong>Planet Emacsen</strong><br><a href="http://planet.emacsen.org/">planet.emacsen.org&#x2F;</a></p>
-<p><strong>talich闲侃</strong><br><a href="http://talich.cinepedia.cn/">talich.cinepedia.cn</a></p>
-<p><strong>李笑来</strong><br><a href="http://lixiaolai.com/">lixiaolai.com&#x2F;</a></p>
-<p><strong>学而时嘻之</strong><br><a href="http://www.geekonomics10000.com/">www.geekonomics10000.com/</a></p>
-<p><strong>不许联想</strong><br><a href="http://www.wangxiaofeng.net/">www.wangxiaofeng.net/</a></p>
-<p><strong>张佳玮写东西的地方</strong><br><a href="http://zhangjiawei.blog.tianya.cn/">zhangjiawei.blog.tianya.cn&#x2F;</a></p>
-<p><strong>西西弗斯的健忘症</strong><br><a href="http://lilyshen.wordpress.com/">lilyshen.wordpress.com&#x2F;</a></p>
-<p><strong>柴静的博客</strong><br><a href="http://blog.sina.com.cn/chjguancha">blog.sina.com.cn&#x2F;chjguancha</a></p>
-<p><strong>和菜头的槽边往事</strong><br><a href="http://www.hecaitou.net/">www.hecaitou.net/</a></p>
-<p><strong>吴万伟的博客</strong><br><a href="http://blog.163.com/wuwanwei@yeah/">blog.163.com&#x2F;wuwanwei@yeah&#x2F;</a></p>
-<p><strong>马伯庸的异教徒告解室</strong><br><a href="http://blog.sina.com.cn/maboyong">blog.sina.com.cn&#x2F;maboyong</a></p>
-<p><strong>Tear Down This Wall</strong><br><a href="http://www.bullogger.com/blogs/tdtw/">http://www.bullogger.com/blogs/tdtw/</a></p>
-]]></content>
-      <categories>
-        <category>Collection</category>
-      </categories>
-      <tags>
-        <tag>RSS</tag>
-        <tag>subscribe</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac程序员和他的朋友们</title>
-    <url>/2014/03/2014-03-05-macandfriend/</url>
-    <content><![CDATA[<h2 id="为什么要用Mac"><a href="#为什么要用Mac" class="headerlink" title="为什么要用Mac"></a>为什么要用Mac</h2><p>Linux内核作者<a href="http://www.zdnet.com/torvalds-switches-to-apple-1139183867/">Linus早就开始使用Mac了</a>（虽然面对记者表现的很扭捏）。Gnome的作者更是理直气壮<a href="http://tirania.org/blog/archive/2013/Mar-05.html">叛逃Linux投奔Mac</a>。如你所知，Mac OSX是<a href="http://programmers.stackexchange.com/questions/51670/why-do-programmers-use-or-recommend-mac-os-x">开发者们的最爱</a>。因为它一方面有非常棒的用户体验，一方面是基于Unix，尽得shell的益处，又避免了Linux下种种繁琐。什么，太贵了，看看<a href="http://www.cnblogs.com/chijianqiang/p/mmac.html">MacTalk是怎么说的</a>。</p>
-<p>工欲善其事，必先利其器。这里分享下我的Mac应用和配置。</p>
-<span id="more"></span>
-
-<p>基于原则:</p>
-<ul>
-<li>尊重软件版权，能购买正版的，请尽量购买正版</li>
-<li>Don’t Shave Yaks, 不要因为花太多时间配置工具而浪费工作的时间</li>
-<li>奥卡姆剃刀，如果一项功能需求只是偶尔用一下，就别配置了。</li>
-</ul>
-<h2 id="应用-效率"><a href="#应用-效率" class="headerlink" title="应用&amp;效率"></a>应用&amp;效率</h2><h3 id="Dropbox"><a href="#Dropbox" class="headerlink" title="Dropbox"></a>Dropbox</h3><p>大名鼎鼎的Dropbox，无需赘述。是居家旅行，出门必备同步神器。Dropbox较之Google Drive更轻量级，更快，适合在多平台同步正在编辑的文档或者代码。记得Google Drive是没有Linux版客户端的，而Dropbox有！而且，Dropbox的文件分享链接是直接指向文件的，对于在remote terminal上工作且尚不熟悉scp和rsync的同学来说是福音（<code>rsync --daemon</code>效果可以媲美Dropbox）。相比之下，Google Drive 更适合来存放资料，因为它能搜索文档内关键词。</p>
-<h3 id="Mou"><a href="#Mou" class="headerlink" title="Mou"></a>Mou</h3><p>我见过最好的MarkDown编辑器，简洁，漂亮，可配置，支持MathJax公式编辑。<br><img src="http://mouapp.com/images/Mou_Screenshot_1.png"></p>
-<h3 id="Evernote"><a href="#Evernote" class="headerlink" title="Evernote"></a>Evernote</h3><p>笔记软件，我主要用它在收藏平时看到的好的RSS文章，Prime版的多人协作，幻灯片功能也很赞。</p>
-<h3 id="Pocket"><a href="#Pocket" class="headerlink" title="Pocket"></a>Pocket</h3><p>众多的ReadItLater软件中的一个，推荐Pocket是因为它的文本抽取出来的格式比较好，在移动端上的App做的也很出色。</p>
-<h3 id="Kaleidoscope"><a href="#Kaleidoscope" class="headerlink" title="Kaleidoscope"></a>Kaleidoscope</h3><p>比较多文档之间的差异。一个命令行党应该忠诚的效忠用<code>diff</code>来比较文件，但是Kaleidoscope真的太好用了，关键是它不仅能逐行比较，还能一块块匹配着比较，还能两个文件夹比较，还能Merge文件。</p>
-<h3 id="Alfred-2"><a href="#Alfred-2" class="headerlink" title="Alfred 2"></a>Alfred 2</h3><p>这是一个神奇的快速启动软件，就为了它，你就值得买个Mac。MacTalk里谦虚的称它为“神兵利器”。你可以用它来：</p>
-<ul>
-<li>打开任何应用</li>
-<li>查找文件</li>
-<li>执行shell命令</li>
-<li>当计算器用</li>
-<li>直接写email</li>
-<li>在Google&#x2F;Amazon&#x2F;Wikipedia上搜索条目</li>
-<li>… …<br>嗯，以上只是它的普通功能，只有这些还不足以称之为伟大。Alfred之牛掰，在于其可编程的第三方workflow插件机制，这样可以在Alfred里搜豆瓣图书，搜Github仓库，查看天气或PM2.5，搜索自己的Evernote笔记，查API文档，一切能想到的，<a href="http://www.zhihu.com/question/20656680">都可以实现</a>。<br><img src="http://i.imgur.com/XDWlNGv.png"><br><img src="http://i.imgur.com/3hpPO97.png"></li>
-</ul>
-<h3 id="TextExpander"><a href="#TextExpander" class="headerlink" title="TextExpander"></a>TextExpander</h3><p>文本自动补全的插件，自定义好触发的关键词，每次输入这些关键词的时候，biu~，想打的字就全弹出来了。把自己的电话，邮箱，或者写邮件的模板存进去，能避免很多重复的劳动。</p>
-<h3 id="Popclip"><a href="#Popclip" class="headerlink" title="Popclip"></a>Popclip</h3><p>文字选中弹出扩展。每次选中文字后，可以快速的把选中文字进行复制，粘贴，查找，加入笔记本等等。</p>
-<h3 id="RescueTime-Time-sink"><a href="#RescueTime-Time-sink" class="headerlink" title="RescueTime (Time sink)"></a>RescueTime (Time sink)</h3><p>默默的运行在后台，告诉你你的时间都浪费在哪儿了。每周发邮件告诉你你在哪个软件，哪个网站上花了多少时间，这一天&#x2F;周的效率有多高。你可以定义什么是有效率的行为（比如用Evernote写笔记，用Emacs写代码）加分，哪些是偷懒的行为（看美剧，刷豆瓣）扣分。</p>
-<h3 id="LimeChat"><a href="#LimeChat" class="headerlink" title="LimeChat"></a>LimeChat</h3><p>IRC应用，选它是因为其他的IRC应用都太！！难！！用！！了！！</p>
-<h3 id="AppCleaner"><a href="#AppCleaner" class="headerlink" title="AppCleaner"></a>AppCleaner</h3><p>删软件清理残余。</p>
-<h3 id="Moom"><a href="#Moom" class="headerlink" title="Moom"></a>Moom</h3><p>还在像傻帽一样花半天找到窗口边框笨手笨脚地缩放大小么？用Moom吧，能快速排好窗口，自定义想要的窗口大小。</p>
-<h3 id="The-unarchiver"><a href="#The-unarchiver" class="headerlink" title="The unarchiver"></a>The unarchiver</h3><p>普通解压用<code>tar</code>命令，但如何有非UTF-8的中文编码，还是用unarchiver比较方便（命令行下得用<code>find</code> + <code>iconv</code>写一长串，太虐心）</p>
-<h2 id="编程-配置"><a href="#编程-配置" class="headerlink" title="编程&amp;配置"></a>编程&amp;配置</h2><h3 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h3><p>查文档利器。作者在新版本对它收费$20，丧心病狂，但从长远考虑，还是值得的。能配合Alfred用，省心。</p>
-<h3 id="Textmate"><a href="#Textmate" class="headerlink" title="Textmate"></a>Textmate</h3><p>bundle功能很好用，方便快速掌握一门语言。写前端代码很方便。其他时候，还是用Vim&#x2F;Emacs吧。</p>
-<h3 id="TotalCommander"><a href="#TotalCommander" class="headerlink" title="TotalCommander"></a>TotalCommander</h3><p>命令行党都有过每天得把Terminal拖来拖去的苦恼。TotalCommander正是这样一款下拉式的终端，类似Gnome下的Guake，也支持多窗口，强烈推荐。</p>
-<h3 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h3><p>不管你用bash，zsh还是tcsh，有一个好用的Terminal软件是十分必要的，iTerm2就正是一个优秀的终端。好看，配置性极强，有很多方便的功能，戳<a href="http://www.yangzhiping.com/tech/iterm2.html">这篇文章</a>。</p>
-<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>Mac下的包管理器，和ports平分天下。想装什么东西，尽管<code>brew install</code> 就好。</p>
-<h3 id="Z-shell-tmux及配置文件"><a href="#Z-shell-tmux及配置文件" class="headerlink" title="Z shell (tmux及配置文件)"></a>Z shell (tmux及配置文件)</h3><p>基于bash的shell，被誉为The Last Shell。配置当然很复杂，不过不要紧，拿来主义一下，用<a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>一行代码安装。</p>
-<h3 id="z-autojump"><a href="#z-autojump" class="headerlink" title="z&#x2F;autojump"></a>z&#x2F;autojump</h3><p>每天还在为输各种<code>cd</code>而浪费时间？<a href="https://github.com/rupa/z">z</a> 是个极为方便的小配置，它把用户访问过的目录存在记录里，每次输入<code>z &lt;访问过的目录的关键词&gt;</code>，就biu的一声到了。autojump也是类似的工具。</p>
-<p><img src="http://i.imgur.com/XFdMrp9.jpg"></p>
-<hr>
-<p>PS: 这篇文章只是兴之所至，所以很多东西还没来得及说，我会长期更新<br>Wed Mar  5 01:21:05 EST 2014</p>
-]]></content>
-      <categories>
-        <category>Collection</category>
-      </categories>
-      <tags>
-        <tag>miscellaneous</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记:把时间当做朋友</title>
     <url>/2012/12/2012-12-05-timeasfriend/</url>
     <content><![CDATA[<p>李笑来的书《把时间当作朋友》，讲的还不错。</p>
@@ -269,6 +174,48 @@
       </tags>
   </entry>
   <entry>
+    <title>一个RSS订阅者的自我修养</title>
+    <url>/2012/12/2012-12-11-rss/</url>
+    <content><![CDATA[<h2 id="这篇文章想说什么"><a href="#这篇文章想说什么" class="headerlink" title="这篇文章想说什么"></a>这篇文章想说什么</h2><p>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？  </p>
+<p><img src="http://i.imgur.com/hZ2eX.jpg">  </p>
+<p>RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。</p>
+<p>##RSS阅读器<br>国内比较流行的RSS阅读器有鲜果，抓虾，看天下…个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。</p>
+<p>##做笔记<br>Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后<br>者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进<a href="http://getpocket.com/">Pocket</a>——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用<a href="http://fivefilters.org/">FiveFilters.org</a>提供的全文feed生成器,把网址往里一扔，OK了。  </p>
+<p><img src="http://i.imgur.com/4uIeN.png"></p>
+<p>那如果在平板上呢？这时候，就要靠<a href="http://ifttt.com/">ifttt</a>这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。<br><img src="http://i.imgur.com/exc5Y.png"></p>
+<p>##纸和笔<br>如果只是这样做笔记，只不过是一种更有效的copy&amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。<br>要把笔记变成自己的东西，一定要有自己的<strong>主动</strong>参与，还是需要保持看纸质书和手写笔记的习惯。</p>
+<p>##写出来<br>写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），<a href="http://www.yangzhiping.com/tech/writing-space.html">Github+Jekyll</a>，或者Octopress都能满足你的要求。</p>
+<p>##博客的排版<br>博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">Markdown</a>就是为此应运而生的。此外，Emacs下强大的<a href="http://orgmode.org/">Org-mode</a>也是个相当不错的选择。</p>
+<p>##最后，分享一些我觉得不错的博客</p>
+<p><strong>Matrix67</strong> <a href="http://www.matrix67.com/">www.matrix67.com</a></p>
+<p><strong>酷壳</strong><br><a href="http://coolshell.com/">CoolShell.com</a></p>
+<p><strong>浏忙大爆炸</strong><br><a href="http://blog.waterlin.org/">blog.waterlin.org</a></p>
+<p><strong>刘未鹏 Mind Hacks</strong><br><a href="http://mindhacks.cn/">mindhacks.cn&#x2F;</a></p>
+<p><strong>阮一峰的网络日志</strong><br><a href="http://www.ruanyifeng.com/">www.ruanyifeng.com</a></p>
+<p><strong>good coders code,great reuse</strong><br><a href="http://www.catonmat.net/">www.catonmat.net/</a></p>
+<p><strong>外刊IT评论</strong><br><a href="http://www.aqee.net/">www.aqee.net/</a></p>
+<p><strong>Planet Emacsen</strong><br><a href="http://planet.emacsen.org/">planet.emacsen.org&#x2F;</a></p>
+<p><strong>talich闲侃</strong><br><a href="http://talich.cinepedia.cn/">talich.cinepedia.cn</a></p>
+<p><strong>李笑来</strong><br><a href="http://lixiaolai.com/">lixiaolai.com&#x2F;</a></p>
+<p><strong>学而时嘻之</strong><br><a href="http://www.geekonomics10000.com/">www.geekonomics10000.com/</a></p>
+<p><strong>不许联想</strong><br><a href="http://www.wangxiaofeng.net/">www.wangxiaofeng.net/</a></p>
+<p><strong>张佳玮写东西的地方</strong><br><a href="http://zhangjiawei.blog.tianya.cn/">zhangjiawei.blog.tianya.cn&#x2F;</a></p>
+<p><strong>西西弗斯的健忘症</strong><br><a href="http://lilyshen.wordpress.com/">lilyshen.wordpress.com&#x2F;</a></p>
+<p><strong>柴静的博客</strong><br><a href="http://blog.sina.com.cn/chjguancha">blog.sina.com.cn&#x2F;chjguancha</a></p>
+<p><strong>和菜头的槽边往事</strong><br><a href="http://www.hecaitou.net/">www.hecaitou.net/</a></p>
+<p><strong>吴万伟的博客</strong><br><a href="http://blog.163.com/wuwanwei@yeah/">blog.163.com&#x2F;wuwanwei@yeah&#x2F;</a></p>
+<p><strong>马伯庸的异教徒告解室</strong><br><a href="http://blog.sina.com.cn/maboyong">blog.sina.com.cn&#x2F;maboyong</a></p>
+<p><strong>Tear Down This Wall</strong><br><a href="http://www.bullogger.com/blogs/tdtw/">http://www.bullogger.com/blogs/tdtw/</a></p>
+]]></content>
+      <categories>
+        <category>Collection</category>
+      </categories>
+      <tags>
+        <tag>RSS</tag>
+        <tag>subscribe</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Notes of Git</title>
     <url>/2012/12/2012-12-30-ProGit/</url>
     <content><![CDATA[<p><em><strong>Pro Git</strong></em> is an excellent book about Git, and these are my reading notes.  </p>
@@ -352,60 +299,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Scrape data the right way Part:1</title>
-    <url>/2014/05/2014-05-06-scrape_way/</url>
-    <content><![CDATA[<p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/">lxml</a>.</p>
-<h2 id="Why-lxml"><a href="#Why-lxml" class="headerlink" title="Why lxml"></a>Why lxml</h2><p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html">lxml document</a> said:</p>
-<blockquote>
-<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml&#x2F;libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong><br>… …<br>The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
-</blockquote>
-<p>In short: lxml is faster when parsing well-formed web page.</p>
-<h2 id="Example-Grab-data-from-Craglist"><a href="#Example-Grab-data-from-Craglist" class="headerlink" title="Example: Grab data from Craglist"></a>Example: Grab data from Craglist</h2><p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
-<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:<br><img src="http://i.imgur.com/M5twZ1U.png"></p>
-<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>. </p>
-<pre><code>from lxml import html
-import requests
- 
-with open(&#39;crag_link.txt&#39;, &#39;a&#39;) as f:
-    for i in range(0, 1000, 100):
-        pg = &#39;http://losangeles.craigslist.org/hhh/index&#39; + str(i) + &#39;.html&#39;
-        src = requests.get(pg)
-        if src.status_code == 404:
-            sys.exit(1)
-        tree = html.fromstring(src.text)
-        print &#39;Get page&#39;, i
-        for j in range(1, 100+1):
-            x_link = &#39;//*[@id=&quot;toc_rows&quot;]/div[2]/p[&#39; + str(j) + &#39;]/span[2]/a/@href&#39;
-            links = tree.xpath(x_link)
-            for ln in links:
-                f.write( &#39;http://losangeles.craigslist.org&#39; + ln + &#39;\n&#39;)
-        
-    f.close()
-</code></pre>
-<p>Click into one of the page, for instance, we want to get post id, copy xpath<br>like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
-<pre><code>try:
-    post_id = tree.xpath(&#39;//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]/text()&#39;)
-except:
-    # Handle Error
-</code></pre>
-<p>The reason we add try&#x2F;catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try&#x2F;catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
-<pre><code>def get_attr(tree, xps):
-    return attr_name = tree.xpath(xps)
- 
-&#39;&#39;&#39; 
-xps_dict look like: 
-{&#39;post_id&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;,&#39;post_time&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;}
-&#39;&#39;&#39;
-for a, x in xps_dict.iteritems():
-    attr[a] = get_attr(tree, x)
-</code></pre>
-<p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
-]]></content>
-      <tags>
-        <tag>notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>The Better Way to learn programming is to get away from it</title>
     <url>/2013/10/2013-10-16-awayfrom/</url>
     <content><![CDATA[<p>In the last few weeks I led a life writing C programs 10 hours a day. It was interesting and frustrating, and I learned a lot from that. For one thing, programming is an enjoyable game to me. It drives me thinking problems, force me constructing ideas and making proper solutions. What’s more fascinating is, the machine would tell me whether my solution program is right or wrong in less than a second. The frustrating part is, it always tells me I was wrong. Truth to be told, I am not a good programmer as my friends thought. Hours and hours, I wasting time debugging my programs and finally found out I was wrong at the first thought. So, the problem is, what can I do with that?</p>
@@ -461,6 +354,113 @@ for a, x in xps_dict.iteritems():
 ]]></content>
       <tags>
         <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac程序员和他的朋友们</title>
+    <url>/2014/03/2014-03-05-macandfriend/</url>
+    <content><![CDATA[<h2 id="为什么要用Mac"><a href="#为什么要用Mac" class="headerlink" title="为什么要用Mac"></a>为什么要用Mac</h2><p>Linux内核作者<a href="http://www.zdnet.com/torvalds-switches-to-apple-1139183867/">Linus早就开始使用Mac了</a>（虽然面对记者表现的很扭捏）。Gnome的作者更是理直气壮<a href="http://tirania.org/blog/archive/2013/Mar-05.html">叛逃Linux投奔Mac</a>。如你所知，Mac OSX是<a href="http://programmers.stackexchange.com/questions/51670/why-do-programmers-use-or-recommend-mac-os-x">开发者们的最爱</a>。因为它一方面有非常棒的用户体验，一方面是基于Unix，尽得shell的益处，又避免了Linux下种种繁琐。什么，太贵了，看看<a href="http://www.cnblogs.com/chijianqiang/p/mmac.html">MacTalk是怎么说的</a>。</p>
+<p>工欲善其事，必先利其器。这里分享下我的Mac应用和配置。</p>
+<span id="more"></span>
+
+<p>基于原则:</p>
+<ul>
+<li>尊重软件版权，能购买正版的，请尽量购买正版</li>
+<li>Don’t Shave Yaks, 不要因为花太多时间配置工具而浪费工作的时间</li>
+<li>奥卡姆剃刀，如果一项功能需求只是偶尔用一下，就别配置了。</li>
+</ul>
+<h2 id="应用-效率"><a href="#应用-效率" class="headerlink" title="应用&amp;效率"></a>应用&amp;效率</h2><h3 id="Dropbox"><a href="#Dropbox" class="headerlink" title="Dropbox"></a>Dropbox</h3><p>大名鼎鼎的Dropbox，无需赘述。是居家旅行，出门必备同步神器。Dropbox较之Google Drive更轻量级，更快，适合在多平台同步正在编辑的文档或者代码。记得Google Drive是没有Linux版客户端的，而Dropbox有！而且，Dropbox的文件分享链接是直接指向文件的，对于在remote terminal上工作且尚不熟悉scp和rsync的同学来说是福音（<code>rsync --daemon</code>效果可以媲美Dropbox）。相比之下，Google Drive 更适合来存放资料，因为它能搜索文档内关键词。</p>
+<h3 id="Mou"><a href="#Mou" class="headerlink" title="Mou"></a>Mou</h3><p>我见过最好的MarkDown编辑器，简洁，漂亮，可配置，支持MathJax公式编辑。<br><img src="http://mouapp.com/images/Mou_Screenshot_1.png"></p>
+<h3 id="Evernote"><a href="#Evernote" class="headerlink" title="Evernote"></a>Evernote</h3><p>笔记软件，我主要用它在收藏平时看到的好的RSS文章，Prime版的多人协作，幻灯片功能也很赞。</p>
+<h3 id="Pocket"><a href="#Pocket" class="headerlink" title="Pocket"></a>Pocket</h3><p>众多的ReadItLater软件中的一个，推荐Pocket是因为它的文本抽取出来的格式比较好，在移动端上的App做的也很出色。</p>
+<h3 id="Kaleidoscope"><a href="#Kaleidoscope" class="headerlink" title="Kaleidoscope"></a>Kaleidoscope</h3><p>比较多文档之间的差异。一个命令行党应该忠诚的效忠用<code>diff</code>来比较文件，但是Kaleidoscope真的太好用了，关键是它不仅能逐行比较，还能一块块匹配着比较，还能两个文件夹比较，还能Merge文件。</p>
+<h3 id="Alfred-2"><a href="#Alfred-2" class="headerlink" title="Alfred 2"></a>Alfred 2</h3><p>这是一个神奇的快速启动软件，就为了它，你就值得买个Mac。MacTalk里谦虚的称它为“神兵利器”。你可以用它来：</p>
+<ul>
+<li>打开任何应用</li>
+<li>查找文件</li>
+<li>执行shell命令</li>
+<li>当计算器用</li>
+<li>直接写email</li>
+<li>在Google&#x2F;Amazon&#x2F;Wikipedia上搜索条目</li>
+<li>… …<br>嗯，以上只是它的普通功能，只有这些还不足以称之为伟大。Alfred之牛掰，在于其可编程的第三方workflow插件机制，这样可以在Alfred里搜豆瓣图书，搜Github仓库，查看天气或PM2.5，搜索自己的Evernote笔记，查API文档，一切能想到的，<a href="http://www.zhihu.com/question/20656680">都可以实现</a>。<br><img src="http://i.imgur.com/XDWlNGv.png"><br><img src="http://i.imgur.com/3hpPO97.png"></li>
+</ul>
+<h3 id="TextExpander"><a href="#TextExpander" class="headerlink" title="TextExpander"></a>TextExpander</h3><p>文本自动补全的插件，自定义好触发的关键词，每次输入这些关键词的时候，biu~，想打的字就全弹出来了。把自己的电话，邮箱，或者写邮件的模板存进去，能避免很多重复的劳动。</p>
+<h3 id="Popclip"><a href="#Popclip" class="headerlink" title="Popclip"></a>Popclip</h3><p>文字选中弹出扩展。每次选中文字后，可以快速的把选中文字进行复制，粘贴，查找，加入笔记本等等。</p>
+<h3 id="RescueTime-Time-sink"><a href="#RescueTime-Time-sink" class="headerlink" title="RescueTime (Time sink)"></a>RescueTime (Time sink)</h3><p>默默的运行在后台，告诉你你的时间都浪费在哪儿了。每周发邮件告诉你你在哪个软件，哪个网站上花了多少时间，这一天&#x2F;周的效率有多高。你可以定义什么是有效率的行为（比如用Evernote写笔记，用Emacs写代码）加分，哪些是偷懒的行为（看美剧，刷豆瓣）扣分。</p>
+<h3 id="LimeChat"><a href="#LimeChat" class="headerlink" title="LimeChat"></a>LimeChat</h3><p>IRC应用，选它是因为其他的IRC应用都太！！难！！用！！了！！</p>
+<h3 id="AppCleaner"><a href="#AppCleaner" class="headerlink" title="AppCleaner"></a>AppCleaner</h3><p>删软件清理残余。</p>
+<h3 id="Moom"><a href="#Moom" class="headerlink" title="Moom"></a>Moom</h3><p>还在像傻帽一样花半天找到窗口边框笨手笨脚地缩放大小么？用Moom吧，能快速排好窗口，自定义想要的窗口大小。</p>
+<h3 id="The-unarchiver"><a href="#The-unarchiver" class="headerlink" title="The unarchiver"></a>The unarchiver</h3><p>普通解压用<code>tar</code>命令，但如何有非UTF-8的中文编码，还是用unarchiver比较方便（命令行下得用<code>find</code> + <code>iconv</code>写一长串，太虐心）</p>
+<h2 id="编程-配置"><a href="#编程-配置" class="headerlink" title="编程&amp;配置"></a>编程&amp;配置</h2><h3 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h3><p>查文档利器。作者在新版本对它收费$20，丧心病狂，但从长远考虑，还是值得的。能配合Alfred用，省心。</p>
+<h3 id="Textmate"><a href="#Textmate" class="headerlink" title="Textmate"></a>Textmate</h3><p>bundle功能很好用，方便快速掌握一门语言。写前端代码很方便。其他时候，还是用Vim&#x2F;Emacs吧。</p>
+<h3 id="TotalCommander"><a href="#TotalCommander" class="headerlink" title="TotalCommander"></a>TotalCommander</h3><p>命令行党都有过每天得把Terminal拖来拖去的苦恼。TotalCommander正是这样一款下拉式的终端，类似Gnome下的Guake，也支持多窗口，强烈推荐。</p>
+<h3 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h3><p>不管你用bash，zsh还是tcsh，有一个好用的Terminal软件是十分必要的，iTerm2就正是一个优秀的终端。好看，配置性极强，有很多方便的功能，戳<a href="http://www.yangzhiping.com/tech/iterm2.html">这篇文章</a>。</p>
+<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>Mac下的包管理器，和ports平分天下。想装什么东西，尽管<code>brew install</code> 就好。</p>
+<h3 id="Z-shell-tmux及配置文件"><a href="#Z-shell-tmux及配置文件" class="headerlink" title="Z shell (tmux及配置文件)"></a>Z shell (tmux及配置文件)</h3><p>基于bash的shell，被誉为The Last Shell。配置当然很复杂，不过不要紧，拿来主义一下，用<a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>一行代码安装。</p>
+<h3 id="z-autojump"><a href="#z-autojump" class="headerlink" title="z&#x2F;autojump"></a>z&#x2F;autojump</h3><p>每天还在为输各种<code>cd</code>而浪费时间？<a href="https://github.com/rupa/z">z</a> 是个极为方便的小配置，它把用户访问过的目录存在记录里，每次输入<code>z &lt;访问过的目录的关键词&gt;</code>，就biu的一声到了。autojump也是类似的工具。</p>
+<p><img src="http://i.imgur.com/XFdMrp9.jpg"></p>
+<hr>
+<p>PS: 这篇文章只是兴之所至，所以很多东西还没来得及说，我会长期更新<br>Wed Mar  5 01:21:05 EST 2014</p>
+]]></content>
+      <categories>
+        <category>Collection</category>
+      </categories>
+      <tags>
+        <tag>miscellaneous</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Scrape data the right way Part:1</title>
+    <url>/2014/05/2014-05-06-scrape_way/</url>
+    <content><![CDATA[<p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/">lxml</a>.</p>
+<h2 id="Why-lxml"><a href="#Why-lxml" class="headerlink" title="Why lxml"></a>Why lxml</h2><p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html">lxml document</a> said:</p>
+<blockquote>
+<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml&#x2F;libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong><br>… …<br>The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
+</blockquote>
+<p>In short: lxml is faster when parsing well-formed web page.</p>
+<h2 id="Example-Grab-data-from-Craglist"><a href="#Example-Grab-data-from-Craglist" class="headerlink" title="Example: Grab data from Craglist"></a>Example: Grab data from Craglist</h2><p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
+<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:<br><img src="http://i.imgur.com/M5twZ1U.png"></p>
+<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>. </p>
+<pre><code>from lxml import html
+import requests
+ 
+with open(&#39;crag_link.txt&#39;, &#39;a&#39;) as f:
+    for i in range(0, 1000, 100):
+        pg = &#39;http://losangeles.craigslist.org/hhh/index&#39; + str(i) + &#39;.html&#39;
+        src = requests.get(pg)
+        if src.status_code == 404:
+            sys.exit(1)
+        tree = html.fromstring(src.text)
+        print &#39;Get page&#39;, i
+        for j in range(1, 100+1):
+            x_link = &#39;//*[@id=&quot;toc_rows&quot;]/div[2]/p[&#39; + str(j) + &#39;]/span[2]/a/@href&#39;
+            links = tree.xpath(x_link)
+            for ln in links:
+                f.write( &#39;http://losangeles.craigslist.org&#39; + ln + &#39;\n&#39;)
+        
+    f.close()
+</code></pre>
+<p>Click into one of the page, for instance, we want to get post id, copy xpath<br>like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
+<pre><code>try:
+    post_id = tree.xpath(&#39;//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]/text()&#39;)
+except:
+    # Handle Error
+</code></pre>
+<p>The reason we add try&#x2F;catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try&#x2F;catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
+<pre><code>def get_attr(tree, xps):
+    return attr_name = tree.xpath(xps)
+ 
+&#39;&#39;&#39; 
+xps_dict look like: 
+{&#39;post_id&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;,&#39;post_time&#39;:&#39;//*&lt;somehing&gt;/p[1]/text()&#39;}
+&#39;&#39;&#39;
+for a, x in xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre>
+<p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -809,25 +809,6 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
-    <title>How to delete nodes of linked list with pointers-to-pointers (Chinese)</title>
-    <url>/2015/02/2015-02-12-2D-pointer/</url>
-    <content><![CDATA[<p>我在用C++写 Leetcode中 Remove duplicates from linked list II 一题时，看到别人的一份代码，感觉写法很有趣，细细研究了一下。受益不少。</p>
-<p>在大部分链表题中，我们习惯于创建一个空节点dummy，使之指向链表的头结点，以方便对<br>第一个节点进行操作（比如，删除它）。最后答案返回dummy.next。比较有节操的同学会在<br>删除链表的某些节点时用delete，以免内存泄露，但是难道就没有考虑过dummy节点感受么？</p>
-<p>使用一个二维指针，可以优雅的解决了这个问题。</p>
-<p>举个简单的🌰：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Suppose we have a linked list &quot;1-&gt;2-&gt;3&quot;, we want to delete the    </span></span><br><span class="line"><span class="comment"> * second node, remains &quot;1-&gt;3&quot;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">ListNode **p = &amp;head, *succ;</span><br><span class="line">p = &amp;(*p)-&gt;next;</span><br><span class="line">succ = (*p)-&gt;next;</span><br><span class="line"><span class="built_in">delete</span> (*p);</span><br><span class="line">(*p) = succ;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-<p>尝试解释一下下。<code>p</code>是一个二级指针，也就是说，在一开始，<code>p</code>是一个指向一个指向<code>head</code>指针的指针（也就是<code>(*p)</code>指向<code>head</code>）。这样的好处就是，当我们需要在某一个时刻删除指向的节点（<code>delete *p</code>操作），p本身不受影响（当然，是p指向的指针所对应的内存空间被释放了）。唯一一点不方便的时，其他每次移动的时候，都要用<code>(*p)</code>（p淡淡的看着他指向的指针往后移。）</p>
-<p>和用dummy解法不同的是，dummy解法指针后移是<code>ptr = ptr-&gt;next;</code>。那我们这呢？<code>(*p) = (*p)-&gt;next;</code>？这样是错的。比如<code>1-&gt;2</code>里从<code>1</code>移动到<code>2</code>的过程中，就把节点<code>1</code>修改了。所以，要移动的是p。即为<code>p = &amp;(*p)-&gt;next</code>，其中<code>-&gt;</code>的优先级是高于<code>&amp;</code>的，把p赋值为<code>(*p)-&gt;</code>的地址，所以现在<code>(*p)</code>指向老<code>(*p)</code>的next。</p>
-<p>另一个大家可能关心的问题，在<code>delete (*p)</code>后，<code>(*p)</code>的前驱节点的next是怎么不找丢的呀？这其实涉及到<code>delete</code>的本质（Stackoverflow对这个问题有个不错的<a href="http://stackoverflow.com/a/11603084/1035859">回答</a>）。当我们调用<code>delete</code>的时候，那块内存里的数据其实并没有消失，只是这块内存地址被标记为可以利用，当之后的程序需要new的时候，才有可能覆盖掉这里的数据。就像爱情，没有一段新的覆盖，老的怎么忘的掉（情人节了还在改博客，唉~~）。所以这个代码严格意义上说是由风险的，如果在delete的一瞬间，正好另一个程序&#x2F;进程new了一块内存，又刚好是这里，这个方法就废了。fix的方法就是delete前，赋给一个临时变量，把next覆盖当前，再delete临时变量。</p>
-<p>修改的过程中，发现陈皓也写过<a href="http://coolshell.cn/articles/8990.html">类似的文章</a>，这个trick被Linus举例为什么才是core low-level coding，真正懂指针的做法。 他的文章还有配图，如果我表述的还是没让大家理解，推荐去读一下。</p>
-<p>PS：《Pointers In C》的第十二章《Using Structures and Pointers》，也有关于指针链表操作的详细解释。</p>
-<p><img src="http://ecx.images-amazon.com/images/I/51A8TNWQ3BL.jpg"></p>
-]]></content>
-      <tags>
-        <tag>algorithms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Colorizing Loggers -- A simple practice of decorator</title>
     <url>/2015/02/2015-02-17-colorize-log/</url>
     <content><![CDATA[<h2 id="What-is-this-post-about"><a href="#What-is-this-post-about" class="headerlink" title="What is this post about"></a>What is this post about</h2><p>Many people believe that decorator is one of the obscure concepts in Python.<br>Trust me, it is not. To be short, <strong>a decorator is a function that modifies other<br>functions via closures.</strong></p>
@@ -868,6 +849,44 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
+    <title>How to delete nodes of linked list with pointers-to-pointers (Chinese)</title>
+    <url>/2015/02/2015-02-12-2D-pointer/</url>
+    <content><![CDATA[<p>我在用C++写 Leetcode中 Remove duplicates from linked list II 一题时，看到别人的一份代码，感觉写法很有趣，细细研究了一下。受益不少。</p>
+<p>在大部分链表题中，我们习惯于创建一个空节点dummy，使之指向链表的头结点，以方便对<br>第一个节点进行操作（比如，删除它）。最后答案返回dummy.next。比较有节操的同学会在<br>删除链表的某些节点时用delete，以免内存泄露，但是难道就没有考虑过dummy节点感受么？</p>
+<p>使用一个二维指针，可以优雅的解决了这个问题。</p>
+<p>举个简单的🌰：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Suppose we have a linked list &quot;1-&gt;2-&gt;3&quot;, we want to delete the    </span></span><br><span class="line"><span class="comment"> * second node, remains &quot;1-&gt;3&quot;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">ListNode **p = &amp;head, *succ;</span><br><span class="line">p = &amp;(*p)-&gt;next;</span><br><span class="line">succ = (*p)-&gt;next;</span><br><span class="line"><span class="built_in">delete</span> (*p);</span><br><span class="line">(*p) = succ;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>尝试解释一下下。<code>p</code>是一个二级指针，也就是说，在一开始，<code>p</code>是一个指向一个指向<code>head</code>指针的指针（也就是<code>(*p)</code>指向<code>head</code>）。这样的好处就是，当我们需要在某一个时刻删除指向的节点（<code>delete *p</code>操作），p本身不受影响（当然，是p指向的指针所对应的内存空间被释放了）。唯一一点不方便的时，其他每次移动的时候，都要用<code>(*p)</code>（p淡淡的看着他指向的指针往后移。）</p>
+<p>和用dummy解法不同的是，dummy解法指针后移是<code>ptr = ptr-&gt;next;</code>。那我们这呢？<code>(*p) = (*p)-&gt;next;</code>？这样是错的。比如<code>1-&gt;2</code>里从<code>1</code>移动到<code>2</code>的过程中，就把节点<code>1</code>修改了。所以，要移动的是p。即为<code>p = &amp;(*p)-&gt;next</code>，其中<code>-&gt;</code>的优先级是高于<code>&amp;</code>的，把p赋值为<code>(*p)-&gt;</code>的地址，所以现在<code>(*p)</code>指向老<code>(*p)</code>的next。</p>
+<p>另一个大家可能关心的问题，在<code>delete (*p)</code>后，<code>(*p)</code>的前驱节点的next是怎么不找丢的呀？这其实涉及到<code>delete</code>的本质（Stackoverflow对这个问题有个不错的<a href="http://stackoverflow.com/a/11603084/1035859">回答</a>）。当我们调用<code>delete</code>的时候，那块内存里的数据其实并没有消失，只是这块内存地址被标记为可以利用，当之后的程序需要new的时候，才有可能覆盖掉这里的数据。就像爱情，没有一段新的覆盖，老的怎么忘的掉（情人节了还在改博客，唉~~）。所以这个代码严格意义上说是由风险的，如果在delete的一瞬间，正好另一个程序&#x2F;进程new了一块内存，又刚好是这里，这个方法就废了。fix的方法就是delete前，赋给一个临时变量，把next覆盖当前，再delete临时变量。</p>
+<p>修改的过程中，发现陈皓也写过<a href="http://coolshell.cn/articles/8990.html">类似的文章</a>，这个trick被Linus举例为什么才是core low-level coding，真正懂指针的做法。 他的文章还有配图，如果我表述的还是没让大家理解，推荐去读一下。</p>
+<p>PS：《Pointers In C》的第十二章《Using Structures and Pointers》，也有关于指针链表操作的详细解释。</p>
+<p><img src="http://ecx.images-amazon.com/images/I/51A8TNWQ3BL.jpg"></p>
+]]></content>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Producer consumer problem in coroutine</title>
+    <url>/2015/03/2015-03-02-coroutine-producer-comsumer/</url>
+    <content><![CDATA[<h2 id="What-is-coroutine"><a href="#What-is-coroutine" class="headerlink" title="What is coroutine"></a>What is coroutine</h2><p>As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it’s essentially just context switching. Not surprisingly, coroutine is implemented in primitives like setjmp&#x2F;longjump or ucontext in low level.</p>
+<p>In many senarioes, coroutine is a more light-weight alternative of threads. For programming languages with GIL (like Python), coroutine would used to handle concurrency.</p>
+<h2 id="Producer-and-consumer-problem"><a href="#Producer-and-consumer-problem" class="headerlink" title="Producer and consumer problem"></a>Producer and consumer problem</h2><p>Let’s take a look at classic “producer-consumer” problem. At each time, one coroutine produce products and add them into queue, the other coroutine take products from queue and use it (hmm, sounds like video buffering, right?). </p>
+<p>The code below assumes you already have some knowledge of generator.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coroutine</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="comment"># A wrapper to convert function into generator</span></span><br><span class="line">    <span class="comment"># From David Beazley</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">        cr = func(*args,**kwargs)</span><br><span class="line">        cr.<span class="built_in">next</span>()</span><br><span class="line">        <span class="keyword">return</span> cr</span><br><span class="line">    <span class="keyword">return</span> start  </span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">producer</span>(<span class="params">target</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = random.randint(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# producer: sending data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        target.send(data)</span><br><span class="line">        </span><br><span class="line"><span class="meta">@coroutine</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consumer</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# consumer: receving data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    g_consumer = consumer()</span><br><span class="line">    producer(g_consumer)</span><br></pre></td></tr></table></figure>
+<p>Simple enough, <code>send()</code> is a built-in function of generator. The producer send data to consumer, consumer receives data from <code>yield</code>.</p>
+<h2 id="Coroutine-usage"><a href="#Coroutine-usage" class="headerlink" title="Coroutine usage"></a>Coroutine usage</h2><p>Yes, the famous concurrency library gevent is based on coroutine.</p>
+<h2 id="Reference-and-Recommended-Reading"><a href="#Reference-and-Recommended-Reading" class="headerlink" title="Reference and Recommended Reading:"></a>Reference and Recommended Reading:</h2><p><a href="https://www.python.org/dev/peps/pep-0342/">PEP 342: Coroutines via Enhanced Generators</a></p>
+<p><a href="http://coolshell.cn/articles/10975.html">一个“蝇量级” C 语言协程库</a></p>
+<p><a href="http://learn-gevent-socketio.readthedocs.org/en/latest/general_concepts.html">General concepts: concurrency, parallelism, threads and processes</a></p>
+<p><a href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></p>
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>找出编辑距离不大于 K 的单词</title>
     <url>/2015/05/2015-05-09-K_edit_distances/</url>
     <content><![CDATA[<h1 id="关于-edit-distance-的一道题"><a href="#关于-edit-distance-的一道题" class="headerlink" title="关于 edit distance 的一道题"></a>关于 edit distance 的一道题</h1><p>最近看到一个很有意思的面试题：给一个单词和一个字典，找出字典中所有和给定单词编辑距离不大于 k 的词。</p>
@@ -898,25 +917,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>algorithms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Producer consumer problem in coroutine</title>
-    <url>/2015/03/2015-03-02-coroutine-producer-comsumer/</url>
-    <content><![CDATA[<h2 id="What-is-coroutine"><a href="#What-is-coroutine" class="headerlink" title="What is coroutine"></a>What is coroutine</h2><p>As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it’s essentially just context switching. Not surprisingly, coroutine is implemented in primitives like setjmp&#x2F;longjump or ucontext in low level.</p>
-<p>In many senarioes, coroutine is a more light-weight alternative of threads. For programming languages with GIL (like Python), coroutine would used to handle concurrency.</p>
-<h2 id="Producer-and-consumer-problem"><a href="#Producer-and-consumer-problem" class="headerlink" title="Producer and consumer problem"></a>Producer and consumer problem</h2><p>Let’s take a look at classic “producer-consumer” problem. At each time, one coroutine produce products and add them into queue, the other coroutine take products from queue and use it (hmm, sounds like video buffering, right?). </p>
-<p>The code below assumes you already have some knowledge of generator.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coroutine</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="comment"># A wrapper to convert function into generator</span></span><br><span class="line">    <span class="comment"># From David Beazley</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">        cr = func(*args,**kwargs)</span><br><span class="line">        cr.<span class="built_in">next</span>()</span><br><span class="line">        <span class="keyword">return</span> cr</span><br><span class="line">    <span class="keyword">return</span> start  </span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">producer</span>(<span class="params">target</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = random.randint(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# producer: sending data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        target.send(data)</span><br><span class="line">        </span><br><span class="line"><span class="meta">@coroutine</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consumer</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;# consumer: receving data &#123;&#125;&quot;</span>.<span class="built_in">format</span>(data))</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    g_consumer = consumer()</span><br><span class="line">    producer(g_consumer)</span><br></pre></td></tr></table></figure>
-<p>Simple enough, <code>send()</code> is a built-in function of generator. The producer send data to consumer, consumer receives data from <code>yield</code>.</p>
-<h2 id="Coroutine-usage"><a href="#Coroutine-usage" class="headerlink" title="Coroutine usage"></a>Coroutine usage</h2><p>Yes, the famous concurrency library gevent is based on coroutine.</p>
-<h2 id="Reference-and-Recommended-Reading"><a href="#Reference-and-Recommended-Reading" class="headerlink" title="Reference and Recommended Reading:"></a>Reference and Recommended Reading:</h2><p><a href="https://www.python.org/dev/peps/pep-0342/">PEP 342: Coroutines via Enhanced Generators</a></p>
-<p><a href="http://coolshell.cn/articles/10975.html">一个“蝇量级” C 语言协程库</a></p>
-<p><a href="http://learn-gevent-socketio.readthedocs.org/en/latest/general_concepts.html">General concepts: concurrency, parallelism, threads and processes</a></p>
-<p><a href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></p>
-]]></content>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -951,6 +951,19 @@ git checkout revision_hash .
   </entry>
   <entry>
     <title>一周笔记</title>
+    <url>/2016/06/2016-06-05-weekly2/</url>
+    <content><![CDATA[<h2 id="The-Software-Development-Poverty-Trap"><a href="#The-Software-Development-Poverty-Trap" class="headerlink" title="The Software Development Poverty Trap"></a><a href="http://alexandros.resin.io/the-software-development-poverty-trap/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">The Software Development Poverty Trap</a></h2><p>软件开发中的马太效应，越是差劲的团队越缺乏长期规划，用老旧的技术，写 ad-hoc 的代码，优秀的工程师越容易离开（斜眼看我司）。</p>
+<h2 id="“把程序写好”这回事"><a href="#“把程序写好”这回事" class="headerlink" title="“把程序写好”这回事"></a><a href="http://mp.weixin.qq.com/s?__biz=MzA3MDMwOTcwMg==&mid=2650004561&idx=1&sn=967c3816e3b0993b5517799183efb3be&scene=0#rd">“把程序写好”这回事</a></h2><p>来此余晟的微信公共号（对，就是翻译正则表达式的那哥们）。很多程序员在学校和工作中编程，但不知道如何写好程序，貌似也没有学校教如何『写好程序』。写好程序绝不是编译通过，跑过测试，符合 coding style 那么简单。文中提到的『荣誉感』还是挺重要的，我写代码的时候就会想着对自己的每一行代码负责，通过 code review 看别人的代码质量也会潜移默化影响我对这个人的评价，和对待他的态度。</p>
+<h2 id="What-every-programmer-should-know-about-memory"><a href="#What-every-programmer-should-know-about-memory" class="headerlink" title="What every programmer should know about memory"></a><a href="https://www.akkadia.org/drepper/cpumemory.pdf">What every programmer should know about memory</a></h2><p>挺长的，从偏硬件的角度讲解内存的原理。前面几章在各个 OS 教科书上都能找到，后面的内容就比较贴近现实，看着很有意思。</p>
+<h2 id="The-Little-Manual-of-API-Design"><a href="#The-Little-Manual-of-API-Design" class="headerlink" title="The Little Manual of API Design"></a><a href="http://people.mpi-inf.mpg.de/~jblanche/api-design.pdf">The Little Manual of API Design</a></h2><p>记得 GoogleTechTalk 里著名的一集 <a href="https://www.youtube.com/watch?v=aAb7hSCtvGw">How To Design A Good API and Why it Matters</a> 么，这个 manual 可以看作那个 talk 的扩展读物。API Design 在程序设计中的重要性相比于架构不遑多让，看看这些 best practices 有益身心~~</p>
+<h2 id="What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies"><a href="#What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies" class="headerlink" title="What Powers Instagram: Hundreds of Instances, Dozens of Technologies"></a><a href="http://instagram-engineering.tumblr.com/post/13649370142/what-powers-instagram-hundreds-of-instances?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">What Powers Instagram: Hundreds of Instances, Dozens of Technologies</a></h2><p>一篇老文章，介绍 Instagram 早期时候（2012）的架构。我最喜欢这种早期架构的文章，看别人在高速增长期如何用快糙猛的方法解决问题。里面给的小部分技术在今天看来有些过时了，但大部分还很有借鉴意义。比如提到的 gunicorn 和 Fabric，是 Python  web 开发中的标配（还有 supervisor）；vmtouch （查了下发现是一个超级light weight的内存数据管理工具，代码也写的很棒）；Munin，Pingdom  监控，Sentry 报告错误。</p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周笔记</title>
     <url>/2016/07/2016-07-31-weekly3/</url>
     <content><![CDATA[<h2 id="How-to-Write-a-Lisp-Interpreter-in-Python"><a href="#How-to-Write-a-Lisp-Interpreter-in-Python" class="headerlink" title="(How to Write a (Lisp) Interpreter (in Python))"></a><a href="http://norvig.com/lispy.html">(How to Write a (Lisp) Interpreter (in Python))</a></h2><p>老文章。来自Peter Norvig 的用 Python 写个 lisp 解释器。代码和解释都很完美。记得有公司出面试题出类似的，如果用这文章里的思路解决就秒杀啊。</p>
 <h2 id="DNS-The-good-parts"><a href="#DNS-The-good-parts" class="headerlink" title="DNS The good parts"></a><a href="https://www.petekeen.net/dns-the-good-parts">DNS The good parts</a></h2><p>比较详细的介绍 DNS 的文章</p>
@@ -969,6 +982,13 @@ git checkout revision_hash .
       <tags>
         <tag>notes</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Prompt: Summon Rob Pike to refactor</title>
+    <url>/2025/10/Prompt-Summon-Rob-Pike-to-refactor/</url>
+    <content><![CDATA[<p>I still haven’t found a good way to save my LLM prompts. For now, I’m just using Alfred’s snippet feature. Typing a few keystrokes, and it fills in a template with customizable placeholders. Here’s my codebase refactoring prompt:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I need you to review &#123;cursor&#125; and redesign it from first principles.</span><br><span class="line"></span><br><span class="line">Before writing any code, follow these steps:</span><br><span class="line"></span><br><span class="line">1. RESEARCH &amp; UNDERSTAND (Do not skip this)</span><br><span class="line">   - Read the existing implementation thoroughly</span><br><span class="line">   - Identify what problem it&#x27;s actually solving</span><br><span class="line">   - List all the constraints and requirements</span><br><span class="line">   - Document the current architecture and dependencies</span><br><span class="line"></span><br><span class="line">   SEARCH ONLINE TO:</span><br><span class="line">   - Find how others have solved similar problems</span><br><span class="line">   - Look for established patterns and anti-patterns</span><br><span class="line">   - Research best practices for this domain</span><br><span class="line">   - Check for any canonical solutions or standards</span><br><span class="line">   - Review criticism of common approaches</span><br><span class="line">   - Find papers, blog posts, or documentation from experts like Rob Pike, Ken Thompson, or domain authorities</span><br><span class="line"></span><br><span class="line">2. QUESTION EVERYTHING</span><br><span class="line">   - What is the simplest possible solution to the core problem?</span><br><span class="line">   - Which features/abstractions are truly necessary vs. &quot;nice to have&quot;?</span><br><span class="line">   - What assumptions are we making that don&#x27;t need to be true?</span><br><span class="line">   - Can we solve this with less code, fewer dependencies, fewer concepts?</span><br><span class="line">   - What would this look like if we started from scratch today?</span><br><span class="line"></span><br><span class="line">   VERIFY YOUR ASSUMPTIONS:</span><br><span class="line">   - Search for evidence supporting or contradicting your assumptions</span><br><span class="line">   - Look for real-world performance data if optimization is claimed</span><br><span class="line">   - Check if &quot;best practices&quot; you&#x27;re following are actually justified</span><br><span class="line">   - Find counterexamples or alternative viewpoints</span><br><span class="line">   - Validate that the complexity is warranted</span><br><span class="line"></span><br><span class="line">3. DESIGN FROM FIRST PRINCIPLES</span><br><span class="line">   Apply Rob Pike&#x27;s philosophy:</span><br><span class="line">   - &quot;Less is exponentially more&quot; - Can we remove layers?</span><br><span class="line">   - &quot;Simplicity is complicated&quot; - What&#x27;s the simplest correct solution?</span><br><span class="line">   - &quot;Data dominates&quot; - Is the data structure obvious and right?</span><br><span class="line">   - &quot;If in doubt, use brute force&quot; - Are we over-optimizing?</span><br><span class="line"></span><br><span class="line">   Design principles to follow:</span><br><span class="line">   - Clear &gt; Clever</span><br><span class="line">   - Obvious &gt; Obscure</span><br><span class="line">   - Direct &gt; Indirect</span><br><span class="line">   - Simple &gt; Complex</span><br><span class="line">   - Transparent &gt; Magical</span><br><span class="line"></span><br><span class="line">   INFORMED BY RESEARCH:</span><br><span class="line">   - Compare your proposed design with what you found online</span><br><span class="line">   - Explain why simpler alternatives might work better</span><br><span class="line">   - Acknowledge tradeoffs that experts have identified</span><br><span class="line">   - Learn from others&#x27; mistakes without repeating them</span><br><span class="line"></span><br><span class="line">4. PROPOSE THE REDESIGN</span><br><span class="line">   - Describe the new design in plain language first</span><br><span class="line">   - Explain what you&#x27;re removing and why</span><br><span class="line">   - Explain what you&#x27;re keeping and why</span><br><span class="line">   - Show how it solves the core problem more directly</span><br><span class="line">   - Identify any tradeoffs honestly</span><br><span class="line">   - Reference relevant ideas or critiques you found in your research</span><br><span class="line"></span><br><span class="line">5. IMPLEMENT WITH TESTS</span><br><span class="line">   - Write tests that capture the essential behavior</span><br><span class="line">   - Implement the simplest thing that could work</span><br><span class="line">   - Use standard tools and approaches, not clever workarounds</span><br><span class="line">   - Write code that&#x27;s easy to read and understand</span><br><span class="line">   - Focus on correctness and clarity over optimization</span><br><span class="line"></span><br><span class="line">CRITICAL GUIDELINES:</span><br><span class="line">- Ruthlessly eliminate unnecessary complexity</span><br><span class="line">- Prefer boring, proven solutions over novel approaches</span><br><span class="line">- Every abstraction must earn its place</span><br><span class="line">- If you can&#x27;t explain it simply, the design is wrong</span><br><span class="line">- Make the code obvious to someone reading it for the first time</span><br><span class="line">- Stand on the shoulders of giants - learn from existing work</span><br><span class="line">- But don&#x27;t cargo-cult complexity just because &quot;everyone does it&quot;</span><br><span class="line"></span><br><span class="line">What would Rob Pike do? He&#x27;d probably delete half of it and make the rest clearer.</span><br><span class="line"></span><br><span class="line">Ready to begin the research, review, and redesign?</span><br></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>2016 年计划</title>
@@ -991,19 +1011,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>writing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一周笔记</title>
-    <url>/2016/06/2016-06-05-weekly2/</url>
-    <content><![CDATA[<h2 id="The-Software-Development-Poverty-Trap"><a href="#The-Software-Development-Poverty-Trap" class="headerlink" title="The Software Development Poverty Trap"></a><a href="http://alexandros.resin.io/the-software-development-poverty-trap/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">The Software Development Poverty Trap</a></h2><p>软件开发中的马太效应，越是差劲的团队越缺乏长期规划，用老旧的技术，写 ad-hoc 的代码，优秀的工程师越容易离开（斜眼看我司）。</p>
-<h2 id="“把程序写好”这回事"><a href="#“把程序写好”这回事" class="headerlink" title="“把程序写好”这回事"></a><a href="http://mp.weixin.qq.com/s?__biz=MzA3MDMwOTcwMg==&mid=2650004561&idx=1&sn=967c3816e3b0993b5517799183efb3be&scene=0#rd">“把程序写好”这回事</a></h2><p>来此余晟的微信公共号（对，就是翻译正则表达式的那哥们）。很多程序员在学校和工作中编程，但不知道如何写好程序，貌似也没有学校教如何『写好程序』。写好程序绝不是编译通过，跑过测试，符合 coding style 那么简单。文中提到的『荣誉感』还是挺重要的，我写代码的时候就会想着对自己的每一行代码负责，通过 code review 看别人的代码质量也会潜移默化影响我对这个人的评价，和对待他的态度。</p>
-<h2 id="What-every-programmer-should-know-about-memory"><a href="#What-every-programmer-should-know-about-memory" class="headerlink" title="What every programmer should know about memory"></a><a href="https://www.akkadia.org/drepper/cpumemory.pdf">What every programmer should know about memory</a></h2><p>挺长的，从偏硬件的角度讲解内存的原理。前面几章在各个 OS 教科书上都能找到，后面的内容就比较贴近现实，看着很有意思。</p>
-<h2 id="The-Little-Manual-of-API-Design"><a href="#The-Little-Manual-of-API-Design" class="headerlink" title="The Little Manual of API Design"></a><a href="http://people.mpi-inf.mpg.de/~jblanche/api-design.pdf">The Little Manual of API Design</a></h2><p>记得 GoogleTechTalk 里著名的一集 <a href="https://www.youtube.com/watch?v=aAb7hSCtvGw">How To Design A Good API and Why it Matters</a> 么，这个 manual 可以看作那个 talk 的扩展读物。API Design 在程序设计中的重要性相比于架构不遑多让，看看这些 best practices 有益身心~~</p>
-<h2 id="What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies"><a href="#What-Powers-Instagram-Hundreds-of-Instances-Dozens-of-Technologies" class="headerlink" title="What Powers Instagram: Hundreds of Instances, Dozens of Technologies"></a><a href="http://instagram-engineering.tumblr.com/post/13649370142/what-powers-instagram-hundreds-of-instances?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website">What Powers Instagram: Hundreds of Instances, Dozens of Technologies</a></h2><p>一篇老文章，介绍 Instagram 早期时候（2012）的架构。我最喜欢这种早期架构的文章，看别人在高速增长期如何用快糙猛的方法解决问题。里面给的小部分技术在今天看来有些过时了，但大部分还很有借鉴意义。比如提到的 gunicorn 和 Fabric，是 Python  web 开发中的标配（还有 supervisor）；vmtouch （查了下发现是一个超级light weight的内存数据管理工具，代码也写的很棒）；Munin，Pingdom  监控，Sentry 报告错误。</p>
-]]></content>
-      <tags>
-        <tag>notes</tag>
       </tags>
   </entry>
 </search>
