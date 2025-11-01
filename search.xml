@@ -809,6 +809,25 @@ git checkout revision_hash .
       </tags>
   </entry>
   <entry>
+    <title>How to delete nodes of linked list with pointers-to-pointers (Chinese)</title>
+    <url>/2015/02/2015-02-12-2D-pointer/</url>
+    <content><![CDATA[<p>我在用C++写 Leetcode中 Remove duplicates from linked list II 一题时，看到别人的一份代码，感觉写法很有趣，细细研究了一下。受益不少。</p>
+<p>在大部分链表题中，我们习惯于创建一个空节点dummy，使之指向链表的头结点，以方便对<br>第一个节点进行操作（比如，删除它）。最后答案返回dummy.next。比较有节操的同学会在<br>删除链表的某些节点时用delete，以免内存泄露，但是难道就没有考虑过dummy节点感受么？</p>
+<p>使用一个二维指针，可以优雅的解决了这个问题。</p>
+<p>举个简单的🌰：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Suppose we have a linked list &quot;1-&gt;2-&gt;3&quot;, we want to delete the    </span></span><br><span class="line"><span class="comment"> * second node, remains &quot;1-&gt;3&quot;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">ListNode **p = &amp;head, *succ;</span><br><span class="line">p = &amp;(*p)-&gt;next;</span><br><span class="line">succ = (*p)-&gt;next;</span><br><span class="line"><span class="built_in">delete</span> (*p);</span><br><span class="line">(*p) = succ;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>尝试解释一下下。<code>p</code>是一个二级指针，也就是说，在一开始，<code>p</code>是一个指向一个指向<code>head</code>指针的指针（也就是<code>(*p)</code>指向<code>head</code>）。这样的好处就是，当我们需要在某一个时刻删除指向的节点（<code>delete *p</code>操作），p本身不受影响（当然，是p指向的指针所对应的内存空间被释放了）。唯一一点不方便的时，其他每次移动的时候，都要用<code>(*p)</code>（p淡淡的看着他指向的指针往后移。）</p>
+<p>和用dummy解法不同的是，dummy解法指针后移是<code>ptr = ptr-&gt;next;</code>。那我们这呢？<code>(*p) = (*p)-&gt;next;</code>？这样是错的。比如<code>1-&gt;2</code>里从<code>1</code>移动到<code>2</code>的过程中，就把节点<code>1</code>修改了。所以，要移动的是p。即为<code>p = &amp;(*p)-&gt;next</code>，其中<code>-&gt;</code>的优先级是高于<code>&amp;</code>的，把p赋值为<code>(*p)-&gt;</code>的地址，所以现在<code>(*p)</code>指向老<code>(*p)</code>的next。</p>
+<p>另一个大家可能关心的问题，在<code>delete (*p)</code>后，<code>(*p)</code>的前驱节点的next是怎么不找丢的呀？这其实涉及到<code>delete</code>的本质（Stackoverflow对这个问题有个不错的<a href="http://stackoverflow.com/a/11603084/1035859">回答</a>）。当我们调用<code>delete</code>的时候，那块内存里的数据其实并没有消失，只是这块内存地址被标记为可以利用，当之后的程序需要new的时候，才有可能覆盖掉这里的数据。就像爱情，没有一段新的覆盖，老的怎么忘的掉（情人节了还在改博客，唉~~）。所以这个代码严格意义上说是由风险的，如果在delete的一瞬间，正好另一个程序&#x2F;进程new了一块内存，又刚好是这里，这个方法就废了。fix的方法就是delete前，赋给一个临时变量，把next覆盖当前，再delete临时变量。</p>
+<p>修改的过程中，发现陈皓也写过<a href="http://coolshell.cn/articles/8990.html">类似的文章</a>，这个trick被Linus举例为什么才是core low-level coding，真正懂指针的做法。 他的文章还有配图，如果我表述的还是没让大家理解，推荐去读一下。</p>
+<p>PS：《Pointers In C》的第十二章《Using Structures and Pointers》，也有关于指针链表操作的详细解释。</p>
+<p><img src="http://ecx.images-amazon.com/images/I/51A8TNWQ3BL.jpg"></p>
+]]></content>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Colorizing Loggers -- A simple practice of decorator</title>
     <url>/2015/02/2015-02-17-colorize-log/</url>
     <content><![CDATA[<h2 id="What-is-this-post-about"><a href="#What-is-this-post-about" class="headerlink" title="What is this post about"></a>What is this post about</h2><p>Many people believe that decorator is one of the obscure concepts in Python.<br>Trust me, it is not. To be short, <strong>a decorator is a function that modifies other<br>functions via closures.</strong></p>
@@ -846,25 +865,6 @@ git checkout revision_hash .
 ]]></content>
       <tags>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How to delete nodes of linked list with pointers-to-pointers (Chinese)</title>
-    <url>/2015/02/2015-02-12-2D-pointer/</url>
-    <content><![CDATA[<p>我在用C++写 Leetcode中 Remove duplicates from linked list II 一题时，看到别人的一份代码，感觉写法很有趣，细细研究了一下。受益不少。</p>
-<p>在大部分链表题中，我们习惯于创建一个空节点dummy，使之指向链表的头结点，以方便对<br>第一个节点进行操作（比如，删除它）。最后答案返回dummy.next。比较有节操的同学会在<br>删除链表的某些节点时用delete，以免内存泄露，但是难道就没有考虑过dummy节点感受么？</p>
-<p>使用一个二维指针，可以优雅的解决了这个问题。</p>
-<p>举个简单的🌰：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Suppose we have a linked list &quot;1-&gt;2-&gt;3&quot;, we want to delete the    </span></span><br><span class="line"><span class="comment"> * second node, remains &quot;1-&gt;3&quot;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">ListNode **p = &amp;head, *succ;</span><br><span class="line">p = &amp;(*p)-&gt;next;</span><br><span class="line">succ = (*p)-&gt;next;</span><br><span class="line"><span class="built_in">delete</span> (*p);</span><br><span class="line">(*p) = succ;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-<p>尝试解释一下下。<code>p</code>是一个二级指针，也就是说，在一开始，<code>p</code>是一个指向一个指向<code>head</code>指针的指针（也就是<code>(*p)</code>指向<code>head</code>）。这样的好处就是，当我们需要在某一个时刻删除指向的节点（<code>delete *p</code>操作），p本身不受影响（当然，是p指向的指针所对应的内存空间被释放了）。唯一一点不方便的时，其他每次移动的时候，都要用<code>(*p)</code>（p淡淡的看着他指向的指针往后移。）</p>
-<p>和用dummy解法不同的是，dummy解法指针后移是<code>ptr = ptr-&gt;next;</code>。那我们这呢？<code>(*p) = (*p)-&gt;next;</code>？这样是错的。比如<code>1-&gt;2</code>里从<code>1</code>移动到<code>2</code>的过程中，就把节点<code>1</code>修改了。所以，要移动的是p。即为<code>p = &amp;(*p)-&gt;next</code>，其中<code>-&gt;</code>的优先级是高于<code>&amp;</code>的，把p赋值为<code>(*p)-&gt;</code>的地址，所以现在<code>(*p)</code>指向老<code>(*p)</code>的next。</p>
-<p>另一个大家可能关心的问题，在<code>delete (*p)</code>后，<code>(*p)</code>的前驱节点的next是怎么不找丢的呀？这其实涉及到<code>delete</code>的本质（Stackoverflow对这个问题有个不错的<a href="http://stackoverflow.com/a/11603084/1035859">回答</a>）。当我们调用<code>delete</code>的时候，那块内存里的数据其实并没有消失，只是这块内存地址被标记为可以利用，当之后的程序需要new的时候，才有可能覆盖掉这里的数据。就像爱情，没有一段新的覆盖，老的怎么忘的掉（情人节了还在改博客，唉~~）。所以这个代码严格意义上说是由风险的，如果在delete的一瞬间，正好另一个程序&#x2F;进程new了一块内存，又刚好是这里，这个方法就废了。fix的方法就是delete前，赋给一个临时变量，把next覆盖当前，再delete临时变量。</p>
-<p>修改的过程中，发现陈皓也写过<a href="http://coolshell.cn/articles/8990.html">类似的文章</a>，这个trick被Linus举例为什么才是core low-level coding，真正懂指针的做法。 他的文章还有配图，如果我表述的还是没让大家理解，推荐去读一下。</p>
-<p>PS：《Pointers In C》的第十二章《Using Structures and Pointers》，也有关于指针链表操作的详细解释。</p>
-<p><img src="http://ecx.images-amazon.com/images/I/51A8TNWQ3BL.jpg"></p>
-]]></content>
-      <tags>
-        <tag>algorithms</tag>
       </tags>
   </entry>
   <entry>
