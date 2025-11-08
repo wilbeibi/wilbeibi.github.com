@@ -238,6 +238,36 @@ hr {
     width: 90%;
 }
 
+/* Tag Cloud */
+div.tag-cloud {
+    line-height: 2.5;
+    text-align: left;
+}
+
+div.tag-cloud a.tag {
+    margin: 0 0.5em 0 0;
+    text-decoration: underline;
+}
+
+div.tag-cloud a.tag:hover {
+    text-decoration: underline;
+}
+
+/* Tag sizes based on post count */
+div.tag-cloud a.tag-1 { font-size: 0.9em; }
+div.tag-cloud a.tag-2 { font-size: 1.0em; }
+div.tag-cloud a.tag-3 { font-size: 1.2em; }
+div.tag-cloud a.tag-4 { font-size: 1.4em; }
+div.tag-cloud a.tag-5 { font-size: 1.6em; }
+div.tag-cloud a.tag-6 { font-size: 1.8em; }
+div.tag-cloud a.tag-7 { font-size: 2.0em; }
+div.tag-cloud a.tag-8 { font-size: 2.2em; }
+div.tag-cloud a.tag-9 { font-size: 2.4em; }
+div.tag-cloud a.tag-10,
+div.tag-cloud a[class*="tag-"]:not([class*="tag-1"]):not([class*="tag-2"]):not([class*="tag-3"]):not([class*="tag-4"]):not([class*="tag-5"]):not([class*="tag-6"]):not([class*="tag-7"]):not([class*="tag-8"]):not([class*="tag-9"]) {
+    font-size: 2.6em;
+}
+
 /* Mobile responsive */
 @media only screen and (max-width: 900px) {
     div.entry-overview {
