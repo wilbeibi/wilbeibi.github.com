@@ -1,0 +1,36 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Scrape data the right way Part:1 - Gradient Ascent</title><meta name=description content="My experience on how to scrape data from web."><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel="shortcut icon" href=/favicon.ico><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel=stylesheet><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css></head><body><div class=container><div class=header><a href=/>wilbeibi</a>'s Thoughts and Writings</div><div class=navigation><ul><li><a href=/>Home</a></li><li><a href=/posts/>Archive</a></li><li><a href=/tags/>Tags</a></li><li><a href=/pages/about/>About</a></li></ul></div><div class=body><h1>Scrape data the right way Part:1</h1><p class=date>written on May 06, 2014</p><p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href=http://www.crummy.com/software/BeautifulSoup/>BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href=http://lxml.de/>lxml</a>.</p><h2 id=why-lxml>Why lxml</h2><p>There already has some <a href=http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#>comparison</a> about pros and cons of each library. As <a href=http://lxml.de/elementsoup.html>lxml document</a> said:</p><blockquote><p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml/libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong>
+&mldr; &mldr;
+The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p></blockquote><p>In short: lxml is faster when parsing well-formed web page.</p><h2 id=example-grab-data-from-craglist>Example: Grab data from Craglist</h2><p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p><p>For example, find all housing in <a href=http://losangeles.craigslist.org/hhh/index.html>http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:
+<img src=http://i.imgur.com/M5twZ1U.png alt></p><p>The xpath is <code>/*[@id="toc_rows"]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>.</p><pre><code>from lxml import html
+import requests
+ 
+with open('crag_link.txt', 'a') as f:
+    for i in range(0, 1000, 100):
+        pg = 'http://losangeles.craigslist.org/hhh/index' + str(i) + '.html'
+        src = requests.get(pg)
+        if src.status_code == 404:
+            sys.exit(1)
+        tree = html.fromstring(src.text)
+        print 'Get page', i
+        for j in range(1, 100+1):
+            x_link = '//*[@id=&quot;toc_rows&quot;]/div[2]/p[' + str(j) + ']/span[2]/a/@href'
+            links = tree.xpath(x_link)
+            for ln in links:
+                f.write( 'http://losangeles.craigslist.org' + ln + '\n')
+        
+    f.close()
+</code></pre><p>Click into one of the page, for instance, we want to get post id, copy xpath
+like <code>//*[@id="pagecontainer"]/section/section[2]/div[2]/p[1]</code>. According to <a href=http://www.w3.org/TR/xpath/>XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p><pre><code>try:
+    post_id = tree.xpath('//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]/text()')
+except:
+    # Handle Error
+</code></pre><p>The reason we add try/catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try/catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p><pre><code>def get_attr(tree, xps):
+    return attr_name = tree.xpath(xps)
+ 
+''' 
+xps_dict look like: 
+{'post_id':'//*&lt;somehing&gt;/p[1]/text()','post_time':'//*&lt;somehing&gt;/p[1]/text()'}
+'''
+for a, x in xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre><p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p></div><div class=footer><p>Design by <a href=https://github.com/mitsuhiko/lucumr>Armin Ronacher</a>.</p><p>Subscribe via <a href=https://wilbeibi.com/index.xml>RSS</a>.</p></div></div></body></html>

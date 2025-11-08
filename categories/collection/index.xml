@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Collection on Gradient Ascent</title><link>https://wilbeibi.com/categories/collection/</link><description>Recent content in Collection on Gradient Ascent</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Mar 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://wilbeibi.com/categories/collection/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac程序员和他的朋友们</title><link>https://wilbeibi.com/posts/2014-03-05-macandfriend/</link><pubDate>Wed, 05 Mar 2014 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2014-03-05-macandfriend/</guid><description>&lt;h2 id="为什么要用mac"&gt;为什么要用Mac&lt;/h2&gt;
+&lt;p&gt;Linux内核作者&lt;a href="http://www.zdnet.com/torvalds-switches-to-apple-1139183867/"&gt;Linus早就开始使用Mac了&lt;/a&gt;（虽然面对记者表现的很扭捏）。Gnome的作者更是理直气壮&lt;a href="http://tirania.org/blog/archive/2013/Mar-05.html"&gt;叛逃Linux投奔Mac&lt;/a&gt;。如你所知，Mac OSX是&lt;a href="http://programmers.stackexchange.com/questions/51670/why-do-programmers-use-or-recommend-mac-os-x"&gt;开发者们的最爱&lt;/a&gt;。因为它一方面有非常棒的用户体验，一方面是基于Unix，尽得shell的益处，又避免了Linux下种种繁琐。什么，太贵了，看看&lt;a href="http://www.cnblogs.com/chijianqiang/p/mmac.html"&gt;MacTalk是怎么说的&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;工欲善其事，必先利其器。这里分享下我的Mac应用和配置。&lt;/p&gt;</description></item><item><title>一个RSS订阅者的自我修养</title><link>https://wilbeibi.com/posts/2012-12-11-rss/</link><pubDate>Tue, 11 Dec 2012 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2012-12-11-rss/</guid><description>&lt;h2 id="这篇文章想说什么"&gt;这篇文章想说什么&lt;/h2&gt;
+&lt;p&gt;人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.imgur.com/hZ2eX.jpg" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;RSS(Rich Site Summery)就是这样一个勤恳而免费的“雇员”，帮我们查看抓取所关注的博客的更新。其次，导入笔记。订阅博客，尤其是技术博客，一项很重要的工作就是做笔记，后面会讲到如何从RSS文章导入笔记。&lt;/p&gt;
+&lt;p&gt;##RSS阅读器
+国内比较流行的RSS阅读器有鲜果，抓虾，看天下&amp;hellip;个人觉得鲜果还算凑合的，支持的博客比较多，而且能通过它查看一些墙外的博客（不通过翻墙，查看抓取的内容）。要说最棒的RSS阅读器，还得是Google Reader，尤其是在平板上通过Reeder查看更新，阅读体验是最棒的。&lt;/p&gt;
+&lt;p&gt;##做笔记
+Evernote作为一款优秀的笔记软件（出于严谨的态度，我不得不去掉忍痛去掉“最”字），能完美的满足我们的要求。在Web上，Evernote提供的Chrome插件Evernote Web Clipper和Cleary能较好的把内容clip到笔记本里。前者是直接选取网页中区域（根据网页的CSS结构），后
+者则能帮我们把网页里一些不相关的东西剔除掉，提取出全文feed。我们知道，针对不同的网站，需要不同的内容提取规则，之所以说Cleary是“较好的”是因为它的规则处理还有瑕疵。所以，我有时候先把笔记存进&lt;a href="http://getpocket.com/"&gt;Pocket&lt;/a&gt;——一个保存想读文章，并能完美提取的小插件，再从Pocket导到Evernote里。或者，用&lt;a href="http://FiveFilters.org"&gt;FiveFilters.org&lt;/a&gt;提供的全文feed生成器,把网址往里一扔，OK了。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.imgur.com/4uIeN.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;那如果在平板上呢？这时候，就要靠&lt;a href="http://ifttt.com"&gt;ifttt&lt;/a&gt;这个好帮手。它能神奇的在各个账号之间建立一个channel。比方说，我要让Google Reader里打星的文章都存到Evernote里，就添加这两者的账号，建一个连接，大功告成。这么牛掰的工具当然不只有这一个功能，还可以把你的Gmail, Google Calender, Dropbox, Pocket, Facebook, 甚至手机账户，都能连起来，按照自己的需求定制channel。
+&lt;img src="http://i.imgur.com/exc5Y.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;##纸和笔
+如果只是这样做笔记，只不过是一种更有效的copy&amp;amp;paste,慢慢的笔记本里会积压越来越多的东西，没有时间真正吸收，沦为每天浏览博客整理笔记的机器，这样很糟糕。和菜头有篇《碎片化生存》，说的正是过多的微博和博客导致的对阅读“大部头”能力的丧失，而满足于一些科普类和推崇解决问题tricks的XXX hacks类文章。
+要把笔记变成自己的东西，一定要有自己的&lt;strong&gt;主动&lt;/strong&gt;参与，还是需要保持看纸质书和手写笔记的习惯。&lt;/p&gt;
+&lt;p&gt;##写出来
+写博客是个很好的锻炼自己的方式。但是，普通的博客系统只能满足一部分需求，要想随心所欲自由的管理自己的博客（当然得不怕麻烦），&lt;a href="http://www.yangzhiping.com/tech/writing-space.html"&gt;Github+Jekyll&lt;/a&gt;，或者Octopress都能满足你的要求。&lt;/p&gt;
+&lt;p&gt;##博客的排版
+博客的排版是个头疼的事，怎样专心于写作而不被设置字体大小，插入图片和超链接之类的事烦心是个大问题。&lt;a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html"&gt;Markdown&lt;/a&gt;就是为此应运而生的。此外，Emacs下强大的&lt;a href="http://orgmode.org/"&gt;Org-mode&lt;/a&gt;也是个相当不错的选择。&lt;/p&gt;
+&lt;p&gt;##最后，分享一些我觉得不错的博客&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Matrix67&lt;/strong&gt; &lt;a href="http://www.matrix67.com"&gt;www.matrix67.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;酷壳&lt;/strong&gt;
+&lt;a href="http://CoolShell.com"&gt;CoolShell.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;浏忙大爆炸&lt;/strong&gt;
+&lt;a href="http://blog.waterlin.org"&gt;blog.waterlin.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;刘未鹏 Mind Hacks&lt;/strong&gt;
+&lt;a href="http://mindhacks.cn/"&gt;mindhacks.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阮一峰的网络日志&lt;/strong&gt;
+&lt;a href="http://www.ruanyifeng.com"&gt;www.ruanyifeng.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;good coders code,great reuse&lt;/strong&gt;
+&lt;a href="http://www.catonmat.net/"&gt;www.catonmat.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;外刊IT评论&lt;/strong&gt;
+&lt;a href="http://www.aqee.net/"&gt;www.aqee.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Planet Emacsen&lt;/strong&gt;
+&lt;a href="http://planet.emacsen.org/"&gt;planet.emacsen.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;talich闲侃&lt;/strong&gt;
+&lt;a href="http://talich.cinepedia.cn"&gt;talich.cinepedia.cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;李笑来&lt;/strong&gt;
+&lt;a href="http://lixiaolai.com/"&gt;lixiaolai.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;学而时嘻之&lt;/strong&gt;
+&lt;a href="http://www.geekonomics10000.com/"&gt;www.geekonomics10000.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不许联想&lt;/strong&gt;
+&lt;a href="http://www.wangxiaofeng.net/"&gt;www.wangxiaofeng.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;张佳玮写东西的地方&lt;/strong&gt;
+&lt;a href="http://zhangjiawei.blog.tianya.cn/"&gt;zhangjiawei.blog.tianya.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;西西弗斯的健忘症&lt;/strong&gt;
+&lt;a href="http://lilyshen.wordpress.com/"&gt;lilyshen.wordpress.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;柴静的博客&lt;/strong&gt;
+&lt;a href="http://blog.sina.com.cn/chjguancha"&gt;blog.sina.com.cn/chjguancha&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;和菜头的槽边往事&lt;/strong&gt;
+&lt;a href="http://www.hecaitou.net/"&gt;www.hecaitou.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;吴万伟的博客&lt;/strong&gt;
+&lt;a href="http://blog.163.com/wuwanwei@yeah/"&gt;blog.163.com/wuwanwei@yeah/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;马伯庸的异教徒告解室&lt;/strong&gt;
+&lt;a href="http://blog.sina.com.cn/maboyong"&gt;blog.sina.com.cn/maboyong&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tear Down This Wall&lt;/strong&gt;
+&lt;a href="http://www.bullogger.com/blogs/tdtw/"&gt;http://www.bullogger.com/blogs/tdtw/&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

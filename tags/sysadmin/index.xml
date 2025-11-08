@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sysadmin on Gradient Ascent</title><link>https://wilbeibi.com/tags/sysadmin/</link><description>Recent content in Sysadmin on Gradient Ascent</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 29 Aug 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://wilbeibi.com/tags/sysadmin/index.xml" rel="self" type="application/rss+xml"/><item><title>A Primer to System Administration - About SSH</title><link>https://wilbeibi.com/posts/2014-08-29-sysadmin3/</link><pubDate>Fri, 29 Aug 2014 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2014-08-29-sysadmin3/</guid><description>&lt;p&gt;When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other attacks. Additionally, OpenSSH provides secure tunneling capabilities and several authentication methods, and supports all SSH protocol versions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="http://www.openssh.com/images/openssh.gif" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;And I believe &lt;code&gt;ssh&lt;/code&gt; is one of the most used commands for programmers (Windows users, you have putty, that&amp;rsquo;s &amp;hellip; not bad). In this post I am going to list some most basic usage of &lt;code&gt;ssh&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>A Primer to System Administration - Know Thy System</title><link>https://wilbeibi.com/posts/2014-08-10-sysadmin2/</link><pubDate>Sun, 10 Aug 2014 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2014-08-10-sysadmin2/</guid><description>&lt;h2 id="general-information"&gt;General information&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;code&gt;uname&lt;/code&gt; to get system information:&lt;/p&gt;
+&lt;p&gt;uname -a&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-a&lt;/code&gt; for print all the information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="cpu-information"&gt;CPU information&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;code&gt;nproc&lt;/code&gt; to print the number of processing units available (GNU coreutils):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ nproc
+4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;code&gt;lscpu&lt;/code&gt; to display CPU architecture information (util-linux).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="disk-information"&gt;Disk information&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;df&lt;/code&gt; is a powerful command for displaying system disk.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; df -h /path/to/directory
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cat /proc/partitions/&lt;/code&gt; and &lt;code&gt;cat /proc/mounts&lt;/code&gt; are also pretty handly solutions to check the partitions and mount disks.&lt;/p&gt;</description></item><item><title>A Primer to System Administration - Users and groups</title><link>https://wilbeibi.com/posts/2014-08-08-sysadmin/</link><pubDate>Fri, 08 Aug 2014 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2014-08-08-sysadmin/</guid><description>&lt;h2 id="how-to-create-a-user"&gt;How to create a user&lt;/h2&gt;
+&lt;p&gt;By useradd:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;useradd -m -d &amp;lt;HomeDir&amp;gt; -g &amp;lt;Group&amp;gt; username
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It&amp;rsquo;s optional to specify the new user&amp;rsquo;s home directory and group, but I strongly suggest to do so. &lt;code&gt;-m&lt;/code&gt; stands for create home, &lt;code&gt;-d&lt;/code&gt; to allocate a directory. (Warning, don&amp;rsquo;t mess up &lt;code&gt;useradd&lt;/code&gt; and &lt;code&gt;adduser&lt;/code&gt;, the later one is a higher level&amp;rsquo;s implementation. Here is a &lt;a href="http://askubuntu.com/questions/345974/what-is-the-difference-between-adduser-and-useradd"&gt;detailed explanation of these two&amp;rsquo;s differences&lt;/a&gt;.)&lt;/p&gt;
+&lt;h2 id="how-to-create-a-group"&gt;How to create a group&lt;/h2&gt;
+&lt;p&gt;By groupadd:&lt;/p&gt;</description></item></channel></rss>

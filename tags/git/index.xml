@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Gradient Ascent</title><link>https://wilbeibi.com/tags/git/</link><description>Recent content in Git on Gradient Ascent</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 22 Jul 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://wilbeibi.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>How to deal with Git A-Z?</title><link>https://wilbeibi.com/posts/2014-7-21-gitatoz/</link><pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2014-7-21-gitatoz/</guid><description>&lt;p&gt;In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already set-up a git environment. If not, I would advise you to take a look at &lt;a href="https://help.github.com/articles/set-up-git"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="how-to-modify-file-and-update-to-remote-repository"&gt;How to modify file and update to remote repository?&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git add file
+git commit -m &amp;quot;Aha, file modified&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or, just type&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git commit -am &amp;quot;Aha, file modified&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After that, push to remote repository:&lt;/p&gt;</description></item><item><title>Notes of Git</title><link>https://wilbeibi.com/posts/2012-12-30-progit/</link><pubDate>Sun, 30 Dec 2012 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2012-12-30-progit/</guid><description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Pro Git&lt;/strong&gt;&lt;/em&gt; is an excellent book about Git, and these are my reading notes.&lt;/p&gt;
+&lt;p&gt;This is a brief notes about some points of &lt;a href="http://www.amazon.com/gp/product/1430218339"&gt;&lt;em&gt;&lt;strong&gt;Pro Git&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;. It only contains first 3 chapters (contains most commonly used commands of Git). I will maintain this article and keep revising it. Hope it might helpful to you.&lt;/p&gt;
+&lt;p&gt;##Before Running Git&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Snapshots, Not Differences&lt;/strong&gt;&lt;br&gt;
+The major difference between Git and any other VCS (Subversion and friends included) is the way Git thinks about its data. Conceptually, most other systems store information as a list of file-based changes.&lt;/p&gt;</description></item></channel></rss>
