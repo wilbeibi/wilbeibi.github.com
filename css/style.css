@@ -295,4 +295,9 @@ div.tag-cloud a[class*="tag-"]:not([class*="tag-1"]):not([class*="tag-2"]):not([
         float: none;
         margin: 10px 0 30px 0;
     }
+    pre {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 8px 12px;
+    }
 }
