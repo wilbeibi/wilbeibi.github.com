@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { text-decoration: none; }
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: underline; }
-h1 { margin: 15px 0 25px 0; font-size: 52px; line-height: 56px; }
+h1 { margin: 15px 0 25px 0; font-size: 36px; line-height: 42px; }
 h2 { margin: 25px 0 10px 0; font-size: 28px; line-height: 32px; }
 h3 { margin: 35px 0 10px 0; font-size: 24px; line-height: 28px; }
 h4 { font-size: 20px; line-height: 24px; }
@@ -66,8 +66,8 @@ h4 { font-size: 20px; line-height: 24px; }
 /* Content H1s (from markdown # headers) - smaller than page title */
 p.date ~ h1,
 p.date ~ * h1 {
-    font-size: 32px;
-    line-height: 36px;
+    font-size: 28px;
+    line-height: 34px;
 }
 
 /* Layout elements */
@@ -128,7 +128,13 @@ ul ol, ol ul, ul ul, ol ol {
 li { padding: 0; }
 li p { margin: 0; padding: 0; }
 li p + p { margin-top: 15px; }
-blockquote { font-style: italic; }
+blockquote {
+    font-style: italic;
+    border-left: 3px solid var(--border-color);
+    margin-left: 0;
+    padding-left: 20px;
+    color: var(--faded-color);
+}
 
 /* Code formatting */
 pre, code, tt {
@@ -139,11 +145,10 @@ pre {
     line-height: 1.5;
     background: var(--code-block-background-color);
     color: var(--code-block-text-color);
-    padding: 8px 30px;
-    width: 100%;
+    padding: 12px 20px;
     overflow-x: auto;
-    margin: -8px -30px -8px -30px;
-    border-radius: 2px;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 code, tt { background: var(--code-background-color); padding: 2px 4px; border-radius: 3px; }
 pre code, pre tt { background: none; padding: 0; border-radius: 0; }
@@ -151,7 +156,7 @@ img { max-width: 100%; height: auto; }
 
 /* Blog overview - THIS IS THE KEY PART */
 div.entry-overview {
-    margin: 25px 122px 25px 102px;
+    margin: 25px 0 25px 102px;
 }
 
 div.entry-overview h1,
@@ -221,14 +226,22 @@ p.date {
 }
 
 /* Tables */
-table {
+div.body table {
+    display: block;
+    overflow-x: auto;
     border: 1px solid var(--border-color);
     border-collapse: collapse;
     background: var(--table-background-color);
+    width: max-content;
+    max-width: 100%;
 }
 td, th {
-    padding: 2px 12px;
+    padding: 4px 12px;
     border: 1px solid var(--table-border-color);
+}
+th {
+    background: var(--code-block-background-color);
+    font-weight: 700;
 }
 
 /* HR */
@@ -312,11 +325,6 @@ div.post-tags a:hover {
     div.navigation {
         float: none;
         margin: 10px 0 30px 0;
-    }
-    pre {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 8px 12px;
     }
 }
 
