@@ -38,7 +38,7 @@
 /* Base styles - from actual lucumr */
 html { background: var(--background-color); }
 body {
-    font-family: 'Merriweather', 'Noto Serif SC', Georgia, serif;
+    font-family: 'Merriweather', 'LXGW WenKai', Georgia, serif;
     font-size: 17px;
     line-height: 25px;
     margin: 0;
@@ -52,8 +52,8 @@ a:hover { color: var(--secondary-color); }
 
 /* Headlines */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lora', 'Noto Serif SC', Georgia, serif;
-    font-weight: 500;
+    font-family: 'Merriweather', 'LXGW WenKai', Georgia, serif;
+    font-weight: 700;
     color: var(--header-color);
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { text-decoration: none; }
@@ -132,7 +132,7 @@ blockquote { font-style: italic; }
 
 /* Code formatting */
 pre, code, tt {
-    font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Deja Vu Sans Mono', monospace;
+    font-family: 'JetBrains Mono', 'Monaco', 'Consolas', 'Deja Vu Sans Mono', monospace;
     font-size: 0.9em;
 }
 pre {
@@ -145,7 +145,9 @@ pre {
     margin: -8px -30px -8px -30px;
     border-radius: 2px;
 }
-code, tt { background: var(--code-background-color); }
+code, tt { background: var(--code-background-color); padding: 2px 4px; border-radius: 3px; }
+pre code, pre tt { background: none; padding: 0; border-radius: 0; }
+img { max-width: 100%; height: auto; }
 
 /* Blog overview - THIS IS THE KEY PART */
 div.entry-overview {
@@ -162,7 +164,7 @@ div.entry-overview div.summary p {
 div.entry-overview h1 {
     margin: 0;
     font-size: 18px;
-    font-family: 'Merriweather', 'Noto Serif SC', Georgia, serif;
+    font-family: 'Merriweather', 'LXGW WenKai', Georgia, serif;
     font-weight: 400; /* Override h1's 500 to match lucumr */
 }
 
@@ -268,6 +270,22 @@ div.tag-cloud a[class*="tag-"]:not([class*="tag-1"]):not([class*="tag-2"]):not([
     font-size: 2.6em;
 }
 
+/* Post tags */
+div.post-tags {
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+}
+div.post-tags a {
+    margin-right: 0.8em;
+    text-decoration: underline;
+    color: var(--faded-color);
+}
+div.post-tags a:hover {
+    color: var(--secondary-color);
+}
+
 /* Mobile responsive */
 @media only screen and (max-width: 900px) {
     div.entry-overview {
@@ -284,7 +302,7 @@ div.tag-cloud a[class*="tag-"]:not([class*="tag-1"]):not([class*="tag-2"]):not([
         margin: 0;
     }
     div.container {
-        padding: 12px;
+        padding: 16px;
         margin: 0;
     }
     div.header {
@@ -299,5 +317,17 @@ div.tag-cloud a[class*="tag-"]:not([class*="tag-1"]):not([class*="tag-2"]):not([
         margin-left: 0;
         margin-right: 0;
         padding: 8px 12px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    div.entry-overview div.date {
+        float: none;
+        width: auto;
+        text-align: left;
+        margin-bottom: 2px;
+    }
+    div.entry-overview div.detail {
+        margin-left: 0;
     }
 }

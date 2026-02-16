@@ -41,7 +41,7 @@
 &lt;h2 id="choosing-a-linux-tracer"&gt;&lt;a href="http://www.brendangregg.com/blog/2015-07-08/choosing-a-linux-tracer.html"&gt;Choosing a Linux Tracer&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;介绍了一堆Performance monitoring &amp;amp; tunning 的工具，来自 Netflix senior performance architect。我查 systemtap 的时候翻到这哥们的博客，发现此人文章很棒，然后和我们司的performance engineer 聊文章中的问题，发现这博主是他当年在 Sun 的同事 &amp;hellip; &amp;hellip;&lt;/p&gt;
 &lt;h2 id="latency-numbers-every-programmer-should-know"&gt;&lt;a href="https://gist.github.com/jboner/2841832"&gt;Latency Numbers Every Programmer Should Know&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;这个介绍不同存储器性能的表格历史悠久，这个 gist 及其评论里很多人贡献了他们知道的相关的文档和视频，很多都很有意思。一些常用的还是很有必要背下来的（比如 CPU， 内存，硬盘， SSD 读取速度的倍数关系），对于初学编程的人能更好的了解 &lt;a href="https://www.wikiwand.com/en/Locality_of_reference"&gt;locality&lt;/a&gt; 的重要性。&lt;/p&gt;</description></item><item><title>2016 年计划</title><link>https://wilbeibi.com/posts/plan/</link><pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/plan/</guid><description>&lt;h1 id="2016-新年计划"&gt;2016 新年计划&lt;/h1&gt;
+&lt;p&gt;这个介绍不同存储器性能的表格历史悠久，这个 gist 及其评论里很多人贡献了他们知道的相关的文档和视频，很多都很有意思。一些常用的还是很有必要背下来的（比如 CPU， 内存，硬盘， SSD 读取速度的倍数关系），对于初学编程的人能更好的了解 &lt;a href="https://www.wikiwand.com/en/Locality_of_reference"&gt;locality&lt;/a&gt; 的重要性。&lt;/p&gt;</description></item><item><title>2016 年计划</title><link>https://wilbeibi.com/posts/2016-01-01-plan/</link><pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate><guid>https://wilbeibi.com/posts/2016-01-01-plan/</guid><description>&lt;h1 id="2016-新年计划"&gt;2016 新年计划&lt;/h1&gt;
 &lt;p&gt;一如既往的，新年是要计划的，实不实现再两说。&lt;/p&gt;
 &lt;h2 id="2015-的计划回顾"&gt;2015 的计划回顾&lt;/h2&gt;
 &lt;ul&gt;
