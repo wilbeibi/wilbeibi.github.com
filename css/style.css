@@ -32,7 +32,7 @@
 html { background: var(--rr-bg); }
 body {
     font-family: var(--rr-font-prose);
-    font-size: var(--rr-text-body);
+    font-size: 16px; /* blog runs one notch below Riverrun's 17.5px body token — denser, lucumr-style; system token unchanged */
     line-height: var(--rr-leading-prose);
     margin: 0;
     padding: 0;
@@ -54,15 +54,15 @@ h1, h2, h3, h4, h5, h6 {
     text-wrap: pretty;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { border-bottom: none; }
-h1 { margin: 15px 0 25px 0; font-size: 34px; line-height: 1.25; }
-h2 { margin: 40px 0 12px 0; font-size: 24px; }
-h3 { margin: 32px 0 10px 0; font-size: 20px; font-weight: 600; }
-h4 { font-size: 18px; font-weight: 600; }
+h1 { margin: 15px 0 25px 0; font-size: 30px; line-height: 1.25; }
+h2 { margin: 40px 0 12px 0; font-size: 22px; }
+h3 { margin: 32px 0 10px 0; font-size: 18.5px; font-weight: 600; }
+h4 { font-size: 17px; font-weight: 600; }
 
 /* Content H1s (from markdown # headers) - between page title and h2 */
 p.date ~ h1,
 p.date ~ * h1 {
-    font-size: 28px;
+    font-size: 25px;
 }
 
 /* Layout elements — one column: header, nav, body, footer all
@@ -110,7 +110,7 @@ div.navigation ul li {
 
 div.navigation a {
     font-family: var(--rr-font-ui);
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--rr-ink-muted);
     border-bottom: none;
 }
@@ -195,12 +195,12 @@ img { max-width: 100%; height: auto; }
 /* Homepage intro — names what this is before the list starts */
 div.home-intro h1 {
     margin: 0 0 6px;
-    font-size: 28px;
+    font-size: 24px;
 }
 div.home-intro p.tagline {
     margin: 0 0 36px;
     font-style: italic;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--rr-ink-muted);
 }
 
@@ -221,7 +221,7 @@ div.entry-overview div.summary p {
 
 div.entry-overview h1 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16.5px;
     font-family: var(--rr-font-prose);
     font-weight: 500;
 }
@@ -238,7 +238,7 @@ div.entry-overview h1:after {
 }
 
 div.entry-overview div.summary,
-div.entry-overview div.summary p { color: #3d4249; font-size: 16.5px; }
+div.entry-overview div.summary p { color: #3d4249; font-size: 15px; }
 
 div.entry-overview div.summary,
 div.entry-overview div.date,
