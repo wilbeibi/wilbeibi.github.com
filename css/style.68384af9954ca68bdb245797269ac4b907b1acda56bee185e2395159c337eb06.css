@@ -10,7 +10,9 @@
 :root {
     color-scheme: light;
     --rr-bg: #fffff8; --rr-bg-raised: #f7f7f2; --rr-bg-inset: #f2f2ec; --rr-bg-tint: #fdfdf6;
-    --rr-ink: #111111; --rr-ink-muted: #6b7280; --rr-ink-faint: #9aa0a6;
+    --rr-ink: #111111; --rr-ink-muted: #6b7280;
+    --rr-ink-faint: #707680;        /* tertiary text; 4.55:1 on paper */
+    --rr-ink-decorative: #9aa0a6;   /* non-text marks only */
     --rr-line: #e2e1da; --rr-hairline: rgba(17, 17, 17, 0.08);
     --rr-accent: #5e6ad2; --rr-accent-soft: #b9bfe8;
     --rr-accent-wash: rgba(94, 106, 210, 0.10); --rr-selection: rgba(94, 106, 210, 0.22);
@@ -22,14 +24,60 @@
     --rr-leading-prose: 1.62;
     --rr-radius-s: 4px; --rr-radius-m: 6px; --rr-radius-pill: 999px;
     --rr-measure: 680px;
+    --rr-duration-fast: 140ms;
+    --rr-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --rr-focus-width: 2px;
+    --rr-focus-offset: 3px;
+    --rr-touch-target: 44px;
 }
 [data-imprint="cinnabar"] {
     --rr-accent: #b23a2a; --rr-accent-soft: #dcaaa2;
     --rr-accent-wash: rgba(178, 58, 42, 0.08); --rr-selection: rgba(178, 58, 42, 0.18);
 }
 
+/* Blog-local tokens (not part of the vendored set) */
+:root {
+    --ga-ink-soft: #3d4249;  /* blockquotes, homepage summaries */
+    --ga-img-filter: none;
+}
+
+/* ── Night mode — a deliberate blog divergence from Riverrun's
+   forced-light policy (there, the night surface is a component,
+   not a theme). Values derive from the system's night tokens,
+   warmed to mirror the paper; cinnabar lifted to #d97f6a for
+   6.8:1 on the night ground. `data-theme` is set on <html>
+   pre-paint (stored choice or OS); the media block below is the
+   no-JS fallback — KEEP THE TWO BLOCKS IN SYNC. ── */
+[data-theme="dark"] {
+    color-scheme: dark;
+    --rr-bg: #0b0b09; --rr-bg-raised: #15150f; --rr-bg-inset: #191811; --rr-bg-tint: #0e0e0a;
+    --rr-ink: #e7e5dc; --rr-ink-muted: #9aa0a6;
+    --rr-ink-faint: #82878f;
+    --rr-ink-decorative: #565a5f;
+    --rr-line: #2a2c30; --rr-hairline: rgba(231, 229, 220, 0.09);
+    --rr-accent: #d97f6a; --rr-accent-soft: #7a453b;
+    --rr-accent-wash: rgba(217, 127, 106, 0.10); --rr-selection: rgba(217, 127, 106, 0.28);
+    --ga-ink-soft: #b7b5ab;
+    --ga-img-filter: brightness(0.9);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --rr-bg: #0b0b09; --rr-bg-raised: #15150f; --rr-bg-inset: #191811; --rr-bg-tint: #0e0e0a;
+        --rr-ink: #e7e5dc; --rr-ink-muted: #9aa0a6;
+        --rr-ink-faint: #82878f;
+        --rr-ink-decorative: #565a5f;
+        --rr-line: #2a2c30; --rr-hairline: rgba(231, 229, 220, 0.09);
+        --rr-accent: #d97f6a; --rr-accent-soft: #7a453b;
+        --rr-accent-wash: rgba(217, 127, 106, 0.10); --rr-selection: rgba(217, 127, 106, 0.28);
+        --ga-ink-soft: #b7b5ab;
+        --ga-img-filter: brightness(0.9);
+    }
+}
+
 /* Base */
-html { background: var(--rr-bg); }
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--rr-bg); scroll-behavior: smooth; }
 body {
     font-family: var(--rr-font-prose);
     font-size: 16px; /* blog runs one notch below Riverrun's 17.5px body token — denser, lucumr-style; system token unchanged */
@@ -42,8 +90,27 @@ body {
     text-rendering: optimizeLegibility;
 }
 ::selection { background: var(--rr-selection); }
-a { color: var(--rr-ink); font-weight: 400; text-decoration: none; border-bottom: 1px solid var(--rr-accent-soft); transition: color 120ms, border-color 120ms; }
+button, input, select, textarea { font: inherit; }
+button, summary { -webkit-tap-highlight-color: transparent; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: var(--rr-focus-width) solid var(--rr-accent);
+    outline-offset: var(--rr-focus-offset);
+}
+a {
+    color: var(--rr-ink); font-weight: 400; text-decoration: none;
+    border-bottom: 1px solid var(--rr-accent-soft);
+    transition: color var(--rr-duration-fast) var(--rr-ease-out), border-color var(--rr-duration-fast) var(--rr-ease-out);
+}
 a:hover { color: var(--rr-accent); border-bottom-color: var(--rr-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 
 /* Headlines — weight 500, hierarchy from size and whitespace */
 h1, h2, h3, h4, h5, h6 {
@@ -108,13 +175,28 @@ div.navigation ul li {
     padding: 0;
 }
 
-div.navigation a {
+div.navigation a,
+button.theme-toggle {
     font-family: var(--rr-font-ui);
     font-size: 13px;
     color: var(--rr-ink-muted);
     border-bottom: none;
 }
-div.navigation a:hover { color: var(--rr-accent); }
+button.theme-toggle {
+    border: 0;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: color var(--rr-duration-fast) var(--rr-ease-out);
+}
+div.navigation a:hover,
+button.theme-toggle:hover { color: var(--rr-accent); }
+
+@media (pointer: coarse) {
+    div.navigation a,
+    button.theme-toggle { display: inline-block; padding: 10px 4px; }
+}
 
 div.body {
     clear: both;
@@ -160,7 +242,7 @@ blockquote {
     font-style: italic;
     margin: 24px 32px;
     padding: 0;
-    color: #3d4249;
+    color: var(--ga-ink-soft);
 }
 
 /* Margin-note voice (批：) for asides in posts:
@@ -186,11 +268,22 @@ pre {
     padding: 14px 18px;
     overflow-x: auto;
     border-radius: var(--rr-radius-m);
-    box-sizing: border-box;
 }
 code, tt { background: var(--rr-bg-inset); padding: 2px 5px; border-radius: var(--rr-radius-s); }
 pre code, pre tt { background: none; padding: 0; border-radius: 0; }
-img { max-width: 100%; height: auto; }
+
+/* Syntax highlighting (chroma, class-based) — Riverrun quiet monochrome:
+   comments gray, keywords accent, strings soft; everything else ink. */
+div.highlight pre { background: var(--rr-bg-inset); }
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1,
+.chroma .cs, .chroma .cp, .chroma .cpf { color: var(--rr-ink-muted); font-style: italic; }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn,
+.chroma .kp, .chroma .kr, .chroma .kt { color: var(--rr-accent); }
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl,
+.chroma .sd, .chroma .s2, .chroma .se, .chroma .sh, .chroma .si,
+.chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color: var(--ga-ink-soft); }
+.chroma .hl { background: var(--rr-accent-wash); }
+img { max-width: 100%; height: auto; filter: var(--ga-img-filter); }
 
 /* Homepage intro — names what this is before the list starts */
 div.home-intro h1 {
@@ -234,11 +327,11 @@ div.entry-overview h1 a:hover { color: var(--rr-accent); }
 
 div.entry-overview h1:after {
     content: " —";
-    color: var(--rr-ink-faint);
+    color: var(--rr-ink-decorative);
 }
 
 div.entry-overview div.summary,
-div.entry-overview div.summary p { color: #3d4249; font-size: 15px; }
+div.entry-overview div.summary p { color: var(--ga-ink-soft); font-size: 15px; }
 
 div.entry-overview div.summary,
 div.entry-overview div.date,
@@ -322,7 +415,7 @@ hr {
 }
 hr::after {
     content: "· · ·";
-    color: var(--rr-ink-faint);
+    color: var(--rr-ink-decorative);
     letter-spacing: 0.6em;
     font-size: 14px;
 }
