@@ -2,7 +2,7 @@
 
 /* ═══════════════════════════════════════════════════════════
    Gradient Ascent · Riverrun (cinnabar imprint).
-   Tokens vendored from ~/src/riverrun/riverrun/tokens.css v0.2 —
+   Tokens vendored from /Users/hongyis/Local/riverrun/riverrun/tokens.css v0.3 —
    do not hand-edit values; refresh from the source when Riverrun
    bumps.
    ═══════════════════════════════════════════════════════════ */
@@ -16,8 +16,12 @@
     --rr-line: #e2e1da; --rr-hairline: rgba(17, 17, 17, 0.08);
     --rr-accent: #5e6ad2; --rr-accent-soft: #b9bfe8;
     --rr-accent-wash: rgba(94, 106, 210, 0.10); --rr-selection: rgba(94, 106, 210, 0.22);
-    --rr-font-ui: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    --rr-font-prose: Newsreader, "Noto Serif SC", "Songti SC", Georgia, serif;
+    --rr-font-ui-latin: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    --rr-font-ui-cjk: "PingFang SC", "Microsoft YaHei", Inter, system-ui, sans-serif;
+    --rr-font-prose-latin: Newsreader, "Noto Serif SC", "Songti SC", Georgia, serif;
+    --rr-font-prose-cjk: "Noto Serif SC", "Songti SC", Newsreader, Georgia, serif;
+    --rr-font-ui: var(--rr-font-ui-latin);
+    --rr-font-prose: var(--rr-font-prose-latin);
     --rr-font-note: "LXGW WenKai", "Kaiti SC", "Newsreader", serif;
     --rr-font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
     --rr-text-body: 17.5px; --rr-text-meta: 12.5px;
@@ -33,6 +37,16 @@
 [data-imprint="cinnabar"] {
     --rr-accent: #b23a2a; --rr-accent-soft: #dcaaa2;
     --rr-accent-wash: rgba(178, 58, 42, 0.08); --rr-selection: rgba(178, 58, 42, 0.18);
+}
+
+/* The page language leads the composite font stack. */
+:lang(en) {
+    --rr-font-ui: var(--rr-font-ui-latin);
+    --rr-font-prose: var(--rr-font-prose-latin);
+}
+:lang(zh) {
+    --rr-font-ui: var(--rr-font-ui-cjk);
+    --rr-font-prose: var(--rr-font-prose-cjk);
 }
 
 /* Blog-local tokens (not part of the vendored set) */
@@ -87,6 +101,11 @@ body {
     font-weight: 400;
     color: var(--rr-ink);
     background: var(--rr-bg);
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    text-autospace: normal;
+    line-break: strict;
     text-rendering: optimizeLegibility;
 }
 ::selection { background: var(--rr-selection); }
@@ -125,6 +144,15 @@ h1 { margin: 15px 0 25px 0; font-size: 30px; line-height: 1.25; }
 h2 { margin: 40px 0 12px 0; font-size: 22px; }
 h3 { margin: 32px 0 10px 0; font-size: 18.5px; font-weight: 600; }
 h4 { font-size: 17px; font-weight: 600; }
+
+/* Complete passages may switch typographic direction without overriding
+   explicit UI, mono, or note roles. */
+:where(
+    p:lang(en), p:lang(zh), li:lang(en), li:lang(zh),
+    dd:lang(en), dd:lang(zh), dt:lang(en), dt:lang(zh),
+    figcaption:lang(en), figcaption:lang(zh),
+    blockquote:lang(en), blockquote:lang(zh)
+) { font-family: var(--rr-font-prose); }
 
 /* Content H1s (from markdown # headers) - between page title and h2 */
 p.date ~ h1,
@@ -244,6 +272,7 @@ blockquote {
     padding: 0;
     color: var(--ga-ink-soft);
 }
+:lang(zh) blockquote { font-style: normal; }
 
 /* Margin-note voice (批：) for asides in posts:
    <div class="rr-note">…</div> — seal added here, keep ≤2 sentences */
@@ -261,6 +290,7 @@ pre, code, tt {
     font-family: var(--rr-font-mono);
     font-size: 0.86em;
 }
+pre, code, tt, kbd, samp { text-autospace: no-autospace; }
 pre {
     line-height: 1.7;
     background: var(--rr-bg-inset);
