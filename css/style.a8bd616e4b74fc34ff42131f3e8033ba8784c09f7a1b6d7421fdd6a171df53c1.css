@@ -168,12 +168,12 @@ div.container {
     padding: 0 40px;
 }
 
-div.header { float: left; }
-div.navigation { float: right; }
-div.header, div.navigation {
-    height: 25px;
-    margin-bottom: 42px;
-}
+/* Header and nav stack on one left edge, at every width — the same
+   edge as the list, the dates, and the footer. No float: a right-aligned
+   nav would be the only element breaking the single column. */
+div.header, div.navigation { height: auto; }
+div.header { margin: 0; }
+div.navigation { margin: 10px 0 42px; }
 
 div.header {
     font-family: var(--rr-font-prose);
@@ -202,6 +202,8 @@ div.navigation ul li {
     margin: 0 8px;
     padding: 0;
 }
+/* Flush with the column's left edge, not indented by the item gutter. */
+div.navigation ul li:first-child { margin-left: 0; }
 
 div.navigation a,
 button.theme-toggle {
@@ -517,17 +519,9 @@ div.post-tags a:hover {
         padding: 16px;
         margin: 0;
     }
-    div.header {
-        float: none;
-        height: auto;
-        margin: 0;
-    }
-    div.navigation {
-        float: none;
-        height: auto;
-        margin: 10px 0 30px 0;
-    }
-    div.navigation ul li:first-child { margin-left: 0; }
+    /* Header/nav already stack on one left edge at every width;
+       narrow screens only tighten the gap before the content. */
+    div.navigation { margin-bottom: 30px; }
 }
 
 @media only screen and (max-width: 600px) {
