@@ -1,14 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- The cinnabar seal, same mark as the wordmark dot on the page.
-       Follows the browser's color scheme the way the site does. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
+  <title id="title">Non-Convex Notes</title>
+  <desc id="desc">A custom cinnabar concave mark derived from the Chinese character 凹.</desc>
   <style>
-    .ground { fill: #fffff8 }
-    .seal   { fill: #b23a2a }
+    path { fill: #b23a2a }
     @media (prefers-color-scheme: dark) {
-      .ground { fill: #0b0b09 }
-      .seal   { fill: #d97f6a }
+      path { fill: #d97f6a }
     }
   </style>
-  <rect class="ground" width="32" height="32"/>
-  <circle class="seal" cx="16" cy="16" r="9"/>
+  <path fill="#b23a2a" d="M4 6h8v10h8V6h8v21H4Z"/>
 </svg>
