@@ -173,7 +173,11 @@ div.container {
    nav would be the only element breaking the single column. */
 div.header, div.navigation { height: auto; }
 div.header { margin: 0; }
-div.navigation { margin: 10px 0 42px; }
+div.navigation { margin: 10px 0 48px; }
+/* On the homepage the <h1> is the wordmark, so the nav and the title are
+   one masthead unit and get the same tight pairing the wordmark and nav
+   get elsewhere. The tagline below carries the break to the post list. */
+div.navigation:has(~ div.body div.home-intro) { margin-bottom: 20px; }
 
 div.header {
     font-family: var(--rr-font-prose);
@@ -323,7 +327,7 @@ div.home-intro h1 {
     font-size: 24px;
 }
 div.home-intro p.tagline {
-    margin: 0 0 36px;
+    margin: 0 0 48px;
     font-style: italic;
     font-size: 15px;
     color: var(--rr-ink-muted);
