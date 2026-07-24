@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wilbeibi.com/sitemap.xml
+Sitemap: https://hongyi.sh/sitemap.xml
