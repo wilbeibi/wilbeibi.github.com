@@ -298,16 +298,21 @@ figcaption, .rr-fig-caption { font-size: var(--rr-text-label); color: var(--rr-i
    extensions/non-convex-notes) and a page-wide night mode.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Cinnabar identity — the site accent replaces violet on every
-   role violet fills (links, marks, inline code, focus, selection). ── */
+/* ── Cinnabar imprint — the site accent replaces violet on every role
+   violet fills (links, marks, inline code, focus, selection), and the
+   ground goes warm off-white with charcoal ink: a reading instrument,
+   not a product page. Night mode below keeps the navy grounds. ── */
 [data-imprint="cinnabar"] {
+    --rr-bg: #fbfaf7; --rr-bg-raised: #f5f3ee; --rr-bg-inset: #eeebe4; --rr-bg-tint: #f9f1ee;
+    --rr-ink: #1f1c1a; --rr-ink-body: #3d3935; --rr-ink-muted: #75706a;
+    --rr-ink-faint: #a49f98; --rr-ink-decorative: #d6d1c8;
+    --rr-line: #e5e1d8; --rr-hairline: rgba(31, 28, 26, 0.08);
     --rr-accent: #b23a2a;
     --rr-accent-soft: #dcaaa2;
     --rr-accent-wash: rgba(178, 58, 42, 0.08);
     --rr-accent-line: rgba(178, 58, 42, 0.30);
     --rr-accent-ink: #7a2a1e;
     --rr-selection: rgba(178, 58, 42, 0.18);
-    --rr-bg-tint: #fbf5f3;
 }
 
 /* ── Night mode — a deliberate blog divergence from Riverrun's
@@ -343,51 +348,83 @@ figcaption, .rr-fig-caption { font-size: var(--rr-text-label); color: var(--rr-i
 :root { --ncn-img-filter: none; }
 html { background: var(--rr-bg); }
 
-/* ── Page frame: nav, head, footer share the 1200px page ── */
+/* ── Type — two families, loaded in baseof.html (blog exception to the
+   v1.0 system-sans policy: the tokens' SF Pro / PingFang stack falls
+   back to Noto Sans Light on Linux and to YaHei on Windows). Serif for
+   everything read (prose, titles, ledes, list titles); sans for
+   everything used (nav, metadata, dates, footer); mono for code.
+   rr-check flags these as off-system fonts — expected residue. ── */
+:root {
+    --ncn-serif-latin: Newsreader, "Noto Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+    --ncn-serif-cjk:   "Noto Serif SC", "Songti SC", Newsreader, Georgia, serif;
+    --ncn-sans-latin:  Inter, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    --ncn-sans-cjk:    "PingFang SC", "Noto Sans SC", "Microsoft YaHei", Inter, -apple-system, system-ui, sans-serif;
+    --rr-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    /* Newsreader and Inter are drawn at 400/500/600, not the SF-tuned 350/450. */
+    --rr-weight-body: 400; --rr-weight-head: 500; --rr-weight-strong: 600;
+    --rr-text-body: 19px; --rr-leading-prose: 1.65;
+    --ncn-measure: 42rem;   /* ≈ 70 characters of 19px Newsreader */
+}
+:lang(en) { --rr-font-sans: var(--ncn-sans-latin); --rr-font-ui: var(--ncn-sans-latin); --rr-font-prose: var(--ncn-serif-latin); --rr-font-note: var(--ncn-serif-latin); }
+:lang(zh) { --rr-font-sans: var(--ncn-sans-cjk);   --rr-font-ui: var(--ncn-sans-cjk);   --rr-font-prose: var(--ncn-serif-cjk);   --rr-font-note: var(--ncn-serif-cjk); }
+.rr-prose, .rr-head h1, .rr-lede, .rr-post h2, .rr-post p { font-family: var(--rr-font-prose); }
+
+/* ── One column. Every block (nav, head, meta, prose, list, footer) is
+   the same 42rem measure on the same left edge. ── */
+.rr-page { max-width: calc(var(--ncn-measure) + 2 * var(--rr-space-6)); }
 .rr-nav { padding-top: var(--rr-space-5); flex-wrap: wrap; gap: 8px 22px; }
 .rr-nav .brand { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
 .rr-nav .brand .name { color: var(--rr-ink); font-weight: var(--rr-weight-head); }
 .rr-nav .brand svg { width: 16px; height: 16px; fill: var(--rr-accent); flex: none; }
+.rr-nav .links { gap: 20px; }
 .rr-nav .links button {
     border: 0; padding: 0; margin: 0; background: none; cursor: pointer;
     color: var(--rr-ink-body); font-size: inherit; line-height: inherit;
     transition: color var(--rr-duration-fast) var(--rr-ease-out);
 }
 .rr-nav .links button:hover { color: var(--rr-ink); }
-.rr-head { padding-top: var(--rr-space-8); }
-.rr-head h1 { margin-bottom: 20px; }
-.rr-head .rr-lede { margin-bottom: var(--rr-space-7); }
-.rr-head .brand-mark { width: 0.62em; height: 0.62em; fill: var(--rr-accent); vertical-align: -0.02em; margin-right: 0.28em; }
-.rr-footer a { color: inherit; text-decoration: none; }
-.rr-footer a:hover { color: var(--rr-ink); }
 @media (pointer: coarse) {
     .rr-nav .links a, .rr-nav .links button { display: inline-block; padding: 10px 2px; }
 }
 
-/* ── Article: author rail · prose · sidenote rail (from templates/blog.html) ── */
-.rr-avatar { display: grid; place-items: center; }
-.rr-avatar svg { width: 20px; height: 20px; fill: var(--rr-accent); }
-.rr-facts dd a { color: inherit; text-decoration: none; }
-.rr-facts dd a:hover { color: var(--rr-accent); }
-.rr-facts dd a + a::before { content: ", "; color: var(--rr-ink-muted); }
-@media (max-width: 900px) {
-    /* Keep the facts on narrow screens as one quiet row instead of hiding them. */
-    .rr-layout .rr-facts { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding-top: 0; border-top: 0; }
-    .rr-facts dt { display: none; }
-    .rr-facts dd { margin: 0; }
-    .rr-who { flex-wrap: wrap; }
+/* Head: title → lede → one metadata row, then a rule and air before the body. */
+.rr-head { padding-top: var(--rr-space-8); }
+.rr-head h1 {
+    font-size: clamp(34px, 6vw, 46px); line-height: 1.15; letter-spacing: -0.015em;
+    max-width: none; margin: 0 0 14px;
 }
+.rr-head .brand-mark { width: 0.6em; height: 0.6em; fill: var(--rr-accent); vertical-align: -0.02em; margin-right: 0.3em; }
+.rr-head .rr-lede { font-size: 21px; line-height: 1.45; max-width: none; margin: 0 0 var(--rr-space-5); }
+.rr-head > .rr-lede:last-child { margin-bottom: var(--rr-space-6); }
+.ncn-meta {
+    font-family: var(--rr-font-ui); font-size: var(--rr-text-meta); line-height: var(--rr-leading-ui);
+    color: var(--rr-ink-muted); font-variant-numeric: tabular-nums;
+    overflow: hidden; padding: 0 0 18px; border-bottom: 1px solid var(--rr-line); margin: 0 0 var(--rr-space-7);
+}
+/* Every item carries its own leading "·"; the wrapper is shifted left by one
+   separator so a dot that would start a wrapped line is clipped away. */
+.ncn-meta .items { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 4px; margin-left: -18px; }
+.ncn-meta .items > *::before { content: "·"; display: inline-block; width: 18px; text-align: center; }
+.ncn-meta a { color: inherit; text-decoration: none; }
+.ncn-meta a:hover { color: var(--rr-accent); }
+.ncn-meta .tags a + a::before { content: ", "; color: var(--rr-ink-muted); }
+.rr-footer a { color: inherit; text-decoration: none; }
+.rr-footer a:hover { color: var(--rr-ink); }
+
+/* Sidenotes have no rail in a single column: always the folded box. */
+.rr-sidenote { position: static; width: auto; margin: 0 0 1.5rem; border: 1px solid var(--rr-line); border-radius: var(--rr-radius-l); padding: 1rem 1.25rem; }
 
 /* ── Prose: rules the token sheet leaves to the page ── */
-.rr-prose h1 { font-size: var(--rr-text-h2); line-height: 1.25; margin: 2em 0 0.8em; }
+.rr-prose h1 { font-size: var(--rr-text-h2); line-height: 1.25; max-width: none; margin: 2em 0 0.7em; }
+.rr-prose h2 { margin: 2em 0 0.7em; }
+.rr-prose h3 { margin: 1.6em 0 0.5em; }
 .rr-prose h4, .rr-prose h5, .rr-prose h6 {
     color: var(--rr-ink); font-weight: var(--rr-weight-strong); font-size: var(--rr-text-body);
-    line-height: 1.35; margin: 1.6em 0 0.6em;
+    line-height: 1.35; margin: 1.6em 0 0.5em;
 }
-.rr-prose h3 { margin: 1.6em 0 0.6em; }
 .rr-prose ul, .rr-prose ol { margin: 0 0 1.25em; padding-left: 1.5em; }
-.rr-prose li + li { margin-top: 0.35em; }
-.rr-prose li > ul, .rr-prose li > ol { margin: 0.35em 0 0; }
+.rr-prose li + li { margin-top: 0.3em; }
+.rr-prose li > ul, .rr-prose li > ol { margin: 0.3em 0 0; }
 .rr-prose li p { margin: 0; }
 .rr-prose li p + p { margin-top: 0.75em; }
 .rr-prose img, .rr-prose video {
@@ -396,15 +433,17 @@ html { background: var(--rr-bg); }
 }
 .rr-prose figure { margin: 0 0 1.5em; }
 .rr-prose figure img { margin-bottom: 0; }
+.rr-prose figcaption { font-family: var(--rr-font-ui); font-size: var(--rr-text-label); color: var(--rr-ink-muted); margin-top: 8px; }
 .rr-prose blockquote p:last-child { margin-bottom: 0; }
 .rr-prose a { overflow-wrap: anywhere; }
 .rr-prose sup a { text-decoration: none; }
+.rr-prose code { font-size: 0.86em; }
 .rr-prose .footnotes { margin-top: var(--rr-space-7); font-size: var(--rr-text-note); color: var(--rr-ink-muted); }
 .rr-prose .footnotes hr { margin: 0 0 var(--rr-space-4); }
 .rr-prose .footnotes ol { padding-left: 1.4em; }
 
 /* Markdown tables scroll inside the column rather than breaking it. */
-.rr-prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; }
+.rr-prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; font-family: var(--rr-font-ui); font-size: var(--rr-text-small); }
 .rr-prose th, .rr-prose td { padding-right: 20px; }
 .rr-prose th:last-child, .rr-prose td:last-child { padding-right: 0; }
 
@@ -419,38 +458,29 @@ html { background: var(--rr-bg); }
 .chroma .hl { display: block; background: var(--rr-accent-wash); }
 .rr-prose mjx-container { overflow-x: auto; overflow-y: hidden; }
 
-/* ── Index: year column · post rows (from templates/blog-index.html) ── */
-.rr-list { display: grid; grid-template-columns: var(--rr-rail-left) minmax(0, var(--rr-measure)) 1fr; gap: 0 var(--rr-gutter); }
-/* Each year starts a new grid row: year in the rail, its posts in the measure. */
-.rr-year { grid-column: 1; padding-top: 26px; font-size: var(--rr-text-meta); color: var(--rr-ink-muted); font-variant-numeric: tabular-nums; }
-.rr-year + div { grid-column: 2; }
-.rr-post { display: grid; grid-template-columns: 7rem 1fr; gap: var(--rr-space-5); padding: 22px 0; border-top: 1px solid var(--rr-line); font-size: 16px; }
-.rr-post time { padding-top: 4px; font-size: 13.5px; color: var(--rr-ink-muted); font-variant-numeric: tabular-nums; }
-.rr-post h2 { margin: 0 0 4px; font-size: var(--rr-text-h3); line-height: 1.3; letter-spacing: -0.01em; }
+/* ── Lists: a year label, then date · title rows on one left edge ── */
+.rr-list { padding-top: var(--rr-space-2); }
+.rr-year { padding: var(--rr-space-7) 0 10px; font-family: var(--rr-font-ui); font-size: var(--rr-text-meta); color: var(--rr-ink-muted); font-variant-numeric: tabular-nums; }
+.rr-list > .rr-year:first-child { padding-top: 0; }
+.rr-post { display: grid; grid-template-columns: 6rem 1fr; gap: 0 var(--rr-space-4); padding: 18px 0; border-top: 1px solid var(--rr-line); }
+.rr-post time, .rr-post .count { padding-top: 5px; font-family: var(--rr-font-ui); font-size: var(--rr-text-meta); color: var(--rr-ink-muted); font-variant-numeric: tabular-nums; }
+.rr-post h2 { margin: 0 0 3px; font-size: 21px; font-weight: var(--rr-weight-head); line-height: 1.3; letter-spacing: -0.01em; }
 .rr-post h2 a { color: inherit; text-decoration: none; }
 .rr-post h2 a:hover { color: var(--rr-accent); }
-.rr-post p { margin: 0; color: var(--rr-ink-body); }
-.rr-post .count { color: var(--rr-ink-muted); font-size: var(--rr-text-meta); }
-.rr-pager { grid-column: 2; display: flex; justify-content: space-between; padding: 22px 0 0; border-top: 1px solid var(--rr-line); font-size: var(--rr-text-meta); }
+.rr-post p { margin: 0; font-size: 16.5px; line-height: 1.5; color: var(--rr-ink-muted); }
+.rr-pager { display: flex; justify-content: space-between; padding: 18px 0 0; border-top: 1px solid var(--rr-line); font-family: var(--rr-font-ui); font-size: var(--rr-text-meta); }
 .rr-pager a { color: var(--rr-ink-body); text-decoration: none; }
 .rr-pager a:hover { color: var(--rr-ink); }
 
-/* ── Responsive (mirrors the templates' breakpoints) ── */
-@media (max-width: 900px) {
-    h1 { font-size: clamp(38px, 10vw, 52px); }
+/* ── Responsive ── */
+@media (max-width: 600px) {
     .rr-head { padding-top: var(--rr-space-7); }
     .rr-nav .links a:first-child { display: none; } /* Home: the brand already is one */
     .rr-nav .links { gap: 16px; }
 }
-@media (max-width: 760px) {
-    .rr-list { grid-template-columns: 1fr; }
-    .rr-year, .rr-year + div { grid-column: 1; }
-    .rr-year { padding-bottom: 12px; }
-    .rr-post { grid-template-columns: 5rem 1fr; }
-    .rr-pager { grid-column: auto; }
-}
 @media (max-width: 520px) {
     .rr-page { padding-left: 20px; padding-right: 20px; }
     .rr-nav .brand .by { display: none; }
-    .rr-post { grid-template-columns: 1fr; gap: 4px; }
+    .rr-post { grid-template-columns: 1fr; gap: 2px; }
+    .rr-post time, .rr-post .count { padding-top: 0; }
 }
