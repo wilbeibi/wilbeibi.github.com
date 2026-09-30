@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Producer consumer problem in coroutine — Non-Convex Notes</title>
+<meta name="description" content="As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it&#x27;s essentially…">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Non-Convex Notes" href="/atom.xml">
+<script defer src="/lamina.js"></script>
+</head>
+<body>
+<nav><a href="/">Non-Convex Notes</a></nav>
+<main>
+<article>
+<h1>Producer consumer problem in coroutine</h1>
+<p class="meta"><time datetime="2015-03-02">2015-03-02</time></p>
+
+<h2 id="What-is-coroutine">What is coroutine</h2>
+<p>As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it's essentially just context switching. Not surprisingly, coroutine is implemented in primitives like setjmp/longjump or ucontext in low level.</p>
+<p>In many senarioes, coroutine is a more light-weight alternative of threads. For programming languages with GIL (like Python), coroutine would used to handle concurrency.</p>
+<h2 id="Producer-and-consumer-problem">Producer and consumer problem</h2>
+<p>Let's take a look at classic &quot;producer-consumer&quot; problem. At each time, one coroutine produce products and add them into queue, the other coroutine take products from queue and use it (hmm, sounds like video buffering, right?).</p>
+<p>The code below assumes you already have some knowledge of generator.</p>
+<pre><code class="language-python">import time
+import random
+  
+def coroutine(func):
+    # A wrapper to convert function into generator
+    # From David Beazley
+    def start(*args,**kwargs):
+        cr = func(*args,**kwargs)
+        cr.next()
+        return cr
+    return start  
+    
+def producer(target):
+    while True:
+        time.sleep(1)
+        data = random.randint(1, 10)
+        print (&quot;# producer: sending data {}&quot;.format(data))
+        target.send(data)
+        
+@coroutine
+def consumer():
+    while True:
+        data = yield
+        print (&quot;# consumer: receving data {}&quot;.format(data))
+        
+if __name__ == '__main__':
+    g_consumer = consumer()
+    producer(g_consumer)
+</code></pre>
+<p>Simple enough, <code>send()</code> is a built-in function of generator. The producer send data to consumer, consumer receives data from <code>yield</code>.</p>
+<h2 id="Coroutine-usage">Coroutine usage</h2>
+<p>Yes, the famous concurrency library gevent is based on coroutine.</p>
+<h2 id="Reference-and-Recommended-Reading:">Reference and Recommended Reading:</h2>
+<p><a href="https://www.python.org/dev/peps/pep-0342/">PEP 342: Coroutines via Enhanced Generators</a></p>
+<p><a href="http://coolshell.cn/articles/10975.html">一个“蝇量级” C 语言协程库</a></p>
+<p><a href="http://learn-gevent-socketio.readthedocs.org/en/latest/general_concepts.html">General concepts: concurrency, parallelism, threads and processes</a></p>
+<p><a href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></p>
+
+</article>
+</main>
+
+<footer><a href="/">← posts</a> · <a href="/atom.xml">atom</a> · <a href="/about.html">about</a> · <a href="https://github.com/wilbeibi/wilbeibi_blog_src">source</a></footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrape data the right way Part:1 — Non-Convex Notes</title>
+<meta name="description" content="There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like BeautifulSoup provides a bunch of functions…">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Non-Convex Notes" href="/atom.xml">
+<script defer src="/lamina.js"></script>
+</head>
+<body>
+<nav><a href="/">Non-Convex Notes</a></nav>
+<main>
+<article>
+<h1>Scrape data the right way Part:1</h1>
+<p class="meta"><time datetime="2014-05-06">2014-05-06</time></p>
+
+<p>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> provides a bunch of functions to do these stuffs. But personally, I prefer <a href="http://lxml.de/">lxml</a>.</p>
+<h2 id="Why-lxml">Why lxml</h2>
+<p>There already has some <a href="http://stackoverflow.com/questions/4967103/beautifulsoup-and-lxml-html-what-to-prefer#">comparison</a> about pros and cons of each library. As <a href="http://lxml.de/elementsoup.html">lxml document</a> said:</p>
+<blockquote>
+<p>BeautifulSoup uses a different parsing approach. It is not a real HTML parser but uses regular expressions to dive through tag soup. It is therefore more forgiving in some cases and less good in others. It is not uncommon that lxml/libxml2 parses and fixes broken HTML better, but BeautifulSoup has superior support for encoding detection. <strong>It very much depends on the input which parser works better.</strong>
+... ...
+The downside of using this parser is that it is <strong>much slower than</strong> the HTML parser of lxml. <strong>So if performance matters, you might want to consider using soupparser only as a fallback for certain cases.</strong></p>
+</blockquote>
+<p>In short: lxml is faster when parsing well-formed web page.</p>
+<h2 id="Example:-Grab-data-from-Craglist">Example: Grab data from Craglist</h2>
+<p>This is a common scenario. First get links of each entries in a <code>index</code> page.</p>
+<p>For example, find all housing in <a href="http://losangeles.craigslist.org/hhh/index.html">http://losangeles.craigslist.org/hhh/index.html</a>. In Chrome, Inspect Element, get XPath link from one link:
+<img src="http://i.imgur.com/M5twZ1U.png" alt=""></p>
+<p>The xpath is <code>/*[@id=&quot;toc_rows&quot;]/div[2]/p[1]/span[2]/a/@href</code>, from p[1] to p[100]. Save these links to a file <code>crag_link.txt</code>.</p>
+<pre><code>from lxml import html
+import requests
+ 
+with open('crag_link.txt', 'a') as f:
+    for i in range(0, 1000, 100):
+        pg = 'http://losangeles.craigslist.org/hhh/index' + str(i) + '.html'
+        src = requests.get(pg)
+        if src.status_code == 404:
+            sys.exit(1)
+        tree = html.fromstring(src.text)
+        print 'Get page', i
+        for j in range(1, 100+1):
+            x_link = '//*[@id=&quot;toc_rows&quot;]/div[2]/p[' + str(j) + ']/span[2]/a/@href'
+            links = tree.xpath(x_link)
+            for ln in links:
+                f.write( 'http://losangeles.craigslist.org' + ln + '\n')
+        
+    f.close()
+</code></pre>
+<p>Click into one of the page, for instance, we want to get post id, copy xpath
+like <code>//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]</code>. According to <a href="http://www.w3.org/TR/xpath/">XPath syntax</a>, these path add suffix <code>/text()</code> is what we need.</p>
+<pre><code>try:
+    post_id = tree.xpath('//*[@id=&quot;pagecontainer&quot;]/section/section[2]/div[2]/p[1]/text()')
+except:
+    # Handle Error
+</code></pre>
+<p>The reason we add try/catch block here is to prevent missing data. Wait a second, what if we have 30 attribute to scrape, do we need to write try/catch 30 times. Definitely no. Wrap them into a function might be a good idea. BTW, hardcode xpath into program is not a good idea, by writing a function, we can pass it as a parameter(Or even better, store attribute names and xpaths in a dictionary).</p>
+<pre><code>def get_attr(tree, xps):
+    return attr_name = tree.xpath(xps)
+ 
+''' 
+xps_dict look like: 
+{'post_id':'//*&lt;somehing&gt;/p[1]/text()','post_time':'//*&lt;somehing&gt;/p[1]/text()'}
+'''
+for a, x in xps_dict.iteritems():
+    attr[a] = get_attr(tree, x)
+</code></pre>
+<p>For the Part 2, I will carry on, talk about encoding problem, prevent duplicates and so forth.</p>
+
+</article>
+</main>
+
+<footer><a href="/">← posts</a> · <a href="/atom.xml">atom</a> · <a href="/about.html">about</a> · <a href="https://github.com/wilbeibi/wilbeibi_blog_src">source</a></footer>
+</body>
+</html>

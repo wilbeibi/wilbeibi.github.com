@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git as Shared Memory for Multi-AI Workflows — Non-Convex Notes</title>
+<meta name="description" content="Everyone uses a stack now: Claude Code, Codex, OpenClaw, Lobechat, and more. My bottleneck wasn&#x27;t prompting — it was handoff.">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Non-Convex Notes" href="/atom.xml">
+<script defer src="/lamina.js"></script>
+</head>
+<body>
+<nav><a href="/">Non-Convex Notes</a></nav>
+<main>
+<article>
+<h1>Git as Shared Memory for Multi-AI Workflows</h1>
+<p class="meta"><time datetime="2026-02-16">2026-02-16</time> · 更新 <time datetime="2026-07-21">2026-07-21</time></p>
+
+<p>Everyone uses a stack now: Claude Code, Codex, OpenClaw, Lobechat, and more. My bottleneck wasn't prompting — it was <strong>handoff</strong>.</p>
+<p>I kept wasting time moving context from one AI tool to another:</p>
+<ul>
+<li>what I'm doing today</li>
+<li>what research I already did</li>
+<li>what tasks are still pending</li>
+</ul>
+<p>I was inspired by OpenClaw's source code approach to this problem. So I stopped trying to make tools &quot;integrate perfectly.&quot; I built a <strong>tiny shared memory system</strong> in a private GitHub repo.</p>
+<h2 id="The-Setup">The Setup</h2>
+<p>Two files, done:</p>
+<p><strong><code>daily/YYYY-MM-DD.md</code></strong></p>
+<ul>
+<li>what I'm working on today</li>
+<li>today's focus</li>
+<li>notes for AI agents</li>
+</ul>
+<p><strong><code>inbox.md</code></strong></p>
+<ul>
+<li>unprocessed thoughts/tasks</li>
+<li>ideas captured during AI chats</li>
+<li>follow-ups and links to revisit</li>
+</ul>
+<p><strong>Workflow is simple:</strong></p>
+<ol>
+<li>Any tool can append to <code>inbox.md</code></li>
+<li>At start of day, I pull relevant items into that day's daily note</li>
+<li>When something is done, I mark it in daily</li>
+</ol>
+<p>That's it.</p>
+<h2 id="Why-This-Works">Why This Works</h2>
+<p>Because <strong>Git is the common layer</strong>.</p>
+<p>If each AI tool can read/write via GitHub MCP (or a simple skill/plugin), then they all share one memory backbone — without vendor lock-in.</p>
+<p>This is less &quot;AI orchestration&quot; and more <strong>human-grade continuity</strong>:</p>
+<ul>
+<li>one source of truth</li>
+<li>low friction</li>
+<li>easy to audit</li>
+<li>survives tool churn</li>
+</ul>
+
+</article>
+</main>
+
+<footer><a href="/">← posts</a> · <a href="/atom.xml">atom</a> · <a href="/about.html">about</a> · <a href="https://github.com/wilbeibi/wilbeibi_blog_src">source</a></footer>
+</body>
+</html>

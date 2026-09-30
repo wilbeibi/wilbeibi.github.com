@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Non-Convex Notes</title>
+<subtitle>The future is already here – it&#x27;s just not evenly distributed.</subtitle>
+<link href="https://hongyi.sh/atom.xml" rel="self" />
+<link href="https://hongyi.sh/" />
+<id>https://hongyi.sh/</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<author><name>Hongyi</name></author>
+<entry>
+<title>Git as Shared Memory for Multi-AI Workflows</title>
+<link href="https://hongyi.sh/git-shared-memory-ai-workflows.html" />
+<id>https://hongyi.sh/git-shared-memory-ai-workflows.html</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<summary>Everyone uses a stack now: Claude Code, Codex, OpenClaw, Lobechat, and more. My bottleneck wasn&#x27;t prompting — it was handoff.</summary>
+</entry>
+<entry>
+<title>一周笔记</title>
+<link href="https://hongyi.sh/weekly3.html" />
+<id>https://hongyi.sh/weekly3.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>老文章。来自Peter Norvig 的用 Python 写个 lisp 解释器。代码和解释都很完美。记得有公司出面试题出类似的，如果用这文章里的思路解决就秒杀啊。</summary>
+</entry>
+<entry>
+<title>一周笔记</title>
+<link href="https://hongyi.sh/weekly2.html" />
+<id>https://hongyi.sh/weekly2.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>软件开发中的马太效应，越是差劲的团队越缺乏长期规划，用老旧的技术，写 ad-hoc 的代码，优秀的工程师越容易离开（斜眼看我司）。</summary>
+</entry>
+<entry>
+<title>一周笔记</title>
+<link href="https://hongyi.sh/weekly1.html" />
+<id>https://hongyi.sh/weekly1.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>这周 RSS 里没啥非常好的文章，就把以前的笔记里翻出来几篇凑数。</summary>
+</entry>
+<entry>
+<title>一周笔记</title>
+<link href="https://hongyi.sh/weekly0.html" />
+<id>https://hongyi.sh/weekly0.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>这是经女朋友提醒，准备每周一篇，阅读的技术博客，文章等的简短评论，干货收集，读书感想及各种好玩的事儿。</summary>
+</entry>
+<entry>
+<title>2016 年计划</title>
+<link href="https://hongyi.sh/plan-2016.html" />
+<id>https://hongyi.sh/plan-2016.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>一如既往的，新年是要计划的，实不实现再两说。</summary>
+</entry>
+<entry>
+<title>找出编辑距离不大于 K 的单词</title>
+<link href="https://hongyi.sh/k_edit_distances.html" />
+<id>https://hongyi.sh/k_edit_distances.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>最近看到一个很有意思的面试题：给一个单词和一个字典，找出字典中所有和给定单词编辑距离不大于 k 的词。</summary>
+</entry>
+<entry>
+<title>Producer consumer problem in coroutine</title>
+<link href="https://hongyi.sh/coroutine-producer-comsumer.html" />
+<id>https://hongyi.sh/coroutine-producer-comsumer.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>As the name implies, coroutine refers to co-operative routine. It allows you to suspending and resuming execution at different locations. So, it&#x27;s essentially…</summary>
+</entry>
+<entry>
+<title>Colorizing Loggers -- A simple practice of decorator</title>
+<link href="https://hongyi.sh/colorize-log.html" />
+<id>https://hongyi.sh/colorize-log.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>Many people believe that decorator is one of the obscure concepts in Python. Trust me, it is not. To be short, a decorator is a function that modifies other…</summary>
+</entry>
+<entry>
+<title>How to delete nodes of linked list with pointers-to-pointers (Chinese)</title>
+<link href="https://hongyi.sh/2d-pointer.html" />
+<id>https://hongyi.sh/2d-pointer.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>我在用C++写 Leetcode中 Remove duplicates from linked list II 一题时，看到别人的一份代码，感觉写法很有趣，细细研究了一下。受益不少。</summary>
+</entry>
+<entry>
+<title>我为什么要编程</title>
+<link href="https://hongyi.sh/whyiwrite.html" />
+<id>https://hongyi.sh/whyiwrite.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>王小波和乔治奥威尔都曾以《我为什么要写作》为题写过他们的走上作家之路原因。对于这个问题，王小波借用了一位登山家的回答，“因为山在那儿。” （如你所知，那位登山家最后也确实在珠峰上挂掉了。）乔治奥威尔的回答则显得更有条理：纯粹的个人主义，美学热枕，历史责任感和政治目的。</summary>
+</entry>
+<entry>
+<title>2015 年部分计划</title>
+<link href="https://hongyi.sh/plan-2015.html" />
+<id>https://hongyi.sh/plan-2015.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>2015年都过了一个月了。现在才开始写新年计划有点晚了，可晚比没有强。规划一年是个很难的事儿，所以我就先计划一小部分，并附上deadline （deadline driven development 是最有生产力的）。</summary>
+</entry>
+<entry>
+<title>A Primer to System Administration - About SSH</title>
+<link href="https://hongyi.sh/sysadmin3.html" />
+<id>https://hongyi.sh/sysadmin3.html</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<summary>When we talk about SSH, we are usually referring to OpenSSH - a FREE version of the SSH connectivity tools. As their official website said:</summary>
+</entry>
+<entry>
+<title>A Primer to System Administration - Know Thy System</title>
+<link href="https://hongyi.sh/sysadmin2.html" />
+<id>https://hongyi.sh/sysadmin2.html</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<summary>nodejs 部署最佳实践 by 邻家 柠檬叔</summary>
+</entry>
+<entry>
+<title>A Primer to System Administration - Users and groups</title>
+<link href="https://hongyi.sh/sysadmin.html" />
+<id>https://hongyi.sh/sysadmin.html</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<summary>By useradd:</summary>
+</entry>
+<entry>
+<title>How to deal with Git A-Z?</title>
+<link href="https://hongyi.sh/gitatoz.html" />
+<id>https://hongyi.sh/gitatoz.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>In this post I am going to show you some common scenarios you may suffer when you use git. To benefit from this tutorial please make sure you have already…</summary>
+</entry>
+<entry>
+<title>Collaborative programming with Dropbox</title>
+<link href="https://hongyi.sh/dropbox-coding.html" />
+<id>https://hongyi.sh/dropbox-coding.html</id>
+<updated>2026-07-21T20:54:36-07:00</updated>
+<summary>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a…</summary>
+</entry>
+<entry>
+<title>Scrape data the right way Part:1</title>
+<link href="https://hongyi.sh/scrape_way.html" />
+<id>https://hongyi.sh/scrape_way.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>There is frequently a need to scrape data. Obviously, Python is a good choice for this. The famous libraries like BeautifulSoup provides a bunch of functions…</summary>
+</entry>
+<entry>
+<title>Mac程序员和他的朋友们</title>
+<link href="https://hongyi.sh/macandfriend.html" />
+<id>https://hongyi.sh/macandfriend.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>Linux内核作者Linus早就开始使用Mac了（虽然面对记者表现的很扭捏）。Gnome的作者更是理直气壮叛逃Linux投奔Mac。如你所知，Mac OSX是开发者们的最爱。因为它一方面有非常棒的用户体验，一方面是基于Unix，尽得shell的益处，又避免了Linux下种种繁琐。什么，太贵了，看看MacTalk是怎么说…</summary>
+</entry>
+<entry>
+<title>The Better Way to learn programming is to get away from it</title>
+<link href="https://hongyi.sh/awayfrom.html" />
+<id>https://hongyi.sh/awayfrom.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>In the last few weeks I led a life writing C programs 10 hours a day. It was interesting and frustrating, and I learned a lot from that. For one thing…</summary>
+</entry>
+<entry>
+<title>Notes of Git</title>
+<link href="https://hongyi.sh/progit.html" />
+<id>https://hongyi.sh/progit.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>Pro Git is an excellent book about Git, and these are my reading notes.</summary>
+</entry>
+<entry>
+<title>一个RSS订阅者的自我修养</title>
+<link href="https://hongyi.sh/rss.html" />
+<id>https://hongyi.sh/rss.html</id>
+<updated>2025-09-29T20:49:23-07:00</updated>
+<summary>人在网络飘，面对浩如烟海的信息，如何有效及时地掌握自己需要的信息？有些网站和博客能提供这些。问题是，这些网站可能很多，每次从收藏夹里一个个点开既费时又费事，而且各个网站更新内容的时间又不固定，难道我们能雇一个人帮我们随时查看各个博客更新的情况么？</summary>
+</entry>
+<entry>
+<title>笔记:把时间当做朋友</title>
+<link href="https://hongyi.sh/timeasfriend.html" />
+<id>https://hongyi.sh/timeasfriend.html</id>
+<updated>2025-11-08T09:35:23-08:00</updated>
+<summary>李笑来的书《把时间当作朋友》，讲的还不错。</summary>
+</entry>
+</feed>

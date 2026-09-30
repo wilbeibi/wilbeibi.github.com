@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collaborative programming with Dropbox — Non-Convex Notes</title>
+<meta name="description" content="Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a…">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Non-Convex Notes" href="/atom.xml">
+<script defer src="/lamina.js"></script>
+</head>
+<body>
+<nav><a href="/">Non-Convex Notes</a></nav>
+<main>
+<article>
+<h1>Collaborative programming with Dropbox</h1>
+<p class="meta"><time datetime="2014-07-17">2014-07-17</time> · 更新 <time datetime="2026-07-21">2026-07-21</time></p>
+
+<p>Recently, I am working on a web project collaborate with my friend Kelun. He is in charge of front-end code and I am taking care of backend code. So, here is a problem: How can we programming together smoothly? Which means, at any moment of time, I can check his code while he is programming.</p>
+<h2 id="Why-not-Github?">Why not Github?</h2>
+<p>No, that's little bit heavy for this project. So, what's alternative choices? Dropbox! Dropbox maybe the easiest way to share folder (wait, you means <code>rsync</code>? Dropbox did a lot of algorithm improvement to ensure it's higher speed of syncing)
+<img src="http://dl.dropbox.com/u/1656836/web3/invite-to-folder.png" alt="Alt text"></p>
+<p>But, something weird happens. My Webstorm automatically changed layout views. That because he is also using Webstorm, and In each project, Webstorm use a <code>.idea/</code> directory to save specific settings (as the document below said).</p>
+<blockquote>
+<p>Project settings are stored with each specific project as a set of xml files under the .idea folder. If you specify the default project settings, these settings will be automatically used for each newly created project.</p>
+</blockquote>
+<h2 id="Is-there-any-.gitginore-like-file-in-Dropbox?">Is there any <code>.gitginore</code> like file in Dropbox?</h2>
+<p>Sure. Of course it's not as powerful as <code>.gitginore</code>. In dropbox -&gt; Preference -&gt; Account -&gt; Change Setting, unclick <code>.idea</code> folder, that's all.</p>
+<p>Also, I strongly suggest unclick <code>node_modules</code> folder. It takes Dropbox too much time to synchronize a bunch of small pieces of files.</p>
+<p>And if you sometimes use Emacs, to avoid annoying temporary files (but some time really save you ass), the only way I know is to add this in <code>.emacs</code> file.</p>
+<pre><code> (setq make-backup-files nil)
+</code></pre>
+<p>Please feel free to correct my typos or grammar.</p>
+
+</article>
+</main>
+
+<footer><a href="/">← posts</a> · <a href="/atom.xml">atom</a> · <a href="/about.html">about</a> · <a href="https://github.com/wilbeibi/wilbeibi_blog_src">source</a></footer>
+</body>
+</html>

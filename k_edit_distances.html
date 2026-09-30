@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>找出编辑距离不大于 K 的单词 — Non-Convex Notes</title>
+<meta name="description" content="最近看到一个很有意思的面试题：给一个单词和一个字典，找出字典中所有和给定单词编辑距离不大于 k 的词。">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Non-Convex Notes" href="/atom.xml">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:false},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<script defer src="/lamina.js"></script>
+</head>
+<body>
+<nav><a href="/">Non-Convex Notes</a></nav>
+<main>
+<article>
+<h1>找出编辑距离不大于 K 的单词</h1>
+<p class="meta"><time datetime="2015-05-09">2015-05-09</time></p>
+
+<h2 id="关于-edit-distance-的一道题">关于 edit distance 的一道题</h2>
+<p>最近看到一个很有意思的面试题：给一个单词和一个字典，找出字典中所有和给定单词编辑距离不大于 k 的词。</p>
+<p>一个常见的思路是遍历一遍，求单词和字典中每一项的编辑距离。我们知道编辑距离是二维 DP，时间复杂度为 <span class="math">\(O(L^2)\)</span>，其中 L 为每个单词平均长度，则总时间复杂度为<span class="math">\(O(NL^2)\)</span>， N 为字典中词的个数。</p>
+<p>这个方法的问题在于，一旦查询单词变多，性能会很糟糕。基于<a href="http://www.zhihu.com/question/29592463">知乎 Lee Shellay的回答</a>，可以通过构造 Trie， 结合 DFS，来解决这个问题。</p>
+<p>所以算法思路并不难：</p>
+<ol>
+<li>根据字典中的单词构造前缀树，标记每个单词结束时的结束符为 ’$’。</li>
+<li>设计函数 API 为<code>check_fuzzy(trie, word, path, tol)</code>。<code>trie</code>是在树中当前走到的节点，<code>word</code> 表示走到当前节点剩余需要处理的查询单词，<code>path</code>表示走到当前节点已经记录的字典单词前缀，<code>tol</code> 表示剩余可容忍的编辑距离。然后定义一个set，不断找到可能的单词并入这个set，直到结束。
+所以，函数只在<code>tol</code> 为0时候终止（为什么不是<code>word</code>为空时候终止？因为有可用的编辑距离都用在增加后缀的情况）。</li>
+</ol>
+<ul>
+<li>匹配当前字符，有两种情况：匹配，那么直接递归下一层；不匹配，可能是字母不一致或者是 word 已经结束（这个情况很容易被忽略），需要 tol 减一后递归下一层。</li>
+<li>增加任意字母（字典单词比查询单词多字母）。这里和知乎回答里的不一样，那里是枚举了26个字母，其实只要枚举当前 tree 的所有节点字母就行了（Jayxon 大牛想到的）。</li>
+<li>删除字符。word 向后移一个字母，tol 减一。</li>
+</ul>
+<p>最后代码如下：</p>
+<pre><code class="language-python"># Based on Lee Shellay's code http://www.zhihu.com/question/29592463
+
+END = '$'
+def make_trie(words):
+    trie = {}
+    for word in words:
+        t = trie
+        for c in word:
+            if c not in t:
+                t[c] = {}
+            t = t[c]
+        t[END] = {}
+    return trie
+
+def check_fuzzy_v4(trie, word, path = '', tol = 1):
+    if tol &lt; 0:
+        return set()
+
+    ps = set()
+    if word == '':
+        if END in trie:
+             ps = {path}
+
+    for k in trie:
+        # match current or mark as substition
+        ps |= check_fuzzy_v4(trie[k], word[1:], path+k, tol - (not word or k != word[0]))
+        # add random char
+        ps |= check_fuzzy_v4(trie[k], word, path+k, tol-1)
+
+    # delete one (if word is empty, word[2:] will not report error)
+    ps |= check_fuzzy_v4(trie, word[1:], path, tol-1)
+    return ps
+
+if __name__ == '__main__':
+    words = ['hello', 'hela', 'hel', 'dokm', 'i', 'ke', 'ik']
+    t = make_trie(words)
+    print check_fuzzy_v4(t, 'helo','', tol=2)
+</code></pre>
+<p>然后试试大一点的数据。我们知道在<code>/usr/share/dict/words</code>存着拼写检查的单词表，一共 2.4M 共 235886个单词（至少在我的 Mac 上是这么多）。可以用它来构造字典 <code>cat /usr/share/dict/words &gt; ./words.txt</code>。然后把一句话改的乱七八糟，用代码来跑跑试试：</p>
+<pre><code class="language-python">def test():
+    origin = &quot;For you know only a heap of broken images&quot;
+    modified = &quot;Far your knn onlie a deep of borken iimaes&quot;
+
+    words_list = [line.strip() for line in open('words.txt', 'r')]
+    tree = make_trie(words_list)
+    for w in modified.split():
+        print check_fuzzy_v4(tree, w, tol=2)
+</code></pre>
+<p>结果也挺快的:</p>
+<ul>
+<li>CPython: 2.53s user 0.25s system 50% cpu 5.470 total</li>
+<li>Pypy: 1.63s user 0.19s system 43% cpu 4.186 total</li>
+</ul>
+<p>就是这样,  喵~</p>
+<p>PS: Lee Shellay回答又更新了，提升了性能和准确度，代码比我这的好，欢迎去看。</p>
+
+</article>
+</main>
+
+<footer><a href="/">← posts</a> · <a href="/atom.xml">atom</a> · <a href="/about.html">about</a> · <a href="https://github.com/wilbeibi/wilbeibi_blog_src">source</a></footer>
+</body>
+</html>
